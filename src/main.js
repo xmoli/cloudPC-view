@@ -6,7 +6,7 @@ Vue.config.productionTip = false
 
 const sessionId = localStorage.getItem("server-admin-sessionId")
 if (sessionId) {
-  Vue.prototype.isAuthenticated = true
+  Vue.prototype.$isAuthenticated = true
   Vue.prototype.$sessionId = sessionId
 } else {
   Vue.prototype.$isAuthenticated = false
