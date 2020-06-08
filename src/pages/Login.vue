@@ -17,7 +17,7 @@
             />
         </label>
         <label>
-            <i class="fa fa-key" />
+            <i class="fa fa-lock" />
             <input 
                 v-model="password"
                 v-on:change="checkPasswordInput"
