@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="online">
+    <div v-if="isAuthenticated">
       <Sidebar active=""/>
       <Appbar/>
       <div class="content">
@@ -8,7 +8,7 @@
       </div>
     </div>
     <div v-else>
-      <router-view name="Login"/>
+      <router-view/>
     </div>
   </div>
 </template>
@@ -20,8 +20,10 @@ import 'font-awesome/css/font-awesome.min.css'
 
 export default {
   name: 'App',
-  data: function(){
-    return {online: true}
+  data () {
+    return {
+      isAuthenticated: this.$isAuthenticated
+    }
   },
   components: {
     Sidebar,
