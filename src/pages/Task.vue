@@ -1,9 +1,12 @@
 <template>
-    <Content>task</Content>
+    <div>
+        <Appbar/>
+        <Sidebar/>
+        <Content>task</Content>
+    </div>
 </template>
 
 <script>
-import Content from '../components/CommonContent.vue'
 
 export default {
     created () {
@@ -13,7 +16,9 @@ export default {
         document.title = 'admin - task'
     },
     components: {
-        Content
+        Sidebar: () => import('../components/Sidebar'),
+        Appbar: () => import('../components/Appbar'),
+        Content: () => import('../components/CommonContent.vue')
     }    
 }
 </script>

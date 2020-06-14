@@ -12,14 +12,13 @@ if (sessionId) {
   Vue.prototype.$isAuthenticated = false
 }
 
-/* router.beforeEach( (to, from, next) => {
-  if (to.name !== 'Login' && !Vue.prototype.isAuthenticated) next({ name: 'Login' })
+router.beforeEach( (to, from, next) => {
+  if (to.name !== 'Login' && !Vue.prototype.$isAuthenticated) next({ name: 'Login' })
   else {
-    Vue.prototype.sessionId = sessionStorage.getItem("server-admin-sessionId")
     next()
   }
 })
- */
+
 new Vue({
   router,
   render: h => h(App)

@@ -1,27 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from './pages/Login.vue'
-import Task from './pages/Task.vue'
-import Logs from './pages/Logs.vue'
-import Page404 from './pages/Page404.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/', redirect: '/task'
+        path: '/', redirect: '/task',
+        name: 'Home'
     },
     {
-        path: '/login', component: Login
+        path: '/login', component: () => import('./pages/Login.vue'),
+        name: 'Login'
     },
     {
-        path: '/task', component: Task
+        path: '/task', component: () => import('./pages/Task.vue'),
+        name: 'Task'
     },
     {
-        path: '/logs', component: Logs
+        path: '/logs', component: () => import('./pages/Logs.vue'),
+        name: 'Logs'
     },
     {
-        path: '*', component: Page404
+        path: '*', component: () => import('./pages/Page404.vue'),
+        name: 'Page404'
     }
 ]
 

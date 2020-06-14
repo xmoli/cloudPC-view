@@ -1,34 +1,14 @@
 <template>
   <div id="app">
-    <div v-if="isAuthenticated">
-      <Sidebar active=""/>
-      <Appbar/>
-      <div class="content">
-        <router-view/>
-      </div>
-    </div>
-    <div v-else>
       <router-view/>
-    </div>
   </div>
 </template>
 
 <script>
-import Sidebar from './components/Sidebar.vue'
-import Appbar from './components/Appbar.vue'
 import 'font-awesome/css/font-awesome.min.css'
 
 export default {
-  name: 'App',
-  data () {
-    return {
-      isAuthenticated: this.$isAuthenticated
-    }
-  },
-  components: {
-    Sidebar,
-    Appbar
-  }
+  name: 'App'
 }
 </script>
 
