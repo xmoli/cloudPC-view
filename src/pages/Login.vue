@@ -169,20 +169,36 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (min-width: 1000px){ 
     form {
-        width: 25vw;
+        width: 30em;
+        height: 18.54em;
         min-width: 15em;
+    }
+}
+@media screen and (max-width: 720px){
+    form {
+        width: 12.36em;
+        height: 20em;
+        min-width: 19em;    
+    }
+}
+@media screen and (max-height: 450px){
+    form {
+        height: 11em;
+    }
+}
+    form {   
         position: absolute;
         top: 50vh;
         left: 50vw;
-        transform: translate(-55%, -55%);
-
+        transform: translate(-50%,-50%);
         display: flex;
         flex-direction:column;
         justify-content: center;
         flex-wrap: nowrap;
         background: rgba(255, 255, 255, 0.822);
-
         border-radius: 0.3em;
         padding: 3em 0;
     }
@@ -195,7 +211,7 @@ export default {
         position: absolute;
         margin: 0.5em;
         margin-top: 0.7em;
-        color: rgba(22, 77, 148);
+        color: rgb(22, 77, 148);
         z-index: 2001;
     }
     label:hover {
@@ -207,7 +223,7 @@ export default {
         background: rgb(209, 209, 209);
         outline: none;
         height: 3em;
-        width: 13em;
+        width: 16em;
         padding: 0 8px 0 2.5em;
         border-radius: 0.25em;
     }
@@ -245,7 +261,7 @@ export default {
         cursor: text;
     }
     .submit input {
-        background: rgba(22, 77, 148);
+        background: rgb(22, 77, 148);
         color: white;
         padding: 0;
         font-weight: bold;       
