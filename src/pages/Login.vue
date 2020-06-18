@@ -91,12 +91,12 @@ export default {
                 method: "POST",
                 body: JSON.stringify(userInfo)
             })
-            if (res.ok) {
-                const json = await res.json()
-                this.$sessionId = json.sessionId
-                this.$router.push('/')
+            const json = await res.json()
+            if (json.error) {
+                this.error = res.error
             } else {
-                this.error = res.statusText
+                this.$sessionId = json.Token
+                this.$router.push('/')
             }
         },
         async userRegister (userInfo) {
