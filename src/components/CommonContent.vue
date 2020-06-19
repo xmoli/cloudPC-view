@@ -28,7 +28,6 @@
 import fetchAPI from '../util/fetchAPI'
 
 export default {
-    props: ["taskSchedule"],
     components: {
         taskOption: () => import('../components/ItemOption')
     },
@@ -49,7 +48,7 @@ export default {
             }
             e.current.target.className = 'showed-item'
             this.showItem = e.current.target
-            this.detail = schedule[this.showItem]
+            this.detail = this.items[this.showItem]
         },
         async getTaskSchedule () {
             const res = await fetchAPI('api/task-schedule')

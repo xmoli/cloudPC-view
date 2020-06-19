@@ -2,6 +2,8 @@ import Vue from 'vue'
 import router from './router'
 import App from './App.vue'
 
+process.env.MOCK && require('./mock/main')
+
 Vue.config.productionTip = false
 
 const sessionId = localStorage.getItem("server-admin-sessionId")
@@ -18,6 +20,8 @@ router.beforeEach( (to, from, next) => {
     next()
   }
 })
+
+
 
 new Vue({
   router,

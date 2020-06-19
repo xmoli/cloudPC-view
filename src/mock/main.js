@@ -1,10 +1,16 @@
-const Koa = require('koa')
-const router = require('./routes.js')
 
-const PORT = 9090
+const Mock = require("mockjs")
 
-const app = new Koa()
-app.use(router)
+const host = 'https://localhost/'
 
-app.listen(PORT);
-console.log('模拟服务器开启在端口：',PORT)
+Mock.mock(host+'api/user/login', 'post', {
+    Token: 'string'
+})
+
+Mock.mock(host+'api/scheduled-task', 'post', {
+    'Id|+1': 0,
+    Name: 'string',
+    CronExpression: 'string',
+    Command: 'string'
+
+})
