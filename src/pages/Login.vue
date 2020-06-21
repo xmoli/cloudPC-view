@@ -121,7 +121,8 @@ export default {
                 username,
                 password
             }
-            if (this.login && this.check.hasChecked) {
+
+            if (this.login && this.validateAll()) {
                 await this.userLogin(userInfo)
                 this.tryKeepOnline()
             } else if (this.check.hasChecked) {
@@ -135,6 +136,16 @@ export default {
                 localStorage.setItem("admin-server-sessionId",this.$sessionId)
             } else {
                 sessionStorage.setItem("admin-server-sessionId",this.$sessionId)
+            }
+        },
+        validateAll () {
+            if (this.check.usernameInput && this.check.passwordInput) {
+                this.check.hasChecked = true
+                return true
+            }
+            else {
+                this.check.hasChecked = false
+                return false
             }
         },
         checkUsernameInput () {
