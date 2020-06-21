@@ -98,9 +98,10 @@ export default {
             const json = await res.json()
             if (json.error) {
                 this.error = res.error
+                return false
             } else {
-                this.$sessionId = json.Token
-                this.$router.push('/')
+                sessionStorage.setItem("server-admin-sessionId", json.Token)
+                return true
             }
         },
         async userRegister (userInfo) {
@@ -109,7 +110,10 @@ export default {
                 body: JSON.stringify(userInfo)
             })
             if (res.ok) {
-                await this.userLogin(userInfo)
+                const ok = await this.userLogin(userInfo)
+                if (ok) {
+                    this.$router.push('/')
+                }
             } else {
                 this.error = res.statusText
             }
@@ -123,19 +127,22 @@ export default {
             }
 
             if (this.login && this.validateAll()) {
-                await this.userLogin(userInfo)
+                const ok = await this.userLogin(userInfo)
+                if (ok) {
+                    this.$router.push('/')
+                }
                 this.tryKeepOnline()
             } else if (this.check.hasChecked) {
-                await this.userRegister(userInfo)
+                const err = await this.userRegister(userInfo)
                 this.tryKeepOnline()
             }
             
         },
         tryKeepOnline () {
             if (this.keep) {
-                localStorage.setItem("admin-server-sessionId",this.$sessionId)
-            } else {
-                sessionStorage.setItem("admin-server-sessionId",this.$sessionId)
+                const sessionId = sessionStorage.getItem("admin-server-sessionId")
+                localStorage.setItem("admin-server-sessionId", sessionId)
+                return true
             }
         },
         validateAll () {

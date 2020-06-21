@@ -4,16 +4,24 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-const sessionId = localStorage.getItem("server-admin-sessionId")
-if (sessionId) {
-  Vue.prototype.$isAuthenticated = true
-  Vue.prototype.$sessionId = sessionId
-} else {
-  Vue.prototype.$isAuthenticated = false
+function getSessionId () {
+  const sessionId = sessionStorage.getItem("server-admin-sessionId")
+  if (sessionId) {
+    return true
+  } else {
+    const id = localStorage.getItem("server-admin-sessionId")
+    if (id) {
+      return true
+    }
+    return false
+  }
 }
 
 router.beforeEach( (to, from, next) => {
-  if (to.name !== 'Login' && !Vue.prototype.$isAuthenticated) next({ name: 'Login' })
+  console.log(from, to, getSessionId())
+  if (to.name !== 'Login' && !getSessionId()) {
+    next({ name: 'Login' })
+  }
   else {
     next()
   }
