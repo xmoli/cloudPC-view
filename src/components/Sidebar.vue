@@ -4,10 +4,10 @@
             <i class="fa fa-server"/>
         </div>
         <ul>
-            <router-link tag="li" to="/statistics" v-bind:class="active">统计</router-link>
-            <router-link tag="li" to="/task" v-bind:class="active">任务</router-link>
-            <router-link tag="li" to="/logs" v-bind:class="active">日志</router-link>
-            <router-link tag="li" to="/user" v-bind:class="active">用户</router-link>
+            <router-link tag="li" to="/statistics" >统计</router-link>
+            <router-link tag="li" to="/task" >任务</router-link>
+            <router-link tag="li" to="/logs">日志</router-link>
+            <router-link tag="li" to="/user">用户</router-link>
         </ul>
     </div>
 </template>

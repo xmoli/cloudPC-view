@@ -18,7 +18,6 @@ function getSessionId () {
 }
 
 router.beforeEach( (to, from, next) => {
-  console.log(from, to, getSessionId())
   if (to.name !== 'Login' && !getSessionId()) {
     next({ name: 'Login' })
   }
@@ -26,8 +25,6 @@ router.beforeEach( (to, from, next) => {
     next()
   }
 })
-
-
 
 new Vue({
   router,

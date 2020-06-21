@@ -5,24 +5,38 @@
             <Searchbar />
         </div>
         <div class="page-tool-box">
-            <PageTool/>
         </div>
         <div class="message-box">
-            <Message/>
+            <Message v-on:click="toggleMenu"/>
+            <my-menu>
+                <ul>
+                    <li>消息</li>
+                    <li>设置</li>
+                    <li>登出</li>
+                </ul>
+            </my-menu>
         </div>
     </div>
 </template>
 <script>
-import Searchbar from './Searchbar.vue'
-import Message from './Message.vue'
-import PageTool from './PageTool.vue'
 
 export default {
     name: 'Appbar',
     components: {
-        Searchbar,
-        PageTool,
-        Message
+        Searchbar: ()=> import('./Searchbar.vue'),
+        Message: ()=> import('./Message.vue'),
+        "my-menu": () => import('./Menu.vue')
+    },
+    data () {
+        return {
+            messageOpen: false
+        }
+    },
+    methods: {
+        toggleMenu () {
+            this.messageOpen = ! this.messageOpen
+        },
+
     }
 }
 </script>
@@ -54,5 +68,8 @@ export default {
         min-width: 3em;
         display: flex;
         justify-content: flex-end;
+    }
+    .menu-wrapper{
+        display: none;
     }
 </style>

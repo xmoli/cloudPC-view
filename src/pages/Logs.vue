@@ -1,9 +1,12 @@
 <template>
-    <Content></Content>
+    <div>
+        <app-bar/>
+        <side-bar/>
+        <Content class="content"></Content>
+    </div>
 </template>
 
 <script>
-import Content from '../components/CommonContent.vue'
 
 export default {
     created () {
@@ -13,13 +16,17 @@ export default {
         document.title = 'admin - logs'
     },
     components: {
-        Content
+        Content: () => import('../components/CommonContent.vue'),
+        "app-bar": () => import('../components/Appbar.vue'),
+        "side-bar": () => import('../components/Sidebar.vue')
     }
 }
 </script>
 
 <style scoped>
-    div {
-        margin: 8px;
-    }
+.content {
+    position: absolute;
+    left: 12vw;
+    top: 10vh;
+}
 </style>

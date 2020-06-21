@@ -1,45 +1,32 @@
 <template>
     <div class="container">
         <ul>
-            <li v-for="item in items" :key="item.name"
-                v-on:click="showDetail"
-            >
-                <span>{{item.name}}</span>
-                <span>{{item.status}}</span>
-                <task-option>
-                    <li v-on:click="clone">克隆</li>
-                    <li v-on:click="destory">删除</li>
-                </task-option>
+            <li>
+                <span>ID</span>
+                <span>名称</span>
+                <span>状态</span>
+                <span></span>
+            </li>
+            <li v-for="item in items" :key="item.name">
+                <span>{{item.Id}}</span>
+                <span>{{item.Name}}</span>
+                <span>{{item.Status}}</span>
+                <span><i class="fa fa-plus" /></span>
             </li>
         </ul>
-        <div v-if="showItem" class="detail-box">
-            <ul>
-                <li>{{detail.name}}</li>
-                <li>{{detail.status}}</li>
-                <li>{{detail.createDate}}</li>
-                <li>{{detail.frequey}}</li>
-                <li>{{detail.lastTime}}</li>
-            </ul> 
-        </div>
     </div>
 </template>
 <script>
-
-import fetchAPI from '../util/fetchAPI'
-
 export default {
     components: {
-        taskOption: () => import('../components/ItemOption')
+        //"item-menu": () => import('../components/Menu.vue')
     },
+    props: ["items"],
     data (){
         return {
-            items: [],
             showItem: null,
             detail: null
         }
-    },
-    created () {
-        this.getTaskSchedule()
     },
     methods: {
         showDetail (e) {
@@ -49,34 +36,6 @@ export default {
             e.current.target.className = 'showed-item'
             this.showItem = e.current.target
             this.detail = this.items[this.showItem]
-        },
-        async getTaskSchedule () {
-            const res = await fetchAPI('api/task-schedule')
-            if (res.error) {//@todo:有待考证api的用法
-                this.error = res.error
-            } else {
-                this.items = res
-            }
-        },
-        async addTask () {
-            const res = await fetchAPI('api/task-schedule', {
-                method: 'PUT'
-            })
-            if (res.error) {
-                this.error = res.error
-            } else {
-                this.message = res
-            }
-        },
-        async destoryTask () {
-            const res = await fetch('api/task-schedule',{
-                method: 'DELETE'
-            })
-            if (res.error) {
-                this.error = res.error
-            } else {
-                this.message = res
-            }
         }
     }
 }
@@ -89,32 +48,28 @@ export default {
     ul {
         border-radius: 0.25em;
         background: white;
-        width: 50%;
         margin: 0 8px 0 8px;
+        border-spacing: 0; 
     }
-    li {
-        border-top: 1px solid rgba(185, 185, 185, 0.562);
-        padding: 1em 16px;
+    ul li span {
+        display: inline-block;
+        width: 7em;
+        text-align: left;
+        padding: 0 8px;
     }
-    li:hover {
-        background: rgba(4, 66, 148, 0.342);
+    ul li span:hover {
+        cursor: pointer;
     }
-    li:first-child {
-        border:none;
-        border-radius: 0.3em 0.3em 0 0;
+    ul li span:last-child {
+        text-align: end;
+        width: 2em;
     }
-    li:last-child {
-        border-radius: 0 0 0.3em 0.3em;
+    ul li {
+        padding: 0.7em 0;
+        border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
-    .detail-box {
-        padding: 1em;
-        width: 50%;
-        margin: 0 8px 0 8px;
-        background: white;
-        border-radius: 0.3em;
-    }
-    /*显示项 */
-    .showed-item {
-        filter: grayscale(0.2);
+    ul li:first-child {
+        font-weight: bold;
+        border-top: none;
     }
 </style>
