@@ -22,9 +22,9 @@ export default {
     watch: {
         open (n, o) {
             if (n) {
-                document.body.addEventListener('click', this.blur, true)
+                document.addEventListener('click', this.blur, true)
             } else if (o){
-                document.body.removeEventListener('click', this.blur)
+                document.removeEventListener('click', this.blur)
             }
         }
     },
