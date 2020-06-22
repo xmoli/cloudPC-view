@@ -5,16 +5,10 @@
             <Searchbar />
         </div>
         <div class="page-tool-box">
+            <slot/>
         </div>
         <div class="message-box">
-            <Message v-on:click="toggleMenu"/>
-            <my-menu>
-                <ul>
-                    <li>消息</li>
-                    <li>设置</li>
-                    <li>登出</li>
-                </ul>
-            </my-menu>
+            <Message/>
         </div>
     </div>
 </template>
@@ -25,18 +19,6 @@ export default {
     components: {
         Searchbar: ()=> import('./Searchbar.vue'),
         Message: ()=> import('./Message.vue'),
-        "my-menu": () => import('./Menu.vue')
-    },
-    data () {
-        return {
-            messageOpen: false
-        }
-    },
-    methods: {
-        toggleMenu () {
-            this.messageOpen = ! this.messageOpen
-        },
-
     }
 }
 </script>
@@ -68,8 +50,5 @@ export default {
         min-width: 3em;
         display: flex;
         justify-content: flex-end;
-    }
-    .menu-wrapper{
-        display: none;
     }
 </style>

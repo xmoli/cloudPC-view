@@ -11,7 +11,22 @@
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
                 <span>{{item.Status}}</span>
-                <span><i class="fa fa-plus" /></span>
+                <span
+                    v-on:click="openMenu"
+                >
+                <item-menu 
+                    class="item-menu"
+                    v-bind:open="open"
+                    v-on:close-menu="closeMenu"
+                >
+                    <ul>
+                        <li>克隆</li>
+                        <li>立即执行</li>
+                        <li>删除</li>
+                    </ul>
+                </item-menu>
+                <i class="fa fa-ellipsis-h" />
+                </span>
             </li>
         </ul>
     </div>
@@ -19,13 +34,14 @@
 <script>
 export default {
     components: {
-        //"item-menu": () => import('../components/Menu.vue')
+        "item-menu": () => import('../components/Menu.vue')
     },
     props: ["items"],
     data (){
         return {
             showItem: null,
-            detail: null
+            detail: null,
+            open: false
         }
     },
     methods: {
@@ -36,6 +52,12 @@ export default {
             e.current.target.className = 'showed-item'
             this.showItem = e.current.target
             this.detail = this.items[this.showItem]
+        },
+        openMenu () {
+            this.open = true;
+        },
+        closeMenu () {
+            this.open = false;
         }
     }
 }
@@ -45,7 +67,7 @@ export default {
         display: flex;
         padding: 1em 16px;
     }
-    ul {
+    .container>ul {
         border-radius: 0.25em;
         background: white;
         margin: 0 8px 0 8px;
@@ -60,16 +82,24 @@ export default {
     ul li span:hover {
         cursor: pointer;
     }
-    ul li span:last-child {
+    .container>ul>li>span:last-child {
         text-align: end;
         width: 2em;
     }
-    ul li {
+    .container>ul>li {
         padding: 0.7em 0;
         border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
-    ul li:first-child {
+    .container>ul>li:first-child {
         font-weight: bold;
         border-top: none;
+    }
+    .item-menu {
+        text-align: left;
+        overflow: hidden;
+        width:fit-content;
+    }
+    .item-menu>ul>li {
+        margin: 8px 0;
     }
 </style>
