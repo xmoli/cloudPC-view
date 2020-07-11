@@ -36,6 +36,34 @@ router.get('/task-schedule', async (ctx, next) => {
             'Status':  false,
             "CreateDate": "@date",
             "Period|1-31": 0,
+        },
+        {
+            'Id|+1': 0,
+            'Name': '@string',
+            'Status':  false,
+            "CreateDate": "@date",
+            "Period|1-31": 0,
+        },
+        {
+            'Id|+1': 0,
+            'Name': '@string',
+            'Status':  false,
+            "CreateDate": "@date",
+            "Period|1-31": 0,
+        },
+        {
+            'Id|+1': 0,
+            'Name': '@string',
+            'Status':  false,
+            "CreateDate": "@date",
+            "Period|1-31": 0,
+        },
+        {
+            'Id|+1': 0,
+            'Name': '@string',
+            'Status':  false,
+            "CreateDate": "@date",
+            "Period|1-31": 0,
         }
         ]
     )

@@ -1,12 +1,14 @@
 <template>
     <div class="container">
-        <ul>
+        <ul class="title">
             <li class="first">
                 <span>ID</span>
                 <span>名称</span>
                 <span>状态</span>
-                <span></span>
+                <span/>
             </li>
+        </ul>
+        <ul class="content">
             <li v-for="item in items" :key="item.name">
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
@@ -24,9 +26,9 @@
                 v-on:close-menu="closeMenu"
                 >
                 <ul>
-                    <li class="warn" v-on:click="delTargetTask">删除</li>
-                    <li>修改</li>
-                    <li >克隆</li>
+                    <li class="warn" v-on:click.stop="$emit('delete-task')">删除</li>
+                    <li v-on:click.stop="$emit('change-task')" >修改</li>
+                    <li v-on:click.stop="$emit('clone-task')" >克隆</li>
                 </ul>
             </item-menu>
         </ul>
@@ -84,29 +86,35 @@ export default {
     .container {
         display: flex;
         padding: 1em 16px;
+        flex-direction: column;
     }
     .container>ul {
-        border-radius: 0.25em;
         background: white;
         margin: 0 8px 0 8px;
         border-spacing: 0; 
     }
+    .container>ul.title {
+        border-radius: .2em .2em 0 0;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+    }
     ul li span {
         display: inline-block;
-        width: 7em;
+        width: 18vw;
         text-align: left;
         padding: 0 8px;
     }
-    ul li:hover {
+    ul.content li:hover {
         cursor: pointer;
         background: rgba(0,0,0,.1);
     }
-    .container .first{
-        background: none;
+    .container>ul.content {
+        max-height: 75vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
     .container>ul>li>span:last-child {
-        text-align: end;
-        width: 2em;
+        text-align: center;
+        width: 4em;
     }
     .container>ul>li>span.last:hover{
         background: white;
@@ -134,6 +142,7 @@ export default {
         color: white;
     }
     .item-menu .warn:hover {
-        background: rgba(212, 0, 0, 0.808);
+        background: rgb(212, 0, 0);
     }
+
 </style>

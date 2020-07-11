@@ -60,7 +60,7 @@ export default {
 
     border-radius: 0.2em;
     background: white;
-    border: 1px solid rgba(128, 128, 128, 0.397);
-
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    transform: translateY(1em);
 }
 </style>

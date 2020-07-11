@@ -31,6 +31,7 @@ export default {
         border: none;
         padding: 0 8px 0 2.5em;
         outline: none;
+        border: 1px solid transparent;
     }
     input:hover, input:focus {   
         border: 1px solid rgb(4, 67, 148);

@@ -40,9 +40,11 @@ export default {
         width: 12vw;
     }
     .search-box {
-        width: 12vw;
+        overflow: hidden;
     }
     .page-tool-box {
+        display: flex;
+        justify-content: center;
         width: 62vw;
     }
     .message-box {

@@ -1,7 +1,9 @@
 <template>
     <div class="sidebar">
         <div class="logo">
-            <i class="fa fa-server"/>
+            <router-link tag="div" to="/">
+                <i class="fa fa-server"/>
+            </router-link>
         </div>
         <ul>
             <router-link tag="li" to="/task" >任务</router-link>
