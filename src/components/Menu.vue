@@ -1,6 +1,6 @@
 <template>
         <div 
-            v-bind:class="{'menu-hidden': !open, menu: open}"
+            class="menu"
             v-on:click.stop="$emit('close-menu')"
             ref="menu"
         >
@@ -10,29 +10,44 @@
 
 <script>
 export default {
-    props: ["open"],
+    props: {
+        position: {
+            x: Number,
+            y: Number,
+            open: Boolean
+        }
+    },
     data () {
         return {
             eventBlur: null
         }
     },
     mounted () {
-        
+        this.$refs.menu.style.display = "none"
     },
     watch: {
-        open (n, o) {
-            if (n) {
-                document.addEventListener('click', this.blur, true)
-            } else if (o){
-                document.removeEventListener('click', this.blur)
+        position (n, o) {
+            if (n.open) {
+                this.open()
+            } else {
+                this.close()
             }
         }
     },
     methods: {
         blur () {
-            if (this.open) {
-                this.$emit('close-menu')
-            }
+            this.$refs.menu.style.display = "none"
+        },
+        open () {
+            let eleStyle = this.$refs.menu.style
+            eleStyle.display = "block"
+            eleStyle.position = "absolute"
+            eleStyle.top = this.position.y+'px'
+            eleStyle.left = this.position.x+'px'
+            document.addEventListener('click', this.blur, true)
+        },
+        close () {
+            document.removeEventListener('click', this.blur)
         }
     }
 }
@@ -43,14 +58,9 @@ export default {
     position: absolute;
     z-index: 1000;
 
-    border-radius: 0.3em;
+    border-radius: 0.2em;
     background: white;
     border: 1px solid rgba(128, 128, 128, 0.397);
 
-    padding: 8px;
-    transform: translateY(1em);
-}
-.menu-hidden {
-    display: none;
 }
 </style>

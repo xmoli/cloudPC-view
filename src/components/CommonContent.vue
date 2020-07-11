@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <ul>
-            <li>
+            <li class="first">
                 <span>ID</span>
                 <span>名称</span>
                 <span>状态</span>
@@ -12,22 +12,23 @@
                 <span>{{item.Name}}</span>
                 <span>{{item.Status}}</span>
                 <span
+                    class="last"
                     v-on:click="openMenu"
                 >
-                <item-menu 
-                    class="item-menu"
-                    v-bind:open="open"
-                    v-on:close-menu="closeMenu"
-                >
-                    <ul>
-                        <li>克隆</li>
-                        <li>立即执行</li>
-                        <li>删除</li>
-                    </ul>
-                </item-menu>
                 <i class="fa fa-ellipsis-h" />
                 </span>
             </li>
+            <item-menu 
+                class="item-menu"
+                v-bind:position="menuPosition"
+                v-on:close-menu="closeMenu"
+                >
+                <ul>
+                    <li class="warn" v-on:click="delTargetTask">删除</li>
+                    <li>修改</li>
+                    <li >克隆</li>
+                </ul>
+            </item-menu>
         </ul>
     </div>
 </template>
@@ -41,7 +42,11 @@ export default {
         return {
             showItem: null,
             detail: null,
-            open: false
+            menuPosition: {
+                x: 0,
+                y: 0,
+                open: false
+            }
         }
     },
     methods: {
@@ -53,11 +58,24 @@ export default {
             this.showItem = e.current.target
             this.detail = this.items[this.showItem]
         },
-        openMenu () {
-            this.open = true;
+        openMenu (e) {
+            let target = e.currentTarget
+            let newPosition = {
+                x: target.offsetLeft,
+                y: target.offsetTop,
+                open: true,
+            }
+            this.menuPosition = newPosition//为了能监听
         },
-        closeMenu () {
-            this.open = false;
+        closeMenu (e) {
+            this.menuPosition = {
+                x: 0,
+                y: 0,
+                open: false
+            }
+        },
+        delTargetTask () {
+
         }
     }
 }
@@ -79,12 +97,19 @@ export default {
         text-align: left;
         padding: 0 8px;
     }
-    ul li span:hover {
+    ul li:hover {
         cursor: pointer;
+        background: rgba(0,0,0,.1);
+    }
+    .container .first{
+        background: none;
     }
     .container>ul>li>span:last-child {
         text-align: end;
         width: 2em;
+    }
+    .container>ul>li>span.last:hover{
+        background: white;
     }
     .container>ul>li {
         padding: 0.7em 0;
@@ -98,8 +123,17 @@ export default {
         text-align: left;
         overflow: hidden;
         width:fit-content;
+        transform: translateX(1em);
     }
-    .item-menu>ul>li {
-        margin: 8px 0;
+    .item-menu ul li {
+        display: block;
+        padding: 4px 8px;
+    }
+    .item-menu .warn {
+        background: rgba(185, 0, 0, 0.808);
+        color: white;
+    }
+    .item-menu .warn:hover {
+        background: rgba(212, 0, 0, 0.808);
     }
 </style>

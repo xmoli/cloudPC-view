@@ -3,17 +3,17 @@ const Mock =require('mockjs')
 
 const router = new Router()
 
-router.post('/api/user/login', async (ctx, next) => {
+router.post('/user/login', async (ctx, next) => {
     ctx.body = Mock.mock({
         Token: '@string'
     })
 })
-router.get('/api/user/login', async (ctx, next) => {
+router.get('/user/login', async (ctx, next) => {
     ctx.body = Mock.mock({
         Token: '@string'
     })
 })
-router.get('/api/task-schedule', async (ctx, next) => {
+router.get('/task-schedule', async (ctx, next) => {
     ctx.body = Mock.mock(
         [
         {
