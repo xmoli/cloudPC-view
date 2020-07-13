@@ -1,18 +1,31 @@
 <template>
 <div>
     <h1>
-        404 not found!
+        Oops! 网页走丢了
     </h1>
-    <router-link to="/">返回首页</router-link>
-    <span v-on:click="back">
-        返回上一级
-    </span>
+    <ul>
+        <li>
+            <router-link to="/">
+                <i class="fa fa-home"/>
+                返回首页
+            </router-link>
+        </li>
+        <li>
+            <span v-on:click="back">
+                <i class="fa fa-arrow-left"/>
+                返回上一级
+            </span>
+        </li>
+    </ul>
 </div>
 </template>
 
 <script>
 export default {
     name: 'Page404',
+    created () {
+      document.title =   "404 page"
+    },
     methods: {
         back () {
             window.history.back()
@@ -22,15 +35,13 @@ export default {
 </script>
 
 <style scoped>
-    h1 {
-        color: rgb(4, 67, 148);
+    a {
+        color: white;
     }
     div {
-        background: white;
+        color: white;
+        background: #1d1f2e;
         padding: 2em;
-    }
-    span {
-        color:rgb(4, 67, 148);
     }
     span:hover {
         cursor: pointer;

@@ -1,17 +1,34 @@
 <template>
-    <div>
     <div class="menu-wrapper"
         v-on:click="closeMenu"
+        ref="popbox"
     >
         <div class="menu">
-            <slot/>
+            <div class="content">
+                <slot/>
+            </div>
+            <div class="close-icon"
+                v-on:click="closeMenu"
+            >
+                <i class="fa fa-close"/>
+                关闭
+            </div>
         </div>
-    </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        open: Boolean
+    },
+    mounted() {
+        if (this.open) {
+            this.$refs.popbox.style.display = "flex"
+        } else {
+            this.$refs.popbox.style.display = "none"
+        }
+    },
     methods: {
         closeMenu () {
 
@@ -22,33 +39,39 @@ export default {
 
 <style scoped>
     .menu-wrapper {
-        display: none;
+        display: flex;
         position: absolute;
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+
         width: 100vw;
         height: 100vh;
         top: 0;
         left: 0;
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.6);
     }
     .menu {
-        display: none;
-        position: absolute;
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
-        border: 1px solid grey;
-        box-shadow: 1px 1px 2px 2px grey;
-        border-radius: 0.3em;
+        border: 1px solid rgba(1, 0, 58, 0.5);
+        border-radius: 0.2em;
         background: rgba(255, 255, 255, 0.8);
-        z-index: 1000;
+        padding: 8px;
+        transform: translateY(-2em);
     }
-    .menu::after {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background: inherit;
-        filter: blur(10px);
-        z-index: 2000;
+    .content {
+        padding: 8px;
+    }
+    .close-icon {
+        color: white;
+        background:rgb(172, 0, 0);
+        border-radius: 0.2em;
+        padding: 4px;
+        line-height: 1em;
+    }
+    .close-icon:hover {
+        cursor: pointer;
     }
 </style>

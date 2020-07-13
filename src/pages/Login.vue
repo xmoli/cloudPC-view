@@ -119,7 +119,7 @@ export default {
             }
         },
         async submit () {
-            let username = this.username,
+            let username = this.username.trim(),
                 password = this.password
             const userInfo = {
                 username,
@@ -156,7 +156,7 @@ export default {
             }
         },
         checkUsernameInput () {
-            if (isEmail(this.username)) {
+            if (this.username) {
                 this.check.usernameInput = true
                 this.check.usernameInputError = null
             } else {

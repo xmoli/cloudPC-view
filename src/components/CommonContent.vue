@@ -1,33 +1,36 @@
 <template>
     <div class="container">
-        <ul>
-            <li>
+        <ul class="title">
+            <li class="first">
                 <span>ID</span>
                 <span>名称</span>
                 <span>状态</span>
-                <span></span>
+                <span/>
             </li>
+        </ul>
+        <ul class="content">
             <li v-for="item in items" :key="item.name">
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
                 <span>{{item.Status}}</span>
                 <span
+                    class="last"
                     v-on:click="openMenu"
                 >
-                <item-menu 
-                    class="item-menu"
-                    v-bind:open="open"
-                    v-on:close-menu="closeMenu"
-                >
-                    <ul>
-                        <li>克隆</li>
-                        <li>立即执行</li>
-                        <li>删除</li>
-                    </ul>
-                </item-menu>
                 <i class="fa fa-ellipsis-h" />
                 </span>
             </li>
+            <item-menu 
+                class="item-menu"
+                v-bind:position="menuPosition"
+                v-on:close-menu="closeMenu"
+                >
+                <ul>
+                    <li class="warn" v-on:click.stop="$emit('delete-task')">删除</li>
+                    <li v-on:click.stop="$emit('change-task')" >修改</li>
+                    <li v-on:click.stop="$emit('clone-task')" >克隆</li>
+                </ul>
+            </item-menu>
         </ul>
     </div>
 </template>
@@ -41,7 +44,11 @@ export default {
         return {
             showItem: null,
             detail: null,
-            open: false
+            menuPosition: {
+                x: 0,
+                y: 0,
+                open: false
+            }
         }
     },
     methods: {
@@ -53,11 +60,24 @@ export default {
             this.showItem = e.current.target
             this.detail = this.items[this.showItem]
         },
-        openMenu () {
-            this.open = true;
+        openMenu (e) {
+            let target = e.currentTarget
+            let newPosition = {
+                x: target.offsetLeft,
+                y: target.offsetTop,
+                open: true,
+            }
+            this.menuPosition = newPosition//为了能监听
         },
-        closeMenu () {
-            this.open = false;
+        closeMenu (e) {
+            this.menuPosition = {
+                x: 0,
+                y: 0,
+                open: false
+            }
+        },
+        delTargetTask () {
+
         }
     }
 }
@@ -66,25 +86,38 @@ export default {
     .container {
         display: flex;
         padding: 1em 16px;
+        flex-direction: column;
     }
     .container>ul {
-        border-radius: 0.25em;
         background: white;
         margin: 0 8px 0 8px;
         border-spacing: 0; 
     }
+    .container>ul.title {
+        border-radius: .2em .2em 0 0;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+    }
     ul li span {
         display: inline-block;
-        width: 7em;
+        width: 18vw;
         text-align: left;
         padding: 0 8px;
     }
-    ul li span:hover {
+    ul.content li:hover {
         cursor: pointer;
+        background: rgba(0,0,0,.1);
+    }
+    .container>ul.content {
+        max-height: 75vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
     .container>ul>li>span:last-child {
-        text-align: end;
-        width: 2em;
+        text-align: center;
+        width: 4em;
+    }
+    .container>ul>li>span.last:hover{
+        background: white;
     }
     .container>ul>li {
         padding: 0.7em 0;
@@ -98,8 +131,18 @@ export default {
         text-align: left;
         overflow: hidden;
         width:fit-content;
+        transform: translateX(1em);
     }
-    .item-menu>ul>li {
-        margin: 8px 0;
+    .item-menu ul li {
+        display: block;
+        padding: 4px 8px;
     }
+    .item-menu .warn {
+        background: rgba(185, 0, 0, 0.808);
+        color: white;
+    }
+    .item-menu .warn:hover {
+        background: rgb(212, 0, 0);
+    }
+
 </style>
