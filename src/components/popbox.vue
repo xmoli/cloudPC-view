@@ -1,14 +1,16 @@
 <template>
     <div class="menu-wrapper"
-        v-on:click="closeMenu"
+        v-on:click="closePopbox"
         ref="popbox"
     >
-        <div class="menu">
+        <div class="menu"
+            @click.stop
+        >
             <div class="content">
                 <slot/>
             </div>
             <div class="close-icon"
-                v-on:click="closeMenu"
+                v-on:click="closePopbox"
             >
                 <i class="fa fa-close"/>
                 关闭
@@ -22,16 +24,22 @@ export default {
     props: {
         open: Boolean
     },
-    mounted() {
-        if (this.open) {
-            this.$refs.popbox.style.display = "flex"
-        } else {
-            this.$refs.popbox.style.display = "none"
+    watch: {
+        open (n, old) {
+            if (n) {
+                this.openPopbox()
+            } else {
+                this.closePopbox()
+            }
         }
     },
     methods: {
-        closeMenu () {
-
+        closePopbox () {
+            this.$refs.popbox.style.display = "none"
+            this.$emit('close')
+        },
+        openPopbox () {
+            this.$refs.popbox.style.display = "flex"
         }
     }
 }
@@ -39,7 +47,7 @@ export default {
 
 <style scoped>
     .menu-wrapper {
-        display: flex;
+        display: none;
         position: absolute;
         z-index: 2000;
         justify-content: center;
@@ -55,9 +63,9 @@ export default {
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        border: 1px solid rgba(1, 0, 58, 0.5);
+        border: 1px solid transparent;
         border-radius: 0.2em;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255);
         padding: 8px;
         transform: translateY(-2em);
     }
@@ -68,7 +76,8 @@ export default {
         color: white;
         background:rgb(172, 0, 0);
         border-radius: 0.2em;
-        padding: 4px;
+        padding: 8px;
+        margin: 8px;
         line-height: 1em;
     }
     .close-icon:hover {

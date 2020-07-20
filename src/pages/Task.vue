@@ -1,7 +1,9 @@
 <template>
     <div>
         <Appbar>
-            <div class="new-button">
+            <div class="new-button"
+                @click.stop="togglePopbox"
+            >
                 <i class="fa fa-plus"/>
                 新建
             </div>
@@ -14,7 +16,10 @@
             v-on:change-task="changeTask"
             v-on:clone-task="cloneTask"
         ></Content>
-        <pop-box class="pop-box" v-bind:open="false">
+        <pop-box class="pop-box" 
+            v-bind:open="popboxAnchor"
+            @close="popboxAnchor = false"
+        >
             <ul>
                 <li>
                     <label>
@@ -35,7 +40,7 @@
                     <textarea/>
                 </li>
                 <li class="submit-button">
-                    修改
+                    运行
                 </li>
             </ul>
         </pop-box>
@@ -53,7 +58,8 @@ export default {
     },
     data () {
         return {
-            items: []
+            items: [],
+            popboxAnchor: false
         }
     },
     created () {
@@ -98,6 +104,9 @@ export default {
         },
         cloneTask() {
 
+        },
+        togglePopbox() {
+            this.popboxAnchor = !this.popboxAnchor
         }
     }
 }
@@ -132,11 +141,12 @@ export default {
 .pop-box .submit-button:hover {
     cursor: pointer;
 }
-.pop-box textarea {
-    height: 1.5em;
+input, textarea {
+    font-size: 1rem;
     padding: 4px;
 }
-.pop-box input {
+.pop-box textarea {
+    height: 3rem;
     padding: 4px;
 }
 .new-button {

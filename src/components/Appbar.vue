@@ -36,6 +36,9 @@ export default {
         display: flex;
         align-items: center;
     }
+    .appbar div {
+        margin: 0 16px;
+    }
     .sidebar-blank-box {
         width: 12vw;
     }
@@ -45,10 +48,8 @@ export default {
     .page-tool-box {
         display: flex;
         justify-content: center;
-        width: 62vw;
     }
     .message-box {
-        width: 12vw;
         min-width: 3em;
         display: flex;
         justify-content: flex-end;
