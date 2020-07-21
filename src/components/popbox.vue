@@ -9,12 +9,12 @@
             <div class="content">
                 <slot/>
             </div>
-            <div class="close-icon"
+            <button class="close-icon"
                 v-on:click="closePopbox"
             >
                 <i class="fa fa-close"/>
                 关闭
-            </div>
+            </button>
         </div>
     </div>
 </template>
@@ -63,7 +63,7 @@ export default {
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        border: 1px solid transparent;
+        border: 2px solid rgba(19, 19, 255, 0.35);
         border-radius: 0.2em;
         background: rgba(255, 255, 255);
         padding: 8px;
@@ -75,7 +75,8 @@ export default {
     .close-icon {
         color: white;
         background:rgb(172, 0, 0);
-        border-radius: 0.2em;
+        border-radius: 0.25em;
+        border: 1px solid transparent;
         padding: 8px;
         margin: 8px;
         line-height: 1em;

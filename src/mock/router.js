@@ -13,59 +13,34 @@ router.get('/user/login', async (ctx, next) => {
         Token: '@string'
     })
 })
+router.put('/task-schedule/', async (ctx, next) => {
+    ctx.body = {
+        status: true,
+        error: false
+    }
+})
+router.post('/task-schedule/', async (ctx, next) => {
+    ctx.body = {
+        status: true,
+        error: false
+    }
+})
+router.delete('/task-schedule/', async (ctx, next) => {
+    ctx.body = {
+        status: true,
+        error: false
+    }
+})
 router.get('/task-schedule', async (ctx, next) => {
     ctx.body = Mock.mock(
-        [
         {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
-        },
-        {
-            'Id|+1': 0,
-            'Name': '@string',
-            'Status':  false,
-            "CreateDate": "@date",
-            "Period|1-31": 0,
+            "data|5-30": [{
+                "Id|+1": 100000,
+                "Name": "@ctitle",
+                'Status': "@boolean",
+                'Period': "@date"
+            }]
         }
-        ]
     )
 })
 module.exports = router

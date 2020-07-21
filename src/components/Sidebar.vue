@@ -25,7 +25,7 @@
         cursor: pointer;
     }
     .router-link-active {
-        background: black;
+        background: rgb(3, 34, 75);
     }
     .sidebar {
         position: fixed;
@@ -35,7 +35,7 @@
         width: 12vw;
         height: 100vh;
 
-        background: rgb(29, 31, 46);
+        background: rgb(42, 45, 70);
         color : white;
     }
     .logo {

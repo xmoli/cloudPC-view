@@ -13,9 +13,14 @@ export default {
             search: null
         }
     },
+    watch: {
+        search (n, old) {
+            this.searchSubmit()
+        }
+    },
     methods: {
         searchSubmit() {
-            console.log("search:",this.search)
+            this.$emit('search',this.search)
         }
     }
 }

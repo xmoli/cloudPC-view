@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Appbar>
+        <Appbar v-on:search="showResult">
             <div class="new-button"
-                @click.stop="togglePopbox"
+                @click.stop="openAddPop"
             >
                 <i class="fa fa-plus"/>
                 新建
@@ -13,36 +13,48 @@
         <Content class="content"
             v-bind:items="items"
             v-on:delete-task="destoryTask"
-            v-on:change-task="changeTask"
+            v-on:change-task="openChangePop"
             v-on:clone-task="cloneTask"
         ></Content>
         <pop-box class="pop-box" 
             v-bind:open="popboxAnchor"
             @close="popboxAnchor = false"
         >
-            <ul>
-                <li>
+            <form @submit.prevent="addTask">
                     <label>
-                        名称:
+                        名称 
+                    <input v-model="taskName"/>
                     </label>
-                    <input/>
-                </li>
-                <li>
                     <label>
-                        指令:
+                        指令
+                    <input v-model="taskCommand"/>
                     </label>
-                    <input/>
-                    </li>
-                <li>
                     <label>
-                        cron表达式:
+                        表达式
+                    <input v-model="taskCron"/>
                     </label>
-                    <textarea/>
-                </li>
-                <li class="submit-button">
-                    运行
-                </li>
-            </ul>
+                    <input class="submit-button" type="submit" value="添加"/>
+            </form>
+        </pop-box>
+        <pop-box class="pop-box" 
+            v-bind:open="changeAnchor"
+            @close="changeAnchor = false"
+        >
+            <form @submit.prevent="changeTask">
+                    <label>
+                        名称 
+                    <input v-model="taskNameC"/>
+                    </label>
+                    <label>
+                        指令
+                    <input v-model="taskCommandC"/>
+                    </label>
+                    <label>
+                        表达式
+                    <input v-model="taskCronC"/>
+                    </label>
+                    <input class="submit-button" type="submit" value="修改"/>
+            </form>
         </pop-box>
     </div>
 </template>
@@ -59,7 +71,15 @@ export default {
     data () {
         return {
             items: [],
-            popboxAnchor: false
+            popboxAnchor: false,
+            changeAnchor: false,
+            taskName: '',
+            taskCommand: '',
+            taskCron: '',
+            taskNameC: '',
+            taskCommandC: '',
+            taskCronC: '',
+            taskClone: null,
         }
     },
     created () {
@@ -73,92 +93,165 @@ export default {
         async getTaskSchedule () {
             const res = await fetch('api/task-schedule')
             const json = await res.json()
-            if (res.error) {//@todo:有待考证api的用法
-                this.error = json
+            if (json.error) {
+                console.log(json)
             } else {
-                this.items = json
+                this.items = json.data
             }
         },
         async addTask () {
+            let {name, cron, command, err} = this.checkInput()
+            if (err.length != 0) {
+                throw err
+            }
+            let data = {
+                Name: name,
+                CronExpression: cron,
+                Command: command
+            }
             const res = await fetch('api/task-schedule', {
-                method: 'PUT'
+                method: 'POST',
+                body: JSON.stringify(data)
             })
-            if (res.error) {
-                this.error = res.error
-            } else {
-                this.message = res
+            try {
+                const json = await res.json()
+                if (json.error) {
+                    console.log(json)
+                } else {
+                    data.Id = '00000000000000'
+                    this.items.push(data)
+                }
+                this.popboxAnchor = false
+            }catch{
+                console.log('添加失败')
             }
         },
-        async destoryTask () {
-            const res = await fetch('api/task-schedule',{
+        async destoryTask (index) {
+            let id = this.items[index].Id
+            const res = await fetch('api/task-schedule/?id='+id,{
                 method: 'DELETE'
             })
-            if (res.error) {
-                this.error = res.error
-            } else {
-                this.message = res
+            try {
+                const json = await res.json()
+                if (json.error) {
+                    console.log(json)
+                } else {
+                    this.items.splice(index,1) 
+                } 
+            } catch (e) {
+                console.log('删除第', id, '个任务失败')
             }
         },
-        async changeTask () {
-
+        async changeTask (data) {
+            const res = await fetch('api/task-schedule/',{
+                method: 'PUT',
+                body: JSON.stringify(data)
+            })
+            const json = await res.json()
+            if (json.error) {
+                console.log(json)
+            } else {
+                this.message = json
+            }
+        },
+        openAddPop () {
+            this.taskName = ''
+            this.taskCommand = ''
+            this.taskCron = ''
+            this.popboxAnchor = true
+        }
+        ,
+        openChangePop (index) {
+            let data = this.items[index]
+            this.taskNameC = data.Name
+            this.taskCommandC = data.Command
+            this.taskCronC = data.CronExpression
+            this.changeAnchor = true
+        },
+        checkInput () {
+            let task
+            if (this.taskName.trim().length == 0) {
+                task.error.push(0)
+            }else {
+                task.name = this.taskName.trim()
+            }
+            if (this.taskCommond.trim().length == 0) {
+                task.error.push(1)
+            }else {
+                task.command = this.taskCommand.trim()
+            }
+            if (this.taskCron.trim().length == 0) {
+                task.error.push(2)
+            }else {
+                task.cron = this.taskCron.trim()
+            }
+            return task
         },
         cloneTask() {
 
         },
-        togglePopbox() {
-            this.popboxAnchor = !this.popboxAnchor
+        showResult (keyword) {//显示搜索结果
+            console.log('reslut:',keyword)
         }
     }
 }
 </script>
 
 <style scoped>
+html{  
+    overflow-x: hidden;  
+    overflow-y: hidden;  
+} 
 .content {
     position: absolute;
     left: 12vw;
     top: 10vh;
 }
-.pop-box ul li {
+.pop-box form {
     display: flex;
+    flex-direction: column;
 }
-.pop-box ul li label{
-    width: 6em;
+.pop-box form label{
+    margin: 8px;
+    display: flex;
+    letter-spacing: 0.25em;
 }
 .pop-box ul li {
     margin-bottom: 8px;
 }
 .pop-box .submit-button {
-    display: inline-block;
     margin-top: 8px;
     height: 2.5em;
     width: 100%;
     color: white;
     border-radius: 0.2em;
+    border: 1px solid transparent;
     padding: 0;
-    line-height: 2.5em;
+    line-height: 1em;
     background: rgb(5, 5, 36)
 }
 .pop-box .submit-button:hover {
     cursor: pointer;
 }
-input, textarea {
-    font-size: 1rem;
-    padding: 4px;
+.pop-box input{
+    border: 1px solid grey;
+    outline: none;
+    padding: 8px;
+    width: 40em;
 }
-.pop-box textarea {
-    height: 3rem;
-    padding: 4px;
+.pop-box input:hover, .pop-box input:focus{
+    border: 1px solid rgb(21, 21, 138);
 }
 .new-button {
     display: flex;
     overflow: hidden;
-    width: 5em;
+    width: 4em;
+    height: 2.5em;
+    line-height: 3em;
+
     justify-content: center;
     align-items: center;
-    border-radius: 0.2em;
-    line-height: 1em;
-    min-width: 1.75em;
-    min-height: 1.75em;
+    border-radius: 0.25em;
     color: white;
     background: rgb(0, 26, 110);
 }

@@ -5,17 +5,21 @@
                 <span>ID</span>
                 <span>名称</span>
                 <span>状态</span>
-                <span/>
+                <span class="last-span">
+                    操作
+                </span>
             </li>
         </ul>
         <ul class="content">
-            <li v-for="item in items" :key="item.name">
+            <li v-for="(item, index) in items" :key="index">
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
-                <span>{{item.Status}}</span>
+                <span v-if="item.Status" class="fa fa-circle-o">
+                </span>
+                <span v-else class="fa fa-stop-circle-o" />
                 <span
-                    class="last"
-                    v-on:click="openMenu"
+                    class="last-span"
+                    v-on:click="openMenu($event, index)"
                 >
                 <i class="fa fa-ellipsis-h" />
                 </span>
@@ -26,9 +30,9 @@
                 v-on:close-menu="closeMenu"
                 >
                 <ul>
-                    <li class="warn" v-on:click.stop="$emit('delete-task')">删除</li>
-                    <li v-on:click.stop="$emit('change-task')" >修改</li>
-                    <li v-on:click.stop="$emit('clone-task')" >克隆</li>
+                    <li class="warn" v-on:click.stop="$emit('delete-task', targetItem)">删除</li>
+                    <li v-on:click.stop="$emit('change-task', targetItem)" >修改</li>
+                    <li v-on:click.stop="$emit('clone-task', targetItem)" >克隆</li>
                 </ul>
             </item-menu>
         </ul>
@@ -44,6 +48,7 @@ export default {
         return {
             showItem: null,
             detail: null,
+            targetItem: null,
             menuPosition: {
                 x: 0,
                 y: 0,
@@ -60,11 +65,12 @@ export default {
             this.showItem = e.current.target
             this.detail = this.items[this.showItem]
         },
-        openMenu (e) {
+        openMenu (e, index) {
+            this.targetItem = index
             let target = e.currentTarget
             let newPosition = {
-                x: target.offsetLeft,
-                y: target.offsetTop,
+                x: target.scrollLeft,
+                y: target.scrollHeight,
                 open: true,
             }
             this.menuPosition = newPosition//为了能监听
@@ -97,45 +103,43 @@ export default {
         border-radius: .2em .2em 0 0;
         border-bottom: 1px solid rgba(128, 128, 128, 0.486);
     }
+    ul li {
+        display: flex;
+    }
     ul li span {
         display: inline-block;
-        width: 18vw;
-        text-align: left;
-        padding: 0 8px;
+        min-width: 15vw;
+    }
+    ul.title li span {
+        text-indent: .5em;
     }
     ul.content li:hover {
         cursor: pointer;
         background: rgba(0,0,0,.1);
     }
-    .container>ul.content {
+    .container ul.content {
         max-height: 75vh;
         overflow-x: hidden;
         overflow-y: scroll;
     }
-    .container>ul>li>span:last-child {
-        text-align: center;
-        width: 4em;
-    }
-    .container>ul>li>span.last:hover{
+    .container>ul>li>span.last-span:hover{
         background: white;
     }
     .container>ul>li {
         padding: 0.7em 0;
         border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
-    .container>ul>li:first-child {
+    .container>ul:first-child>li:first-child {
         font-weight: bold;
         border-top: none;
     }
     .item-menu {
-        text-align: left;
         overflow: hidden;
         width:fit-content;
-        transform: translateX(1em);
     }
     .item-menu ul li {
         display: block;
-        padding: 4px 8px;
+        padding: 8px 3em;
     }
     .item-menu .warn {
         background: rgba(185, 0, 0, 0.808);
@@ -144,5 +148,10 @@ export default {
     .item-menu .warn:hover {
         background: rgb(212, 0, 0);
     }
-
+    .content .fa-circle-o {
+        color: green
+    }
+    .content .fa-stop-circle-o {
+        color: orange;
+    }
 </style>

@@ -2,7 +2,7 @@
     <div class="appbar">
         <div class="sidebar-blank-box"/>
         <div class="search-box">
-            <Searchbar />
+            <Searchbar @search="search"/>
         </div>
         <div class="page-tool-box">
             <slot/>
@@ -19,6 +19,11 @@ export default {
     components: {
         Searchbar: ()=> import('./Searchbar.vue'),
         Message: ()=> import('./Message.vue'),
+    },
+    methods: {
+        search (keyword) {
+            this.$emit('search',keyword)
+        }
     }
 }
 </script>
