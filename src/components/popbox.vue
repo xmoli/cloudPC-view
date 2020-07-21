@@ -1,10 +1,12 @@
 <template>
     <div class="menu-wrapper"
         v-on:click="closePopbox"
+        v-on:keyup.esc="closePopbox"
         ref="popbox"
     >
         <div class="menu"
             @click.stop
+            ref="menu"
         >
             <div class="content">
                 <slot/>
@@ -39,7 +41,10 @@ export default {
             this.$emit('close')
         },
         openPopbox () {
-            this.$refs.popbox.style.display = "flex"
+            let popbox = this.$refs.popbox
+            let menu = this.$refs.menu
+            popbox.style.display = "flex"
+            menu.getElementsByTagName('input')[0].focus()
         }
     }
 }

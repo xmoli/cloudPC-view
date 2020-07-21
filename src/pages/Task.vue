@@ -16,8 +16,10 @@
             v-on:change-task="openChangePop"
             v-on:clone-task="cloneTask"
         ></Content>
-        <pop-box class="pop-box" 
+        <pop-box 
+            class="pop-box"
             v-bind:open="popboxAnchor"
+            @keypress.esc="popboxAnchor = false"
             @close="popboxAnchor = false"
         >
             <form @submit.prevent="addTask">
@@ -38,6 +40,7 @@
         </pop-box>
         <pop-box class="pop-box" 
             v-bind:open="changeAnchor"
+            @keypress.esc="changeAnchor = false"
             @close="changeAnchor = false"
         >
             <form @submit.prevent="changeTask">
@@ -70,7 +73,8 @@ export default {
     },
     data () {
         return {
-            items: [],
+            data: [],
+            keyword: '',
             popboxAnchor: false,
             changeAnchor: false,
             taskName: '',
@@ -82,12 +86,19 @@ export default {
             taskClone: null,
         }
     },
-    created () {
-        document.title = 'admin - task'
-        this.getTaskSchedule()
+    computed: {
+        items () {
+            return this.data.filter(i => {
+                if (!this.keyword) {
+                    return true
+                }
+                return i.Name.search(this.keyword)+1
+            })
+        }
     },
-    updated () {
-        document.title = 'admin - task'
+    mounted () {
+        document.title = 'ADMIN | 任务'
+        this.getTaskSchedule()
     },
     methods: {
         async getTaskSchedule () {
@@ -96,7 +107,7 @@ export default {
             if (json.error) {
                 console.log(json)
             } else {
-                this.items = json.data
+                this.data = json.data
             }
         },
         async addTask () {
@@ -136,7 +147,7 @@ export default {
                 if (json.error) {
                     console.log(json)
                 } else {
-                    this.items.splice(index,1) 
+                    this.data.splice(index,1)
                 } 
             } catch (e) {
                 console.log('删除第', id, '个任务失败')
@@ -191,7 +202,7 @@ export default {
 
         },
         showResult (keyword) {//显示搜索结果
-            console.log('reslut:',keyword)
+            this.keyword = keyword
         }
     }
 }

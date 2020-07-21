@@ -1,7 +1,8 @@
 <template>
         <div 
             class="menu"
-            v-on:click.stop="$emit('close-menu')"
+            v-on:click.stop="closeMenu"
+            v-on:keyup.esc="closeMenu"
             ref="menu"
         >
             <slot/>
@@ -11,26 +12,19 @@
 <script>
 export default {
     props: {
-        position: {
-            x: Number,
-            y: Number,
-            open: Boolean
-        }
+        open: Boolean
     },
     data () {
         return {
             eventBlur: null
         }
     },
-    mounted () {
-        this.$refs.menu.style.display = "none"
-    },
     watch: {
-        position (n, o) {
-            if (n.open) {
-                this.open()
+        open (n, old) {
+            if (n === true) {
+                this.openMenu()
             } else {
-                this.close()
+                this.closeMenu()
             }
         }
     },
@@ -38,29 +32,29 @@ export default {
         blur () {
             this.$refs.menu.style.display = "none"
         },
-        open () {
-            let eleStyle = this.$refs.menu.style
-            eleStyle.display = "block"
-            eleStyle.position = "absolute"
-            eleStyle.top = this.position.y+'px'
-            eleStyle.left = this.position.x+'px'
+        openMenu () {
             document.addEventListener('click', this.blur, true)
+            let ele = this.$refs.menu
+            ele.style.display = "block"
+            ele.getElementsByTagName('button')[0].focus()
         },
-        close () {
+        closeMenu () {
             document.removeEventListener('click', this.blur)
+            this.blur()
+            this.$emit('close-menu')
         }
     }
 }
 </script>
 <style scoped>
 .menu {
-    display: block;
+    display: none;
     position: absolute;
     z-index: 1000;
 
     border-radius: 0.2em;
     background: white;
     border: 2px solid rgba(0, 31, 102, 0.35);
-    transform: translateY(1em);
+    transform: translateX(1em);
 }
 </style>
