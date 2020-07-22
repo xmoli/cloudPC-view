@@ -68,7 +68,7 @@ export default {
     components: {
         Sidebar: () => import('../components/Sidebar'),
         Appbar: () => import('../components/Appbar'),
-        Content: () => import('../components/CommonContent.vue'),
+        Content: () => import('../components/TaskContent.vue'),
         "pop-box": () => import('../components/popbox.vue')
     },
     data () {

@@ -16,7 +16,7 @@ export default {
         document.title = 'admin - logs'
     },
     components: {
-        Content: () => import('../components/CommonContent.vue'),
+        Content: () => import('../components/TaskContent.vue'),
         "app-bar": () => import('../components/Appbar.vue'),
         "side-bar": () => import('../components/Sidebar.vue')
     }
