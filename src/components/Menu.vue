@@ -29,9 +29,9 @@ export default {
     },
     methods: {
         openMenu () {
+            document.addEventListener('click', this.closeMenu, true)
             let ele = this.$refs.menu
             ele.style.display = "block"
-            document.addEventListener('click', this.closeMenu, true)
             ele.getElementsByTagName('button')[0].focus()
             console.log('open')
         },

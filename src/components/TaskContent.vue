@@ -31,16 +31,16 @@
                     >
                     <ul>
                         <li  class="warn" 
-                            v-on:click="delTargetTask($event,index)">
+                            v-on:click.stop="delTargetTask($event,index)">
                             <button tabindex="0">删除</button>
                         </li>
                         <li 
-                            v-on:click="$emit('change-task', index)" 
+                            v-on:click.stop="$emit('change-task', index)" 
                         >
                             <button tabindex="0">修改</button>
                         </li>
                         <li 
-                            v-on:click="$emit('clone-task', index)"
+                            v-on:click.stop="$emit('clone-task', index)"
                         >
                             <button tabindex="0">克隆</button>
                         </li>
@@ -83,8 +83,8 @@ export default {
             this.menuAnchor[this.openAchor] = false
             this.menuAnchor = Object.assign({},this.menuAnchor)
         },
-        delTargetTask () {
-
+        delTargetTask (e, index) {
+            this.$emit('delete-task',index)
         }
     }
 }

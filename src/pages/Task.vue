@@ -138,6 +138,7 @@ export default {
             }
         },
         async destoryTask (index) {
+            console.log('delete')
             let id = this.items[index].Id
             const res = await fetch('api/task-schedule/?id='+id,{
                 method: 'DELETE'
