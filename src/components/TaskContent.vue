@@ -31,7 +31,7 @@
                     >
                     <ul>
                         <li  class="warn" 
-                            v-on:click="deleteTask($event,index)">
+                            v-on:click="delTargetTask($event,index)">
                             <button tabindex="0">删除</button>
                         </li>
                         <li 
