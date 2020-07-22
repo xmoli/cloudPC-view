@@ -1,8 +1,7 @@
 <template>
         <div 
             class="menu"
-            v-on:click.stop="closeMenu"
-            v-on:keyup.esc="closeMenu"
+            @keyup="closeMenu"
             ref="menu"
         >
             <slot/>
@@ -29,18 +28,15 @@ export default {
         }
     },
     methods: {
-        blur () {
-            this.$refs.menu.style.display = "none"
-        },
         openMenu () {
-            document.addEventListener('click', this.blur, true)
             let ele = this.$refs.menu
             ele.style.display = "block"
+            document.addEventListener('click', this.closeMenu, true)
             ele.getElementsByTagName('button')[0].focus()
         },
         closeMenu () {
-            document.removeEventListener('click', this.blur)
-            this.blur()
+            document.removeEventListener('click', this.closeMenu, true)
+            this.$refs.menu.style.display = "none"
             this.$emit('close-menu')
         }
     }
@@ -52,9 +48,8 @@ export default {
     position: absolute;
     z-index: 1000;
 
-    border-radius: 0.2em;
+    border-radius: 0.25em;
     background: white;
     border: 2px solid rgba(0, 31, 102, 0.35);
-    transform: translateX(1em);
 }
 </style>

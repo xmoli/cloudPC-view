@@ -24,7 +24,6 @@
                     v-on:click.stop="openMenu(index)"
                 >
                 <i class="fa fa-ellipsis-h" />
-                </span>
                 <item-menu 
                     class="item-menu"
                     v-bind:open="menuAnchor[index]"
@@ -32,21 +31,22 @@
                     >
                     <ul>
                         <li  class="warn" 
-                            v-on:click.stop="$emit('delete-task', index)">
+                            v-on:click="deleteTask($event,index)">
                             <button tabindex="0">删除</button>
                         </li>
                         <li 
-                            v-on:click.stop="$emit('change-task', index)" 
+                            v-on:click="$emit('change-task', index)" 
                         >
                             <button tabindex="0">修改</button>
                         </li>
                         <li 
-                            v-on:click.stop="$emit('clone-task', index)"
+                            v-on:click="$emit('clone-task', index)"
                         >
                             <button tabindex="0">克隆</button>
                         </li>
                     </ul>
                 </item-menu>
+                </span>
             </li>
         </ul>
     </div>
@@ -136,10 +136,12 @@ export default {
         border-top: none;
     }
     .item-menu {
+        transform: translateX(50%);
         overflow: hidden;
         width:fit-content;
     }
     .item-menu ul button {
+        outline: none;
         background: transparent;
         display: block;
         padding: 8px 2em;

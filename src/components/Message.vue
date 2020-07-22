@@ -3,24 +3,28 @@
         <div>
             <i class="fa fa-bell-o" v-on:click="openMessageMenu"/>
             <item-menu 
+                class="item-menu"
+                ref="messageMenu"
                 v-bind:open="messageMenu"
                 v-on:close-menu="messageMenu=false"
             >
                 <ul>
-                    <li>消息</li>
-                    <li>。。。</li>
+                    <li ><button>消息</button></li>
+                    <li ><button>...</button></li>
                 </ul>
             </item-menu>
         </div>
         <div>
             <i class="fa fa-user-o" v-on:click="openUserMenu"/>
             <item-menu 
+                class="item-menu"
+                ref="userMenu"
                 v-bind:open="userMenu"
                 v-on:close-menu="userMenu=false"
             >
                 <ul>
-                    <li>设置</li>
-                    <li>登出</li>
+                    <li ><button>设置</button></li>
+                    <li ><button>登出</button></li>
                 </ul>
             </item-menu>
         </div>
@@ -64,5 +68,21 @@ export default {
         margin: 0 8px;
         font-size: 1.25em;
         font-weight: bold;
+    }
+    .item-menu {
+        width:fit-content;
+        transform: translateY(1em);
+    }
+    .item-menu ul button{
+        outline: none;
+        width:100%;
+        border: none;
+        background: transparent;
+        padding: 8px 16px;
+        color: black;
+    }
+    .item-menu ul button:hover, .item-menu ul button:focus{
+        cursor: pointer;
+        background: rgba(0, 0, 0, .2);
     }
 </style>
