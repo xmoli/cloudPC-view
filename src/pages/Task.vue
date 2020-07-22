@@ -7,6 +7,28 @@
                 <i class="fa fa-plus"/>
                 新建
             </div>
+            <pop-box 
+                class="pop-box"
+                v-bind:open="popboxAnchor"
+                @keypress.esc="popboxAnchor = false"
+                @close="popboxAnchor = false"
+            >
+                <form @submit.prevent="addTask">
+                        <label>
+                            名称 
+                        <input v-model="taskName"/>
+                        </label>
+                        <label>
+                            指令
+                        <input v-model="taskCommand"/>
+                        </label>
+                        <label>
+                            表达式
+                        <input v-model="taskCron"/>
+                        </label>
+                        <input class="submit-button" type="submit" value="添加"/>
+                </form>
+            </pop-box>
         </Appbar>
         <Sidebar>
         </Sidebar>
@@ -16,28 +38,6 @@
             v-on:change-task="openChangePop"
             v-on:clone-task="cloneTask"
         ></Content>
-        <pop-box 
-            class="pop-box"
-            v-bind:open="popboxAnchor"
-            @keypress.esc="popboxAnchor = false"
-            @close="popboxAnchor = false"
-        >
-            <form @submit.prevent="addTask">
-                    <label>
-                        名称 
-                    <input v-model="taskName"/>
-                    </label>
-                    <label>
-                        指令
-                    <input v-model="taskCommand"/>
-                    </label>
-                    <label>
-                        表达式
-                    <input v-model="taskCron"/>
-                    </label>
-                    <input class="submit-button" type="submit" value="添加"/>
-            </form>
-        </pop-box>
         <pop-box class="pop-box" 
             v-bind:open="changeAnchor"
             @keypress.esc="changeAnchor = false"
@@ -83,7 +83,7 @@ export default {
             taskNameC: '',
             taskCommandC: '',
             taskCronC: '',
-            taskClone: null,
+            clipData: {},
         }
     },
     computed: {
@@ -111,14 +111,13 @@ export default {
             }
         },
         async addTask () {
-            let {name, cron, command, err} = this.checkInput()
-            if (err.length != 0) {
-                throw err
-            }
+            /*
+                @todo: check input
+            */
             let data = {
-                Name: name,
-                CronExpression: cron,
-                Command: command
+                Name: this.taskName,
+                CronExpression: this.taskCron,
+                Command: this.taskCommand
             }
             const res = await fetch('api/task-schedule', {
                 method: 'POST',
@@ -127,10 +126,9 @@ export default {
             try {
                 const json = await res.json()
                 if (json.error) {
-                    console.log(json)
+                    console.log(json.error)
                 } else {
-                    data.Id = '00000000000000'
-                    this.items.push(data)
+                    this.data.push(data)
                 }
                 this.popboxAnchor = false
             }catch{
@@ -163,7 +161,7 @@ export default {
             if (json.error) {
                 console.log(json)
             } else {
-                this.message = json
+                this.changeAnchor = false
             }
         },
         openAddPop () {
@@ -199,8 +197,8 @@ export default {
             }
             return task
         },
-        cloneTask() {
-
+        cloneTask(index) {
+            this.clipData = this.data[index]
         },
         showResult (keyword) {//显示搜索结果
             this.keyword = keyword

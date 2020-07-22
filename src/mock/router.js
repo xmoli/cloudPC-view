@@ -13,19 +13,19 @@ router.get('/user/login', async (ctx, next) => {
         Token: '@string'
     })
 })
-router.put('/task-schedule/', async (ctx, next) => {
+router.put('/task-schedule', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false
     }
 })
-router.post('/task-schedule/', async (ctx, next) => {
+router.post('/task-schedule', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false
     }
 })
-router.delete('/task-schedule/', async (ctx, next) => {
+router.delete('/task-schedule', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false

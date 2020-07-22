@@ -33,13 +33,11 @@ export default {
             let ele = this.$refs.menu
             ele.style.display = "block"
             ele.getElementsByTagName('button')[0].focus()
-            console.log('open')
         },
         closeMenu () {
             document.removeEventListener('click', this.closeMenu, true)
             this.$refs.menu.style.display = "none"
             this.$emit('close-menu')
-            console.log('close')
         }
     }
 }
