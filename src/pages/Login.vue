@@ -5,7 +5,7 @@
             <input 
                 v-model="username"
                 v-on:change="checkUsernameInput"
-                autofocus
+                ref="firstInput"
                 placeholder="邮箱"
             />
             <i class="fa fa-times-circle"
@@ -78,7 +78,7 @@ export default {
         } else {
             document.title = 'ADMIN | 注册'
         }
-        document.getElementsByTagName('input')[0].focus()
+        this.$refs.firstInput.focus()
     },
     updated () {
         if (this.login) {
@@ -86,11 +86,11 @@ export default {
         } else {
             document.title = 'ADMIN | 注册'
         }
-        document.getElementsByTagName('input')[0].focus()
     },
     methods: {
         toggleLogin () {
             this.login = ! this.login
+            this.$refs.firstInput.focus()
         },
         async userLogin (userInfo) {
             const res = await fetch("api/user/login",{
