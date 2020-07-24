@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import getToken from '../util/getToken'
 
 export default {
     components: {
@@ -74,6 +75,7 @@ export default {
     data () {
         return {
             data: [],
+            token: '',
             keyword: '',
             popboxAnchor: false,
             changeAnchor: false,
@@ -98,11 +100,15 @@ export default {
     },
     mounted () {
         document.title = 'ADMIN | 任务'
+        this.getToken()
         this.getTaskSchedule()
     },
     methods: {
         async getTaskSchedule () {
-            const res = await fetch('api/task-schedule')
+            const res = await fetch('api/task-schedule',{
+                method: "GET",
+                Token: this.token
+            })
             const json = await res.json()
             if (json.error) {
                 console.log(json)
@@ -121,6 +127,7 @@ export default {
             }
             const res = await fetch('api/task-schedule', {
                 method: 'POST',
+                Token: this.token,
                 body: JSON.stringify(data)
             })
             try {
@@ -139,7 +146,8 @@ export default {
             console.log('delete')
             let id = this.items[index].Id
             const res = await fetch('api/task-schedule/?id='+id,{
-                method: 'DELETE'
+                method: 'DELETE',
+                Token: this.token
             })
             try {
                 const json = await res.json()
@@ -155,6 +163,7 @@ export default {
         async changeTask (data) {
             const res = await fetch('api/task-schedule/',{
                 method: 'PUT',
+                Token: this.token,
                 body: JSON.stringify(data)
             })
             const json = await res.json()

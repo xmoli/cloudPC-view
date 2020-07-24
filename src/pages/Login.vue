@@ -72,18 +72,18 @@ export default {
             error: ''
         }
     },
-    created () {
+    mounted () {
         if (this.login) {
-            document.title = 'admin - 登录'
+            document.title = 'ADMIN | 登录'
         } else {
-            document.title = 'admin - 注册'
+            document.title = 'ADMIN | 注册'
         }
     },
     updated () {
         if (this.login) {
-            document.title = 'admin - 登录'
+            document.title = 'ADMIN | 登录'
         } else {
-            document.title = 'admin - 注册'
+            document.title = 'ADMIN | 注册'
         }
     },
     methods: {
@@ -176,7 +176,6 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 
 @media screen and (min-width: 1000px){ 
@@ -207,7 +206,7 @@ export default {
         flex-direction:column;
         justify-content: center;
         flex-wrap: nowrap;
-        background: rgba(255, 255, 255, 0.822);
+        background: rgba(255, 255, 255, 0.7);
         border-radius: 0.3em;
         padding: 3em 0;
     }
