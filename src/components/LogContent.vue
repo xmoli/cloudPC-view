@@ -6,7 +6,10 @@
                 <span>信息</span>
                 <span>类型</span>
                 <span>时间</span>
-                <span @click="toggleAllList">
+                <span 
+                    @click="toggleAllList"
+                    class="last"
+                >
                     <i :class="{'fa': true, 'fa-angle-down': hasOpen, 'fa-angle-left': !hasOpen}"/>
                 </span>
             </li>
@@ -89,6 +92,7 @@ ul li {
 }
 ul.list-body li {
     flex-direction: column;
+    align-items: flex-start;
 }
 ul.list-body  li {
     border-top-width: 1px;
@@ -98,11 +102,11 @@ ul.list-body  li {
 }
 ul li span {
     display: inline-block;
-    min-width: 10em;
+    width: 10em;
 }
 .list-content {
+    width: 100%;
     line-height: 1.5em;
-    padding: 0 16px;
     box-shadow: inset 1px 1px 5px gray;
     margin-top: 16px;
     margin-bottom: -16px;
@@ -114,11 +118,16 @@ ul li span {
 p {
     text-indent: 2em;
     text-align: left;
+    margin: 1em 16px;
+    margin-bottom: 2em;
 }
 .close {
     display: none;
 }
 ul.list-body li:hover {
+    cursor: pointer;
+}
+ul.list-head span.last:hover {
     cursor: pointer;
 }
 </style>

@@ -94,7 +94,7 @@ export default {
                 if (!this.keyword) {
                     return true
                 }
-                return i.Message.search(this.keyword)+1
+                return i.Name.search(this.keyword)+1
             })
         }
     },

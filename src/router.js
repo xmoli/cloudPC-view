@@ -21,6 +21,10 @@ const routes = [
         name: 'Logs'
     },
     {
+        path: '/user', component: () => import('./pages/User'),
+        name: 'User'
+    },
+    {
         path: '*', component: () => import('./pages/Page404.vue'),
         name: 'Page404'
     }

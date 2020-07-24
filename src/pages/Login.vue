@@ -208,7 +208,7 @@ export default {
         flex-direction:column;
         justify-content: center;
         flex-wrap: nowrap;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255);
         border-radius: 0.3em;
         padding: 3em 0;
     }

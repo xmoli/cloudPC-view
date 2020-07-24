@@ -40,7 +40,7 @@ export default {
                 if (!this.keyword) {
                     return true
                 }
-                return i.Name.search(this.keyword)+1
+                return i.Message.search(this.keyword)+1
             })
         }
     },
@@ -60,7 +60,6 @@ export default {
                 })
         },
         showResult (keyword) {//显示搜索结果
-            console.log(':',keyword)
             this.keyword = keyword
         }
     }
@@ -70,7 +69,7 @@ export default {
 <style scoped>
 .content {
     position: absolute;
-    width: fit-content;
+    width: 60vw;
     margin: 0 20vw;
     margin-top: 15vh;
     margin-bottom: 6em;
