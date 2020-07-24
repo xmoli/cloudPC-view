@@ -1,13 +1,20 @@
 # admin
-    需要nodejs npm yarn。反向代理。
+    编译需要nodejs npm（yarn）。上线需要反向代理支持。
+
 ## Project setup
+npm
+```
+npm install
+```
+yarn
 ```
 yarn install
 ```
 
-### 配置开发者反向代理服务器
+### 开发者模式下，配置开发者反向代理服务器
 
-在首目录下，新建vue.config.js。例子：
+在首目录下，新建vue.config.js。
+例子：将http://localhost:9090替换成后端的服务器地址
 ```
 module.exports = {
     devServer: {
@@ -25,12 +32,24 @@ module.exports = {
 }
 ```
 
+### 生产者模式下，配置开发者反向代理服务器
+    注意：将url前缀"/api" 重写为 ""
+
 ### Compiles and hot-reloads for development
+npm
+```
+npm run serve
+```
+yarn
 ```
 yarn serve
 ```
 
 ### Compiles and minifies for production
+npm
+```
+npm run build
+```
 ```
 yarn build
 ```
