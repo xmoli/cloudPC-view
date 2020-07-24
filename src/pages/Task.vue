@@ -94,13 +94,13 @@ export default {
                 if (!this.keyword) {
                     return true
                 }
-                return i.Name.search(this.keyword)+1
+                return i.Message.search(this.keyword)+1
             })
         }
     },
     mounted () {
         document.title = 'ADMIN | 任务'
-        this.getToken()
+        this.token = getToken()
         this.getTaskSchedule()
     },
     methods: {
@@ -223,8 +223,9 @@ html{
 } 
 .content {
     position: absolute;
-    left: 12vw;
-    top: 10vh;
+    min-width: 60vw;
+    margin: 0 20vw;
+    margin-top: 15vh;
 }
 .pop-box form {
     display: flex;

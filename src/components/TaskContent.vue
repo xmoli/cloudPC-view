@@ -120,9 +120,10 @@ export default {
         background: rgba(0,0,0,.1);
     }
     .container ul.content {
-        max-height: 80vh;
+        margin-bottom: 5em;
+        /* max-height: 80vh;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: scroll; */
     }
     .container>ul>li>span.last-span:hover{
         background: white;

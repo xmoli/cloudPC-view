@@ -1,12 +1,12 @@
 <template>
     <div>
-        <app-bar>
-            <ul class="filter">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-            </ul>
+        <app-bar @search="showResult">
+            <select class="filter">
+                <option value="1">类型</option>
+                <option value="2">日期</option>
+                <option value="3">级别</option>
+                <option value="4">时间</option>
+            </select>
         </app-bar>
         <side-bar/>
         <Content class="content" :items="items"></Content>
@@ -30,7 +30,8 @@ export default {
     data () {
         return {
             data: [],
-            token: ''
+            token: '',
+            keyword: ''
         }
     },
     computed: {
@@ -57,6 +58,10 @@ export default {
                         this.data = json.data
                     }
                 })
+        },
+        showResult (keyword) {//显示搜索结果
+            console.log(':',keyword)
+            this.keyword = keyword
         }
     }
 }
@@ -65,6 +70,14 @@ export default {
 <style scoped>
 .content {
     position: absolute;
-    margin: 16px auto;
+    width: fit-content;
+    margin: 0 20vw;
+    margin-top: 15vh;
+    margin-bottom: 6em;
+}
+select.filter {
+    margin-left: -2em;
+    height: 2.5em;
+    padding: 8px;
 }
 </style>

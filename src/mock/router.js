@@ -43,4 +43,17 @@ router.get('/task-schedule', async (ctx, next) => {
         }
     )
 })
+router.get('/log', async (ctx, next) => {
+    ctx.body = Mock.mock(
+        {
+            "data|5-30": [{
+                "Message": "@ctitle",
+                "Node": "@cname",
+                "Level": "@integer(1,5)",
+                "Content": "@cparagraph",
+                "Ctime": "@date"
+            }]
+        }
+    )
+})
 module.exports = router
