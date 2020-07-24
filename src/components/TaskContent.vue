@@ -120,15 +120,12 @@ export default {
         background: rgba(0,0,0,.1);
     }
     .container ul.content {
-        margin-bottom: 5em;
-        /* max-height: 80vh;
-        overflow-x: hidden;
-        overflow-y: scroll; */
+        margin-bottom: 6em;
     }
     .container>ul>li>span.last-span:hover{
         background: white;
     }
-    .container>ul>li {
+    .container>ul.content li {
         padding: 0.7em 0;
         border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
