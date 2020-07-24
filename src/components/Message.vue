@@ -24,7 +24,11 @@
             >
                 <ul>
                     <li ><button>设置</button></li>
-                    <li ><button>登出</button></li>
+                    <li>
+                        <router-link  tag="button" to="/login">
+                            <span @click="logout"> 登出 </span>
+                        </router-link>
+                    </li>
                 </ul>
             </item-menu>
         </div>
@@ -32,6 +36,8 @@
 </template>
 
 <script>
+import clearToken from '../util/clearToken'
+
 export default {
     name: 'Message',
     components: {
@@ -44,6 +50,9 @@ export default {
         }
     },
     methods: {
+        logout () {
+            clearToken()
+        },
         openUserMenu () {
             this.userMenu = true
         },

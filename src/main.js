@@ -5,13 +5,13 @@ import getToken from './util/getToken'
 
 Vue.config.productionTip = false
 
-let token = getToken()
+let token = getToken
 
 router.beforeEach( (to, from, next) => {
-  if (to.name !== 'Login' && !token) {
+  if (to.name !== 'Login' && !token()) {
     next({ name: 'Login' })
   }
-  else if (to.name === 'Login' && token){
+  else if (to.name === 'Login' && token()){
     next({ name: 'Home'})
   } else {
     next()
