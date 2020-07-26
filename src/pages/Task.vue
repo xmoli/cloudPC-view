@@ -75,7 +75,6 @@ export default {
     data () {
         return {
             data: [],
-            token: '',
             keyword: '',
             popboxAnchor: false,
             changeAnchor: false,
@@ -100,14 +99,13 @@ export default {
     },
     mounted () {
         document.title = 'ADMIN | 任务'
-        this.token = getToken()
         this.getTaskSchedule()
     },
     methods: {
         async getTaskSchedule () {
             const res = await fetch('api/task-schedule',{
                 method: "GET",
-                Token: this.token
+                Token: getToken()
             })
             const json = await res.json()
             if (json.error) {
@@ -127,7 +125,7 @@ export default {
             }
             const res = await fetch('api/task-schedule', {
                 method: 'POST',
-                Token: this.token,
+                Token: getToken(),
                 body: JSON.stringify(data)
             })
             try {
@@ -147,7 +145,7 @@ export default {
             let id = this.items[index].Id
             const res = await fetch('api/task-schedule/?id='+id,{
                 method: 'DELETE',
-                Token: this.token
+                Token: getToken()
             })
             try {
                 const json = await res.json()
@@ -163,7 +161,7 @@ export default {
         async changeTask (data) {
             const res = await fetch('api/task-schedule/',{
                 method: 'PUT',
-                Token: this.token,
+                Token: getToken(),
                 body: JSON.stringify(data)
             })
             const json = await res.json()
