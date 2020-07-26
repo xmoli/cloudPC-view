@@ -1,7 +1,7 @@
 <template>
         <div 
             class="menu"
-            @keyup="closeMenu"
+            @keyup.esc="closeMenu"
             ref="menu"
         >
             <slot/>

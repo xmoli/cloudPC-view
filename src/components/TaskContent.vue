@@ -98,15 +98,17 @@ export default {
         border-spacing: 0; 
     }
     .container>ul.title {
-        border-radius: .2em .2em 0 0;
-        border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+        border-radius: .3em .3em 0 0;
+    }
+    ul.title li {
+        padding: 16px 0;
     }
     ul li {
         display: flex;
     }
     ul li span {
         display: inline-block;
-        min-width: 15vw;
+        min-width: 13vw;
     }
     ul.title li span {
         text-indent: .5em;
@@ -121,7 +123,7 @@ export default {
     .container>ul>li>span.last-span:hover{
         background: white;
     }
-    .container>ul.content li {
+    .container>ul.content>li {
         padding: 0.7em 0;
         border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
@@ -135,11 +137,11 @@ export default {
         width:fit-content;
     }
     .item-menu ul button {
-        outline: none;
+        border-radius: none;
         background: transparent;
         display: block;
         padding: 8px 2em;
-        border: 1px solid transparent;
+        border: none;
     }
     .item-menu li.warn{
         background: rgb(173, 16, 16);
@@ -149,11 +151,5 @@ export default {
     }
     .item-menu ul li button:hover, .item-menu ul li button:focus {
         background: rgba(0,0,0,.3);
-    }
-    .content .fa-circle-o {
-        color: green
-    }
-    .content .fa-stop-circle-o {
-        color: orange;
     }
 </style>
