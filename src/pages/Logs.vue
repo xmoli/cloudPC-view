@@ -25,7 +25,7 @@ export default {
     components: {
         Content: () => import('../components/LogContent.vue'),
         "app-bar": () => import('../components/Appbar.vue'),
-        "side-bar": () => import('../components/Sidebar.vue')
+        "side-bar": () => import('../components/sidebar/Sidebar.vue')
     },
     data () {
         return {

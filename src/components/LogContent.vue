@@ -111,6 +111,7 @@ ul li span {
     margin-top: 16px;
     margin-bottom: -16px;
     color: grey;
+    background: rgba(56, 56, 56, 0.1);
 }
 .list-content:hover {
     cursor: text;

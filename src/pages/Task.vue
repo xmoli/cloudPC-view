@@ -67,7 +67,7 @@ import getToken from '../util/getToken'
 
 export default {
     components: {
-        Sidebar: () => import('../components/Sidebar'),
+        Sidebar: () => import('../components/sidebar/Sidebar'),
         Appbar: () => import('../components/Appbar'),
         Content: () => import('../components/TaskContent.vue'),
         "pop-box": () => import('../components/popbox.vue')

@@ -124,7 +124,7 @@ export default {
         background: white;
     }
     .container>ul.content>li {
-        padding: 0.7em 0;
+        padding: 1em 0;
         border-top: 1px solid rgba(128, 128, 128, 0.493);
     }
     .container>ul.title>li:first-child {

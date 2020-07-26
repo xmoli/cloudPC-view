@@ -10,7 +10,7 @@
 export default {
     components: {
         "appbar": () => import('../components/Appbar'),
-        "sidebar": () => import('../components/Sidebar'),
+        "sidebar": () => import('../components/sidebar/Sidebar'),
         "user-content": () => import('../components/UserContent')
     }
 }

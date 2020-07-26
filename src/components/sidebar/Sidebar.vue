@@ -12,7 +12,6 @@
         </ul>
     </div>
 </template>
-
 <style scoped>
     li:first-child {
         margin-top: 1em
@@ -34,15 +33,24 @@
         left: 0;
         width: 12vw;
         height: 100vh;
-
         background: rgb(42, 45, 70);
         color : white;
+    }
+    .sidebar::before {
+        position:absolute;
+        left: 0;
+        z-index: -1;
+        height: 100vh;
+        width: 12vw;
+        content: "";
+        filter: blur(5px);
+        background: url(./vine.png);
     }
     .logo {
         height: 9vh;
         background:rgb(75, 87, 112);
         line-height: 9vh;
-        font-size: 3em;
+        font-size: 2em;
     }
     .fa-server:hover{
         color: rgba(4, 66, 148);
