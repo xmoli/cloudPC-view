@@ -13,6 +13,12 @@ router.get('/user/login', async (ctx, next) => {
         Token: '@string'
     })
 })
+router.post('/user/register', async (ctx, next) => {
+    ctx.body = {
+        data: true,
+        error: false
+    }
+})
 router.put('/task-schedule', async (ctx, next) => {
     ctx.body = {
         status: true,

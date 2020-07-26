@@ -4,7 +4,6 @@
             <li class="first">
                 <span>ID</span>
                 <span>名称</span>
-                <span>状态</span>
                 <span class="last-span">
                     操作
                 </span>
@@ -16,9 +15,6 @@
             >
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
-                <span v-if="item.Status" class="fa fa-circle-o">
-                </span>
-                <span v-else class="fa fa-stop-circle-o" />
                 <span
                     class="last-span"
                     v-on:click.stop="openMenu(index)"

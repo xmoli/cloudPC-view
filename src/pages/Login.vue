@@ -134,7 +134,7 @@ export default {
                     this.$router.push('/')
                 }
                 this.tryKeepOnline()
-            } else if (this.check.hasChecked) {
+            } else if (!this.login) {
                 const err = await this.userRegister(userInfo)
                 this.tryKeepOnline()
             }
