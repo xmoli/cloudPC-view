@@ -100,10 +100,9 @@ export default {
             const json = await res.json()
             if (json.error) {
                 this.error = res.error
-                return false
             } else {
-                sessionStorage.setItem("server-admin-sessionId", json.Token)
-                return true
+                sessionStorage.setItem("server-admin-sessionId", json.data.token)
+                this.$router.push('/')
             }
         },
         async userRegister (userInfo) {
@@ -112,10 +111,10 @@ export default {
                 body: JSON.stringify(userInfo)
             })
             if (res.ok) {
-                const ok = await this.userLogin(userInfo)
-                if (ok) {
-                    this.$router.push('/')
-                }
+                const ok = await this.userLogin({
+                    email: userInfo.email,
+                    pass_word: userInfo.pass_word
+                })
             } else {
                 this.error = res.statusText
             }
@@ -123,19 +122,22 @@ export default {
         async submit () {
             let username = this.username.trim(),
                 password = this.password
-            const userInfo = {
-                username,
-                password
-            }
 
             if (this.login && this.validateAll()) {
-                const ok = await this.userLogin(userInfo)
+                const ok = await this.userLogin({
+                    email: username,
+                    pass_word: password
+                })
                 if (ok) {
                     this.$router.push('/')
                 }
                 this.tryKeepOnline()
             } else if (!this.login) {
-                const err = await this.userRegister(userInfo)
+                const err = await this.userRegister({
+                    email: username,
+                    nick: username,
+                    pass_word: password
+                })
                 this.tryKeepOnline()
             }
             
