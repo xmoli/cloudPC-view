@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "mock": "node ./src/mock/server.js",
+    "mock": "node ./mock/server.js",
     "build": "vue-cli-service build",
+    "start": "node ./server/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
