@@ -74,6 +74,7 @@ export default {
     },
     data () {
         return {
+            headers: null,
             data: [],
             keyword: '',
             popboxAnchor: false,
@@ -99,13 +100,16 @@ export default {
     },
     mounted () {
         document.title = 'ADMIN | 任务'
+        let headers = new Headers()
+        headers.append("X-Auth-Token", getToken())
+        this.headers = headers
         this.getTaskSchedule()
     },
     methods: {
         async getTaskSchedule () {
             const res = await fetch('api/task-schedule',{
                 method: "GET",
-                Token: getToken()
+                headers: this.headers
             })
             const json = await res.json()
             if (json.error) {
@@ -125,7 +129,7 @@ export default {
             }
             const res = await fetch('api/task-schedule', {
                 method: 'POST',
-                Token: getToken(),
+                headers: this.headers,
                 body: JSON.stringify(data)
             })
             try {
@@ -145,7 +149,7 @@ export default {
             let id = this.items[index].Id
             const res = await fetch('api/task-schedule/?id='+id,{
                 method: 'DELETE',
-                Token: getToken()
+                headers: this.headers,
             })
             try {
                 const json = await res.json()
@@ -161,7 +165,7 @@ export default {
         async changeTask (data) {
             const res = await fetch('api/task-schedule/',{
                 method: 'PUT',
-                Token: getToken(),
+                headers: this.headers,
                 body: JSON.stringify(data)
             })
             const json = await res.json()

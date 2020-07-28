@@ -5,12 +5,10 @@ const router = new Router()
 
 router.post('/user/login', async (ctx, next) => {
     ctx.body = Mock.mock({
-        Token: '@string'
-    })
-})
-router.get('/user/login', async (ctx, next) => {
-    ctx.body = Mock.mock({
-        Token: '@string'
+        "data": {
+            token: '@string'
+        },
+        "error": null
     })
 })
 router.post('/user/register', async (ctx, next) => {

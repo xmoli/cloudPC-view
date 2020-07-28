@@ -19,7 +19,8 @@ import getToken from '../util/getToken'
 export default {
     mounted () {
         document.title = 'ADMIN | 日志',
-        this.token = getToken()
+        this.headers = new Headers()
+        this.headers.append("X-Auth-Token", getToken())
         this.getLogs()
     },
     components: {
@@ -48,7 +49,7 @@ export default {
         getLogs () {
             fetch("api/log",{
                 method: "GET",
-                Token: this.token
+                headers: this.headers
             })
                 .then(res => res.json())
                 .then( json => {
