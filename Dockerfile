@@ -9,7 +9,8 @@ RUN echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib n
     rm /${nodename}.tar.xz && \
     ln -sf /${nodename}/bin/npm /bin/npm &&\
     ln -sf /${nodename}/bin/node /bin/node &&\
-    ln -sf /${nodename}/bin/npx /bin/npx
+    ln -sf /${nodename}/bin/npx /bin/npx && \
+    npm install -g npm
     
 COPY ./ /build/
 
