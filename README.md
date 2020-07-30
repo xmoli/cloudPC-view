@@ -14,7 +14,7 @@ yarn install
 ### 开发者模式下，配置开发者反向代理服务器
 
 在首目录下，新建vue.config.js。
-例子：将http://localhost:9090替换成后端的服务器地址
+例子：将http://localhost:9090 替换成后端的服务器地址
 ```
 module.exports = {
     devServer: {
@@ -34,7 +34,20 @@ module.exports = {
 
 ### 生产者模式下，配置开发者反向代理服务器
     注意：将url前缀"/api" 重写为 ""
-
+    新建server.config.js 将http://localhost:9090 替换成后端的服务器地址
+```
+module.exports ={
+    server: {
+        port: 80,
+        koaProxy: {
+            host: 'http://localhost:9090',
+            map: function(path){
+                return path.replace(/^\/api/, "")
+            }
+        }
+    }
+}
+```
 ### Compiles and hot-reloads for development
 npm
 ```
