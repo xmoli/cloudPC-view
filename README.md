@@ -1,14 +1,9 @@
 # admin
-    编译需要nodejs npm（yarn）。上线需要反向代理支持。
+    编译需要nodejs。上线需要反向代理支持。
 
 ## Project setup
-npm
 ```
 npm install
-```
-yarn
-```
-yarn install
 ```
 
 ### 开发者模式下，配置开发者反向代理服务器
@@ -31,6 +26,10 @@ module.exports = {
     }
 }
 ```
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
 ### 生产者模式下，配置开发者反向代理服务器
     注意：将url前缀"/api" 重写为 ""
@@ -48,29 +47,21 @@ module.exports ={
     }
 }
 ```
-### Compiles and hot-reloads for development
-npm
-```
-npm run serve
-```
-yarn
-```
-yarn serve
-```
-
 ### Compiles and minifies for production
 npm
 ```
 npm run build
 ```
-```
-yarn build
-```
-
 ### Lints and fixes files
 ```
 yarn lint
 ```
+### 开启服务
+```
+npm run start
+```
+### 守护进程
+使用pm2、nohup 等
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
