@@ -2,7 +2,7 @@ FROM nginx:1.18.0
 ARG node=https://npm.taobao.org/mirrors/node/latest-v13.x/node-v13.0.0.tar.gz
 ARG nodename=node-v13.0.0
 RUN cd / && curl -fsSLO ${node} &&\
-    tar -zcvf ${nodename}.tar.gz &&\
+    tar -zxvf ${nodename}.tar.gz &&\
     ln -sf /${nodename}/bin/npm /bin/npm &&\
     ln -sf /${nodename}/bin/node /bin/node &&\
     ln -sf /${nodename}/bin/npx /bin/npx && \
