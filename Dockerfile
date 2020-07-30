@@ -10,15 +10,19 @@ RUN  cd / && echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main 
     ln -sf /${nodename}/bin/node /bin/node &&\
     ln -sf /${nodename}/bin/npx /bin/npx
     
-COPY ./src /app/src/
-COPY ./public /app/public/
-COPY ./*js* /app/
-COPY ./*conf /app/
+COPY ./src /build/src/
+COPY ./public /build/public/
+COPY ./*js* /build/
+COPY ./docker.nginx.conf /
 
-RUN cd /app && \
+RUN cd /build && \
     npm install && \
-    npm run build
+    npm run build &&\
+    cp ./dist /app &&\
+    rm -r /build &&\
+    cd / && rm -rf node* &&\
+    apt-get remove xz-utils
 
 EXPOSE 80
 ENTRYPOINT ["nginx", "-c"]
-CMD ["/app/nginx.conf"]
+CMD ["/docker.nginx.conf"]
