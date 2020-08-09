@@ -152,4 +152,10 @@ export default {
     .item-menu ul li button:hover, .item-menu ul li button:focus {
         background: rgba(0,0,0,.3);
     }
+    .item-menu ul li button:focus {
+        color: rgb(87, 87, 255);
+    }
+    .item-menu ul li button {
+        outline: none;
+    }
 </style>

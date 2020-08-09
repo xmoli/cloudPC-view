@@ -1,6 +1,5 @@
 <template>
     <div>
-        <appbar/>
         <sidebar/>
         <div class="content">
         </div>
@@ -9,8 +8,7 @@
 <script>
 export default {
     components: {
-        "appbar": () => import("../components/Appbar"),
-        "sidebar": () => import("../components/Sidebar"),
+        "sidebar": () => import("../components/sidebar/Sidebar"),
     }
 }
 </script>

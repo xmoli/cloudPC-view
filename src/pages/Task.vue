@@ -94,7 +94,7 @@ export default {
                 if (!this.keyword) {
                     return true
                 }
-                return i.Name.search(this.keyword)+1
+                return i.Name.search(this.keyword)+1 | (i.Id == this.keyword)
             })
         }
     },
@@ -107,13 +107,13 @@ export default {
     },
     methods: {
         async getTaskSchedule () {
-            const res = await fetch('api/task-schedule',{
+            const res = await fetch('api/scheduled-task',{
                 method: "GET",
                 headers: this.headers
             })
             const json = await res.json()
             if (json.error) {
-                console.log(json)
+                console.log(json.error)
             } else {
                 this.data = json.data
             }
@@ -127,7 +127,7 @@ export default {
                 CronExpression: this.taskCron,
                 Command: this.taskCommand
             }
-            const res = await fetch('api/task-schedule', {
+            const res = await fetch('api/scheduled-task', {
                 method: 'POST',
                 headers: this.headers,
                 body: JSON.stringify(data)
@@ -147,7 +147,7 @@ export default {
         async destoryTask (index) {
             console.log('delete')
             let id = this.items[index].Id
-            const res = await fetch('api/task-schedule/?id='+id,{
+            const res = await fetch('api/scheduled-task/?id='+id,{
                 method: 'DELETE',
                 headers: this.headers,
             })
@@ -163,7 +163,7 @@ export default {
             }
         },
         async changeTask (data) {
-            const res = await fetch('api/task-schedule/',{
+            const res = await fetch('api/scheduled-task/',{
                 method: 'PUT',
                 headers: this.headers,
                 body: JSON.stringify(data)
@@ -261,7 +261,7 @@ html{
     padding: 8px;
     width: 40em;
 }
-.pop-box input:hover, .pop-box input:focus{
+.pop-box input:focus{
     border: 1px solid rgb(21, 21, 138);
 }
 .new-button {

@@ -50,6 +50,10 @@ export default {
 
     border-radius: 0.25em;
     background: white;
-    border: 2px solid rgba(0, 31, 102, 0.35);
+    box-shadow: -2px -2px 5px rgba(131, 131, 243, 0.3),
+        2px 2px 5px rgba(131, 131, 243, 0.3),
+        2px -2px 5px rgba(131, 131, 243, 0.3),
+        -2px 2px 5px rgba(131, 131, 243, 0.3);
+    letter-spacing: 2px;
 }
 </style>

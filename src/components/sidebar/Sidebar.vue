@@ -6,9 +6,11 @@
             </router-link>
         </div>
         <ul>
+            <router-link tag="li" to="/file" >文件</router-link>
             <router-link tag="li" to="/task" >任务</router-link>
-            <router-link tag="li" to="/logs">日志</router-link>
+            <router-link tag="li" to="/log">日志</router-link>
             <router-link tag="li" to="/user">用户</router-link>
+            <router-link tag="li" to="/about">关于</router-link>
         </ul>
     </div>
 </template>
@@ -35,16 +37,6 @@
         height: 100vh;
         background: rgb(42, 45, 70);
         color : white;
-    }
-    .sidebar::before {
-        position:absolute;
-        left: 0;
-        z-index: -1;
-        height: 100vh;
-        width: 12vw;
-        content: "";
-        filter: blur(5px);
-        background: url(./vine.png);
     }
     .logo {
         height: 9vh;

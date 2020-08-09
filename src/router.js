@@ -5,8 +5,12 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/', redirect: '/task',
+        path: '/', redirect: '/file',
         name: 'Home'
+    },
+    {
+        path: '/file', component: () => import('./pages/File.vue'),
+        name: 'File'
     },
     {
         path: '/login', component: () => import('./pages/Login.vue'),
@@ -17,12 +21,16 @@ const routes = [
         name: 'Task'
     },
     {
-        path: '/logs', component: () => import('./pages/Logs.vue'),
-        name: 'Logs'
+        path: '/log', component: () => import('./pages/Log'),
+        name: 'Log'
     },
     {
         path: '/user', component: () => import('./pages/User'),
         name: 'User'
+    },
+    {
+        path: '/about', component:()=> import('./pages/About'),
+        name: 'About'
     },
     {
         path: '*', component: () => import('./pages/Page404.vue'),

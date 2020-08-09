@@ -73,13 +73,18 @@ export default {
         background: rgba(255, 255, 255);
         padding: 8px;
         transform: translateY(-2em);
+        box-shadow: -2px -2px 10px rgba(131, 131, 243, 0.5),
+            2px 2px 10px rgba(131, 131, 243, 0.5),
+            2px -2px 10px rgba(131, 131, 243, 0.5),
+            -2px 2px 10px rgba(131, 131, 243, 0.5);
+        letter-spacing: 2px;
     }
     .content {
         padding: 8px;
     }
     .close-icon {
         color: white;
-        background:rgb(172, 0, 0);
+        background:grey;
         border-radius: 0.25em;
         border: 1px solid transparent;
         padding: 8px;

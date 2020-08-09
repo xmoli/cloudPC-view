@@ -17,25 +17,25 @@ router.post('/user/register', async (ctx, next) => {
         error: false
     }
 })
-router.put('/task-schedule', async (ctx, next) => {
+router.put('/scheduled-task', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false
     }
 })
-router.post('/task-schedule', async (ctx, next) => {
+router.post('/scheduled-task', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false
     }
 })
-router.delete('/task-schedule', async (ctx, next) => {
+router.delete('/scheduled-task', async (ctx, next) => {
     ctx.body = {
         status: true,
         error: false
     }
 })
-router.get('/task-schedule', async (ctx, next) => {
+router.get('/scheduled-task', async (ctx, next) => {
     ctx.body = Mock.mock(
         {
             "data|5-30": [{
@@ -53,11 +53,46 @@ router.get('/log', async (ctx, next) => {
             "data|5-30": [{
                 "Message": "@ctitle",
                 "Node": "@cname",
-                "Level": "@integer(1,5)",
+                "Level": "@natural(1,5)",
                 "Content": "@cparagraph",
                 "Ctime": "@date"
             }]
         }
     )
 })
+//********************file */
+router.get('/v1/file', async (ctx, next)=> {
+    ctx.body = Mock.mock(
+        {
+            "data|5-50": [{
+                "name": "@ctitle",
+                "path": "@ctitle",
+                "length": "@natural(1,5000)",
+            }]
+        }
+    )
+})
+router.post('/v1/file', async (ctx, next)=> {
+    ctx.body = {
+        "data": null,
+        "error": false
+    }
+})
+router.delete('/v1/file', async (ctx, next)=> {
+    ctx.body = {
+        "data": null,
+        "error": false
+    }
+})
+router.post('/v1/file/find', async (ctx, next)=> {
+    ctx.body = Mock.mock(
+        {
+            "data|5-50": [{
+                "name": "@ctitle",
+                "path": "@ctitle",
+                "length": "@natural(1,5000)",
+            }]
+        })
+})
+
 module.exports = router

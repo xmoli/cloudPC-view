@@ -213,6 +213,10 @@ export default {
         background: rgba(255, 255, 255);
         border-radius: 0.3em;
         padding: 3em 0;
+        box-shadow: 3px 3px 20px rgba(91, 113, 141, 0.5),
+            -3px -3px 20px rgba(91, 113, 141, 0.5),
+            -3px 3px 20px rgba(91, 113, 141, 0.5),
+            3px -3px 20px rgba(91, 113, 141, 0.5);
     }
     label {
         color:rgb(117, 117, 117);

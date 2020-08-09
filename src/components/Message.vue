@@ -37,6 +37,7 @@
 
 <script>
 import clearToken from '../util/clearToken'
+import getToken from '../util/getToken'
 
 export default {
     name: 'Message',
@@ -51,6 +52,12 @@ export default {
     },
     methods: {
         logout () {
+            fetch('/user/logout',{
+                method:'DELETE',
+                headers: {
+                    "X-Auth-Token": getToken()
+                }
+            })
             clearToken()
         },
         openUserMenu () {
