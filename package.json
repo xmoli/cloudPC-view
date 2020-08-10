@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "mock": "node ./mock/server.js",
     "build": "vue-cli-service build",
-    "start": "node ./server/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

@@ -43,6 +43,9 @@ npm run serve
 ```
 docker build -t xmoli/alpine:cpv .
 ```
-
+##编译成静态文件
+```
+npm run build
+```
 ## Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
