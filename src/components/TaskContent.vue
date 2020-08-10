@@ -12,6 +12,7 @@
         <ul class="content">
             <li 
                 v-for="(item, index) in items" :key="item.Id"
+                :class="{stripe: !(index%2)}"
             >
                 <span>{{item.Id}}</span>
                 <span>{{item.Name}}</span>
@@ -124,8 +125,10 @@ export default {
         background: white;
     }
     .container>ul.content>li {
-        padding: 1em 0;
-        border-top: 1px solid rgba(128, 128, 128, 0.493);
+        padding: .7em 0;
+    }
+    .stripe {
+        background:rgba(193, 212, 255, 0.2);
     }
     .container>ul.title>li:first-child {
         font-weight: bold;

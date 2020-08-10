@@ -25,8 +25,8 @@ const routes = [
         name: 'Log'
     },
     {
-        path: '/user', component: () => import('./pages/User'),
-        name: 'User'
+        path: '/setting', component: () => import('./pages/User'),
+        name: 'Setting'
     },
     {
         path: '/about', component:()=> import('./pages/About'),

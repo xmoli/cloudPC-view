@@ -1,9 +1,11 @@
 <template>
     <ul class="wrapper">
+            <transition name="fade">
             <li class="tip-box" v-for="(item,index) in tips" :key="index">
                 {{item.message}}
                 <i class="fa fa-close"/>
             </li>
+            </transition>
     </ul>
 </template>
 <script>

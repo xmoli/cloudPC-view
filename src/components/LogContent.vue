@@ -17,6 +17,7 @@
         <ul class="list-body">
             <li v-for="(item, index) in items" :key="index"
                 @click="toggleList($event,index)"
+                :class="{stripe: !(index%2)}"
             >
                 <div class="list-info">
                 <span>
@@ -85,7 +86,7 @@ export default {
 }
 ul.list-head {
     font-weight: bold;
-    padding: 16px;
+    padding: .7em;
 }
 ul li {
     display: flex;
@@ -95,10 +96,10 @@ ul.list-body li {
     align-items: flex-start;
 }
 ul.list-body  li {
-    border-top-width: 1px;
-    border-top-color: rgba(128, 128, 128, 0.5);
-    border-top-style: solid;
-    padding: 16px 0;
+    padding: .7em 0;
+}
+.stripe {
+    background:rgba(193, 212, 255, 0.2);
 }
 ul li span {
     display: inline-block;
@@ -111,7 +112,7 @@ ul li span {
     margin-top: 16px;
     margin-bottom: -16px;
     color: grey;
-    background: rgba(56, 56, 56, 0.1);
+    background: rgba(163, 162, 162, 0.1);
 }
 .list-content:hover {
     cursor: text;

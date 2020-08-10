@@ -226,7 +226,7 @@ html{
 .content {
     position: absolute;
     min-width: 60vw;
-    margin: 0 20vw;
+    margin-left:16vw;
     margin-top: 15vh;
 }
 .pop-box form {

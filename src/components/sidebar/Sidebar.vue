@@ -9,7 +9,7 @@
             <router-link tag="li" to="/file" >文件</router-link>
             <router-link tag="li" to="/task" >任务</router-link>
             <router-link tag="li" to="/log">日志</router-link>
-            <router-link tag="li" to="/user">用户</router-link>
+            <router-link tag="li" to="/setting">设置</router-link>
             <router-link tag="li" to="/about">关于</router-link>
         </ul>
     </div>
@@ -24,9 +24,9 @@
     li:hover {
         background: rgb(4, 67, 148);
         cursor: pointer;
-    }
+    } 
     .router-link-active {
-        background: rgb(12, 12, 114);
+        background: rgb(160, 43, 0);
     }
     .sidebar {
         position: fixed;
@@ -38,9 +38,8 @@
         background: rgb(42, 45, 70);
         color : white;
     }
-    .logo {
+    div.logo {
         height: 9vh;
-        background:rgb(75, 87, 112);
         line-height: 9vh;
         font-size: 2em;
     }

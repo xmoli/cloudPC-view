@@ -63,6 +63,14 @@ export default {
 button {
     letter-spacing: 2px;
     margin-right: .5em;
+    border: none;
+    background: rgb(207, 207, 207);
+    border-radius: .3em;
+    padding: 8px;
+    width: 5em;
+}
+button:hover {
+    cursor: pointer;
 }
 button.download {
     padding: .7em;

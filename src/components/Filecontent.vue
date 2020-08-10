@@ -10,7 +10,9 @@
             </li>
         </ul>
         <ul class="body">
-            <li v-for="(item,index) in items" :key="index">
+            <li v-for="(item,index) in items" :key="index" 
+                :class="{'gray': !(index%2)}" 
+            >
                 <span><label><input type="checkbox"/></label></span>
                 <span>{{item.name}}</span>
                 <span>{{item.length}}</span>
@@ -27,15 +29,17 @@ export default {
 
 <style scoped>
 .header li, .body li{
-    border-bottom: 1px solid rgba(128, 128, 128, 0.445);
     display: flex;
 }
 .header li span , .body li span{
-    padding: 1em;
+    padding: .8em 8px;
     min-width: 10em;
     text-align: start;
 }
 .header li span:first-child, .body li span:first-child {
     min-width: 3em;
+}
+.gray {
+    background:rgba(193, 212, 255, 0.2);
 }
 </style>
