@@ -26,7 +26,7 @@
         cursor: pointer;
     }
     .router-link-active {
-        background: rgb(3, 34, 75);
+        background: rgb(12, 12, 114);
     }
     .sidebar {
         position: fixed;
@@ -45,7 +45,6 @@
         font-size: 2em;
     }
     .fa-server:hover{
-        color: rgba(4, 66, 148);
         cursor: pointer;
     }
 </style>

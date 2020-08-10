@@ -25,9 +25,11 @@ export default {
         return {
             data: [],
             items: [],
+            tips: [],
         }
     },
-    mounted() {
+    created() {
+        document.title = "ADMIN | 文件"
         this.getFilelist()
     },
     methods: {
@@ -63,8 +65,9 @@ button {
     margin-right: .5em;
 }
 button.download {
-    padding: 1em;
-    background:rgb(0, 81, 255);
+    padding: .7em;
+    background:rgb(0, 26, 110);
+    color: white;
     border:none;
     outline: none;
     border-radius: .25em;

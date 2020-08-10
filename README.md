@@ -1,5 +1,5 @@
 # admin
-    编译需要nodejs。上线需要反向代理支持。
+    编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。
 
 ## Project setup
 ```
@@ -33,35 +33,12 @@ npm run serve
 
 ### 生产者模式下，配置开发者反向代理服务器
     注意：将url前缀"/api" 重写为 ""
-    新建server.config.js 将http://localhost:9090 替换成后端的服务器地址
-```
-module.exports ={
-    server: {
-        port: 80,
-        koaProxy: {
-            host: 'http://localhost:9090',
-            map: function(path){
-                return path.replace(/^\/api/, "")
-            }
-        }
-    }
-}
-```
+    把nginx.conf中http://localhost:9090 替换成后端的服务器地址
+
 ### Compiles and minifies for production
-npm
 ```
-npm run build
+docker build -t xmoli/alpine:cpv .
 ```
-### Lints and fixes files
-```
-yarn lint
-```
-### 开启服务
-```
-npm run start
-```
-### 守护进程
-使用pm2、nohup 等
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
