@@ -6,11 +6,11 @@
             </router-link>
         </div>
         <ul>
-            <router-link tag="li" to="/file" >文件</router-link>
-            <router-link tag="li" to="/task" >任务</router-link>
-            <router-link tag="li" to="/log">日志</router-link>
-            <router-link tag="li" to="/setting">设置</router-link>
-            <router-link tag="li" to="/about">关于</router-link>
+            <router-link tabindex="1" tag="li" to="/file" >文件</router-link>
+            <router-link tabindex="1" tag="li" to="/task" >任务</router-link>
+            <router-link tabindex="1" tag="li" to="/log">日志</router-link>
+            <router-link tabindex="1" tag="li" to="/setting">设置</router-link>
+            <router-link tabindex="1" tag="li" to="/about">关于</router-link>
         </ul>
     </div>
 </template>
@@ -20,13 +20,19 @@
     }
     li {
         line-height: 3em;
+        outline: none;
     }
     li:hover {
-        background: rgb(4, 67, 148);
         cursor: pointer;
     } 
+    li:focus {
+                box-shadow: -2px -2px 5px rgb(160, 43, 0),
+        2px 2px 5px rgb(160, 43, 0),
+        2px -2px 5px rgb(160, 43, 0),
+        -2px 2px 5px rgb(160, 43, 0);
+    }
     .router-link-active {
-        background: rgb(160, 43, 0);
+        background: rgb(4, 67, 148);
     }
     .sidebar {
         position: fixed;

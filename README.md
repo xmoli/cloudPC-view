@@ -6,7 +6,7 @@
 npm install
 ```
 
-### 开发者模式下，配置开发者反向代理服务器
+## 开发者模式下，配置开发者反向代理服务器
 
 在首目录下，新建vue.config.js。
 例子：将http://localhost:9090 替换成后端的服务器地址
@@ -26,12 +26,16 @@ module.exports = {
     }
 }
 ```
+### 开启mock服务
+``` 
+npm run mock
+```
 ### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### 生产者模式下，配置开发者反向代理服务器
+## 生产者模式下，配置开发者反向代理服务器
     注意：将url前缀"/api" 重写为 ""
     把nginx.conf中http://localhost:9090 替换成后端的服务器地址
 
@@ -40,5 +44,5 @@ npm run serve
 docker build -t xmoli/alpine:cpv .
 ```
 
-### Customize configuration
+## Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

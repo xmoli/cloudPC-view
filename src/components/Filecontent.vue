@@ -42,4 +42,7 @@ export default {
 .gray {
     background:rgba(193, 212, 255, 0.2);
 }
+ul.body li:hover {
+    cursor: pointer;
+}
 </style>

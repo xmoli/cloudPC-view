@@ -68,16 +68,22 @@ button {
     border-radius: .3em;
     padding: 8px;
     width: 5em;
+    outline: none;
 }
 button:hover {
     cursor: pointer;
+}
+button:focus {
+        box-shadow: -2px -2px 5px rgba(131, 131, 243, 0.3),
+        2px 2px 5px rgba(131, 131, 243, 0.3),
+        2px -2px 5px rgba(131, 131, 243, 0.3),
+        -2px 2px 5px rgba(131, 131, 243, 0.3);
 }
 button.download {
     padding: .7em;
     background:rgb(0, 26, 110);
     color: white;
     border:none;
-    outline: none;
     border-radius: .25em;
 }
 </style>
