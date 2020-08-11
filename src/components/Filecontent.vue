@@ -15,7 +15,18 @@
                 :class="{'gray': !(index%2)}" 
                 @click="select($event, index)"
             >
-                <span class="wrapper-checkbox"><input type="checkbox"/></span>
+                <span class="wrapper-checkbox">
+                    <input type="checkbox"/>
+                    <i v-show="item.type === 'folder'" class="fa fa-folder"/>
+                    <i v-show="item.type === 'photo'" class="fa fa-file-photo-o"/>
+                    <i v-show="item.type === 'text'" class="fa fa-file-text-o"/>
+                    <i v-show="item.type === 'pdf'" class="fa fa-file-pdf-o"/>
+                    <i v-show="item.type === 'excel'" class="fa fa-file-excel-o"/>
+                    <i v-show="item.type === 'word'" class="fa fa-file-word-o"/>
+                    <i v-show="item.type === 'audio'" class="fa fa-file-audio-o"/>
+                    <i v-show="item.type === 'movie'" class="fa fa-file-movie-o"/>
+                    <i v-show="item.type === 'archive'" class="fa fa-file-archive-o"/>
+                </span>
                 <span>{{item.name}}</span>
                 <span>{{item.length}}</span>
             </li>
@@ -90,10 +101,18 @@ export default {
 ul.body li:hover {
     cursor: pointer;
 }
+.wrapper-checkbox {
+    display: flex;
+    align-items: center;
+}
 .wrapper-checkbox::before {/*添加一个罩子以免直接点击checkbox引发bug*/
     content: "";
     position: absolute;
     width: 1.5em;
     height: 1.5em;
+}
+.wrapper-checkbox i {
+    margin-left: 8px;
+    color: rgb(0, 26, 110);
 }
 </style>

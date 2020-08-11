@@ -1,12 +1,13 @@
 <template>
 <div>
     <tip-box :tips="tips"/>
-    <appbar>
+    <appbar class="file-option">
         <button class="download">下载</button>
         <button>移动</button>
         <button>重命名</button>
         <button>删除</button>
         <button>属性</button>
+        <file-option/>
     </appbar>
     <sidebar/>
     <content-file class="content-file" :items="items"/>
@@ -19,7 +20,8 @@ export default {
         "appbar": ()=> import("../components/Appbar"),
         "sidebar": ()=> import("../components/sidebar/Sidebar"),
         "content-file": ()=> import("../components/Filecontent"),
-        "tip-box": ()=> import("../components/Tipbox")
+        "tip-box": ()=> import("../components/Tipbox"),
+        "file-option": ()=> import("../components/FileOption")
     },
     data () {
         return {
@@ -53,12 +55,15 @@ export default {
 }
 </script>
 <style scoped>
+@media only screen and (min-width: 800px) {
 .content-file {
     background: white;
     border-radius: .25em;
     position: absolute;
     margin: 15vh 0 0 18vw;
     width: 60vw;
+    
+    overflow: hidden;
 }
 button {
     letter-spacing: 2px;
@@ -85,5 +90,25 @@ button.download {
     color: white;
     border:none;
     border-radius: .25em;
+}
+}
+</style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+    .file-option button {
+        display: none;
+    }
+}
+.content-file {
+    background: white;
+    position: absolute;
+    top: 3.5em;
+    width: 100%;
+    overflow: hidden;
+}
+</style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+
 }
 </style>

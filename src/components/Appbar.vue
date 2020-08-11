@@ -33,7 +33,7 @@ export default {
         width: 100vw;
         height: 9vh;
         min-height: 2.5em;
-        z-index: 1000;
+        z-index: 1100;
 
         background: white;
         margin: 0;
@@ -42,12 +42,6 @@ export default {
         align-items: center;
         border-bottom: 2px solid rgb(228, 237, 255);
     }
-    .appbar div {
-        margin: 0 16px;
-    }
-    .sidebar-blank-box {
-        width: 12vw;
-    }
     .search-box {
         overflow: hidden;
     }
@@ -55,9 +49,29 @@ export default {
         display: flex;
         justify-content: center;
     }
+</style>
+<style scoped>
+@media only screen and (min-width: 800px){
+    .sidebar-blank-box {
+        width: 12vw;
+    }
+
     .message-box {
         min-width: 3em;
         display: flex;
         justify-content: flex-end;
     }
+}
+</style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+    .message-box{
+        display: none;
+    }
+    .appbar{
+        justify-content: space-around;
+        height: 3em;
+        background: rgb(42, 45, 70);
+    }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="messagebox">
         <div>
             <i class="fa fa-bell-o" v-on:click="openMessageMenu"/>
             <item-menu 

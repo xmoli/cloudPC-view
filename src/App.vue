@@ -24,6 +24,7 @@ export default {
 }
 body {
   margin: 0;
+  padding: 0;
   background: rgb(228, 237, 255);
 }
 ul,li {

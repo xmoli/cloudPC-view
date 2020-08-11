@@ -15,6 +15,7 @@
     </div>
 </template>
 <style scoped>
+@media screen and (min-width: 800px) {
     li:first-child {
         margin-top: 1em
     }
@@ -52,4 +53,34 @@
     .fa-server:hover{
         cursor: pointer;
     }
+}
+</style>
+<style scoped>
+/*mobile*/
+@media screen and (max-width: 800px){
+    .sidebar {
+        position: fixed;
+        z-index: 1100;
+        bottom: 0;
+
+        background: rgb(243, 243, 243);
+        height: 3em;
+        width: 100%;    }
+    .logo, .sidebar ul li:last-child {
+        display: none;
+    }
+    .sidebar ul {
+        display: flex;
+        width: 100%;
+    }
+    .sidebar ul li {
+        width: 25%;
+        height: 3em;
+    }
+    .router-link-active {
+        background: rgb(4, 67, 148);
+        color: white;
+        border-radius: .3em;
+    }
+}
 </style>
