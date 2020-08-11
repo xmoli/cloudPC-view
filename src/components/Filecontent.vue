@@ -96,7 +96,7 @@ export default {
     min-width: 3em;
 }
 .gray {
-    background:rgba(193, 212, 255, 0.2);
+    background:rgb(205, 220, 255);
 }
 ul.body li:hover {
     cursor: pointer;

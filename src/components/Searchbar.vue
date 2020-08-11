@@ -52,3 +52,13 @@ export default {
         color: rgb(4, 67, 148);
     }
 </style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+    .fa-search {
+        color:rgb(4, 67, 148)
+    }
+    input:focus {
+        background: white;
+    }
+}
+</style>

@@ -63,7 +63,9 @@
         z-index: 1100;
         bottom: 0;
 
-        background: rgb(243, 243, 243);
+        background: rgba(240, 240, 240, 0.9);
+        color: gray;
+        font-weight: bold;
         height: 3em;
         width: 100%;    }
     .logo, .sidebar ul li:last-child {
@@ -80,7 +82,11 @@
     .router-link-active {
         background: rgb(4, 67, 148);
         color: white;
-        border-radius: .3em;
+    }
+}
+@media only screen and (max-height: 400px) {
+    .sidebar {
+        display: none;
     }
 }
 </style>

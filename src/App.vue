@@ -26,6 +26,7 @@ body {
   margin: 0;
   padding: 0;
   background: rgb(228, 237, 255);
+  overflow-x: hidden;
 }
 ul,li {
     margin:0;

@@ -60,10 +60,8 @@ export default {
     background: white;
     border-radius: .25em;
     position: absolute;
-    margin: 15vh 0 0 18vw;
-    width: 60vw;
-    
-    overflow: hidden;
+    left: 12vw;
+    overflow-x: hidden;
 }
 button {
     letter-spacing: 2px;
