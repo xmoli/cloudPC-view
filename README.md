@@ -43,7 +43,7 @@ npm run serve
 ```
 docker build -t xmoli/alpine:cpv .
 ```
-##编译成静态文件
+## 编译成静态文件
 ```
 npm run build
 ```
