@@ -210,7 +210,7 @@ export default {
         flex-direction:column;
         justify-content: center;
         flex-wrap: nowrap;
-        background: rgba(255, 255, 255);
+        background: white;
         border-radius: 0.3em;
         padding: 3em 0;
         box-shadow: 3px 3px 20px rgba(91, 113, 141, 0.5),
