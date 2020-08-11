@@ -9,7 +9,7 @@
             <router-link tabindex="1" tag="li" to="/file" >文件</router-link>
             <router-link tabindex="1" tag="li" to="/task" >任务</router-link>
             <router-link tabindex="1" tag="li" to="/log">日志</router-link>
-            <router-link tabindex="1" tag="li" to="/setting">设置</router-link>
+            <router-link tabindex="1" tag="li" to="/user">用户</router-link>
             <router-link tabindex="1" tag="li" to="/about">关于</router-link>
         </ul>
     </div>

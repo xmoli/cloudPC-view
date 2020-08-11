@@ -23,7 +23,7 @@
                 v-on:close-menu="userMenu=false"
             >
                 <ul>
-                    <li ><button>设置</button></li>
+                    <li ><router-link tag="button" to="/user">设置</router-link></li>
                     <li>
                         <router-link  tag="button" to="/login">
                             <span @click="logout"> 登出 </span>
