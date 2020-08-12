@@ -10,7 +10,7 @@
         <file-option/>
     </appbar>
     <sidebar/>
-    <content-file class="content-file" :items="items"/>
+    <content-file class="file-content" :items="items"/>
 </div>
 </template>
 <script>
@@ -55,12 +55,12 @@ export default {
 }
 </script>
 <style scoped>
-@media only screen and (min-width: 800px) {
-.content-file {
+.file-content {
     background: white;
     border-radius: .25em;
     position: absolute;
-    left: 12vw;
+    margin-top: 9vh;
+    margin-left:12vw;
     overflow-x: hidden;
 }
 button {
@@ -89,24 +89,19 @@ button.download {
     border:none;
     border-radius: .25em;
 }
-}
 </style>
 <style scoped>
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px){
     .file-option button {
         display: none;
     }
-}
-.content-file {
-    background: white;
-    position: absolute;
-    top: 3.5em;
-    width: 100%;
-    overflow: hidden;
-}
-</style>
-<style scoped>
-@media only screen and (max-width: 800px) {
-
+    .file-content {
+        background: white;
+        position: absolute;
+        margin: 0;
+        margin-top: 3.5em;
+        width: 100%;
+        overflow: hidden;
+    }
 }
 </style>

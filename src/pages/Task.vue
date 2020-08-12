@@ -219,10 +219,6 @@ export default {
 </script>
 
 <style scoped>
-html{  
-    overflow-x: hidden;  
-    overflow-y: hidden;  
-} 
 .content {
     position: absolute;
     min-width: 60vw;
@@ -282,5 +278,15 @@ html{
 }
 .new-button:hover {
     cursor: pointer;  
+}
+</style>
+<style scoped>
+/* moblie */
+@media only screen and (max-width: 800px) {
+    .content {
+        margin: 0;
+        margin-top: 3.5em;
+        width: 100%;
+    }
 }
 </style>

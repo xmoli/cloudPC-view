@@ -96,7 +96,7 @@ export default {
     min-width: 3em;
 }
 .gray {
-    background:rgb(205, 220, 255);
+    background:rgb(238, 242, 253);
 }
 ul.body li:hover {
     cursor: pointer;
@@ -114,5 +114,12 @@ ul.body li:hover {
 .wrapper-checkbox i {
     margin-left: 8px;
     color: rgb(0, 26, 110);
+}
+</style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+    ul {
+        margin: 0 8px;
+    }
 }
 </style>

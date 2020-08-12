@@ -81,3 +81,13 @@ select.filter {
     padding: 8px;
 }
 </style>
+<style scoped>
+/** mobile */
+@media only screen and (max-width: 800px) {
+    .content{
+        margin: 0;
+        margin-top: 3.5em;
+        width: 100%;
+    }
+}
+</style>

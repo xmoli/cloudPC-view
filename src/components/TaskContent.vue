@@ -95,7 +95,7 @@ export default {
     }
     .container>ul {
         background: white;
-        margin: 0 8px 0 8px;
+        margin: 0 8px;
         border-spacing: 0; 
     }
     .container>ul.title {
@@ -161,4 +161,14 @@ export default {
     .item-menu ul li button {
         outline: none;
     }
+</style>
+<style scoped>
+@media only screen and (max-width: 800px) {
+    .container {
+        padding: 0;
+    }
+    ul li span {
+        width: 33%;
+    }
+}
 </style>

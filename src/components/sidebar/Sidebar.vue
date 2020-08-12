@@ -84,7 +84,7 @@
         color: white;
     }
 }
-@media only screen and (max-height: 400px) {
+@media only screen and (max-height: 500px) {
     .sidebar {
         display: none;
     }

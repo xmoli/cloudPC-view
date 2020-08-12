@@ -32,7 +32,7 @@
                 <span>
                     {{item.Ctime}}
                 </span>
-                <span>
+                <span class="angle">
                     <i :class="{'fa': true, 'fa-angle-left': !status[index], 'fa-angle-down': status[index]}"/>
                 </span>
                 </div>
@@ -131,5 +131,22 @@ ul.list-body li:hover {
 }
 ul.list-head span.last:hover {
     cursor: pointer;
+}
+</style>
+<style scoped>
+/**mobile */
+@media only screen {
+    ul li span {
+        width: 20vw;
+    }
+    ul {
+        margin: 0 8px;
+    }
+    .angle {
+        display: none;
+    }
+    ul.list-head span{
+        padding: .8em 0;
+    }
 }
 </style>
