@@ -59,8 +59,9 @@ export default {
     background: white;
     border-radius: .25em;
     position: absolute;
-    margin-top: 9vh;
-    margin-left:12vw;
+    width: 60vw;
+    margin-top: 12vh;
+    margin-left:15vw;
     overflow-x: hidden;
 }
 button {

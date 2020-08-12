@@ -25,7 +25,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: rgb(228, 237, 255);
+  background: rgb(245, 245, 245);
   overflow-x: hidden;
 }
 ul,li {

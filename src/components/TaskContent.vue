@@ -101,10 +101,8 @@ export default {
     .container>ul.title {
         border-radius: .3em .3em 0 0;
     }
-    ul.title li {
-        padding: 16px 0;
-    }
     ul li {
+        padding: 1em 0;
         display: flex;
     }
     ul li span {
@@ -125,7 +123,7 @@ export default {
         background: white;
     }
     .container>ul.content>li {
-        padding: .7em 0;
+        padding: .9em 0;
     }
     .stripe {
         background:rgba(193, 212, 255, 0.2);

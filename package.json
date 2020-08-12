@@ -26,6 +26,8 @@
     "koa": "^2.12.1",
     "koa-router": "^9.0.1",
     "mockjs": "^1.1.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

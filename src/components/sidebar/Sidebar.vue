@@ -21,17 +21,10 @@
     }
     li {
         line-height: 3em;
-        outline: none;
     }
     li:hover {
         cursor: pointer;
     } 
-    li:focus {
-                box-shadow: -2px -2px 5px rgb(160, 43, 0),
-        2px 2px 5px rgb(160, 43, 0),
-        2px -2px 5px rgb(160, 43, 0),
-        -2px 2px 5px rgb(160, 43, 0);
-    }
     .router-link-active {
         background: rgb(4, 67, 148);
     }
