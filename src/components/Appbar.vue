@@ -31,7 +31,7 @@ export default {
     .appbar {
         position: fixed;
         width: 100vw;
-        height: 9vh;
+        height: 4em;
         min-height: 2.5em;
         z-index: 1100;
 

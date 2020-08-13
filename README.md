@@ -40,6 +40,7 @@ npm run serve
     把nginx.conf中http://localhost:9090 替换成后端的服务器地址
 
 ### Compiles and minifies for production
+此Dockerfile demo仅供参考
 ```
 docker build -t xmoli/alpine:cpv .
 ```
