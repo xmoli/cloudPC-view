@@ -1,5 +1,5 @@
 <template>
-    <div :class="{hidden: status, mid: status, end: !status}">
+    <div :class="{mid: status, end: !status}">
     </div>
 </template>
 <script>
@@ -8,17 +8,17 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-@import '../main.styl'
+@import "../main.styl"
 div
     position fixed
     height 4em
+    width 0
+    background black
     z-index $appbar-z-index - 1
-    border-bottom 2px solid $main-color
-    transition width 0.3s ease-out
+    border-bottom 1px solid lighten($main-color,90%)
+    transition width  0.3s ease-in
 div.mid
     width 50vw
 div.end
     width 100vw
-div.hidden
-    display none
 </style>

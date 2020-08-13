@@ -30,6 +30,7 @@
                 </form>
             </pop-box>
         </Appbar>
+        <fetch-progress :status="progress"/>
         <Sidebar>
         </Sidebar>
         <Content class="content"
@@ -70,7 +71,8 @@ export default {
         Sidebar: () => import('../components/sidebar/Sidebar'),
         Appbar: () => import('../components/Appbar'),
         Content: () => import('../components/TaskContent.vue'),
-        "pop-box": () => import('../components/popbox.vue')
+        "pop-box": () => import('../components/popbox.vue'),
+        "fetch-progress": ()=> import('../components/FetchProgress')
     },
     data () {
         return {
@@ -86,6 +88,7 @@ export default {
             taskCommandC: '',
             taskCronC: '',
             clipData: {},
+            progress: false
         }
     },
     computed: {
@@ -107,6 +110,7 @@ export default {
     },
     methods: {
         async getTaskSchedule () {
+            this.progress = true
             const res = await fetch('api/scheduled-task',{
                 method: "GET",
                 headers: this.headers
@@ -116,6 +120,7 @@ export default {
                 console.log(json.error)
             } else {
                 this.data = json.data
+                this.progress = false
             }
         },
         async addTask () {
@@ -265,10 +270,7 @@ export default {
 .new-button {
     display: flex;
     overflow: hidden;
-    width: 4em;
-    height: 2.5em;
-    line-height: 3em;
-
+    padding: 8px;
     justify-content: center;
     align-items: center;
     border-radius: 0.25em;

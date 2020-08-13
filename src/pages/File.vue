@@ -9,6 +9,7 @@
         <button>属性</button>
         <file-option/>
     </appbar>
+    <fetch-progress :status="progress"/>
     <sidebar/>
     <content-file class="file-content" :items="items"/>
 </div>
@@ -21,13 +22,15 @@ export default {
         "sidebar": ()=> import("../components/sidebar/Sidebar"),
         "content-file": ()=> import("../components/Filecontent"),
         "tip-box": ()=> import("../components/Tipbox"),
-        "file-option": ()=> import("../components/FileOption")
+        "file-option": ()=> import("../components/FileOption"),
+        "fetch-progress": ()=> import('../components/FetchProgress')
     },
     data () {
         return {
             data: [],
             items: [],
             tips: [],
+            progress: false
         }
     },
     created() {
@@ -36,6 +39,7 @@ export default {
     },
     methods: {
         getFilelist() {
+            this.progress = true
             fetch('/api/v1/file/find',{
                 method: "POST",
                 headers: {
@@ -48,6 +52,7 @@ export default {
                     console.log(json.error)
                 } else {
                     this.items = json.data
+                    this.progress = false
                 }
             })
         }

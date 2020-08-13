@@ -76,10 +76,10 @@
         background: rgb(4, 67, 148);
         color: white;
     }
-}
 @media only screen and (max-height: 500px) {
     .sidebar {
         display: none;
     }
+}
 }
 </style>

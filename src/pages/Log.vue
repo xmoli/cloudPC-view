@@ -1,12 +1,13 @@
 <template>
     <div>
-        <app-bar @search="showResult" :class="{progress: progress}">
+        <app-bar @search="showResult">
             <select class="filter">
                 <option value="1">级别</option>
                 <option value="2">节点</option>
                 <option value="3">时间</option>
             </select>
         </app-bar>
+        <fetch-progress :status="progress"/>
         <side-bar/>
         <Content class="content" :items="items"></Content>
     </div>
@@ -23,7 +24,8 @@ export default {
     components: {
         Content: () => import('../components/LogContent.vue'),
         "app-bar": () => import('../components/Appbar.vue'),
-        "side-bar": () => import('../components/sidebar/Sidebar.vue')
+        "side-bar": () => import('../components/sidebar/Sidebar.vue'),
+        "fetch-progress": ()=> import('../components/FetchProgress')
     },
     data () {
         return {

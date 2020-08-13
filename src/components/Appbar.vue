@@ -40,7 +40,6 @@ export default {
         
         display: flex;
         align-items: center;
-        border-bottom: 2px solid rgb(228, 237, 255);
     }
     .search-box {
         overflow: hidden;
