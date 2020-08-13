@@ -8,9 +8,18 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   cd /cpv &&\
   npm config set registry https://registry.npm.taobao.org &&\
   npm install -g yarn &&\
-  yarn install && yarn build
-  
-COPY ./*.conf ./
+  yarn install && yarn build &&\
+  echo 'server {\
+      listen 80;\
+      location ^~ /api {\
+          proxy_pass http://localhost:8080;\
+      }\
+      location / {\
+          root /cpv/dist;\
+          index index.html;\
+      }\
+  }' >> /etc/nignx/conf.d/default.conf
 
-ENTRYPOINT [ "nginx","-c","/cpv/nginx.conf" ]
+CMD [ "nginx","-g", "daemon off" ]
+
 EXPOSE 80
