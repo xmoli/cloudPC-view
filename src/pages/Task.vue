@@ -129,7 +129,9 @@ export default {
             }
             const res = await fetch('api/scheduled-task', {
                 method: 'POST',
-                headers: this.headers,
+                headers: {
+                    "X-Auth-Token": getToken()
+                },
                 body: JSON.stringify(data)
             })
             try {

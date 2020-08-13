@@ -2,13 +2,12 @@
     <div class="container">
         <ul class="list-head">
             <li>
-                <span>级别</span>
-                <span>信息</span>
-                <span>类型</span>
+                <span class="level">级别</span>
+                <span>服务器节点</span>
                 <span>时间</span>
                 <span 
                     @click="toggleAllList"
-                    class="last"
+                    class="last angle"
                 >
                     <i :class="{'fa': true, 'fa-angle-down': hasOpen, 'fa-angle-left': !hasOpen}"/>
                 </span>
@@ -17,20 +16,16 @@
         <ul class="list-body">
             <li v-for="(item, index) in items" :key="index"
                 @click="toggleList($event,index)"
-                :class="{stripe: !(index%2)}"
             >
                 <div class="list-info">
-                <span>
-                    {{item.Level}}
+                <span :class="{level: true, info: item.level==='info', warn: item.level === 'warn' , error: item.level == 'error'}">
+                    {{item.level.toUpperCase()}}
                 </span>
-                <span>
-                    {{item.Message}}
+                <span class="node">
+                    {{item.node}}
                 </span>
-                <span>
-                    {{item.Node}}
-                </span>
-                <span>
-                    {{item.Ctime}}
+                <span class="time">
+                    {{item.time}}
                 </span>
                 <span class="angle">
                     <i :class="{'fa': true, 'fa-angle-left': !status[index], 'fa-angle-down': status[index]}"/>
@@ -40,7 +35,7 @@
                     @click.stop
                 >
                     <p>
-                        {{item.Content}}
+                        {{item.message}}
                     </p>
                 </div>
             </li>
@@ -86,33 +81,44 @@ export default {
 }
 ul.list-head {
     font-weight: bold;
-    padding: .7em;
 }
-ul li {
+.container>ul {
+    padding: 0 1em;
+}
+.container>ul>li {
     display: flex;
+    border-bottom: 1px solid rgb(189, 189, 189);
 }
 ul.list-body li {
     flex-direction: column;
     align-items: flex-start;
 }
-ul.list-body  li {
-    padding: .7em 0;
-}
-.stripe {
-    background:rgba(193, 212, 255, 0.2);
-}
 ul li span {
+    width: 20em;
     display: inline-block;
-    width: 10em;
+    padding: 0.8em 0;
+}
+span.level {
+    width: 3em;
+}
+span.angle {
+    width: 2em;
+}
+.info {
+    color: gray;
+}
+.warn {
+    color: orange;
+}
+.error {
+    color: red;
 }
 .list-content {
     width: 100%;
     line-height: 1.5em;
     box-shadow: inset 1px 1px 5px gray;
-    margin-top: 16px;
-    margin-bottom: -16px;
     color: grey;
-    background: rgba(163, 162, 162, 0.1);
+    margin-bottom: 1em;
 }
 .list-content:hover {
     cursor: text;
@@ -135,7 +141,7 @@ ul.list-head span.last:hover {
 </style>
 <style scoped>
 /**mobile */
-@media only screen {
+@media only screen and (max-width: 800px){
     ul li span {
         width: 20vw;
     }

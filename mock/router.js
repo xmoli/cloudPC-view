@@ -51,11 +51,10 @@ router.get('/log', async (ctx, next) => {
     ctx.body = Mock.mock(
         {
             "data|5-30": [{
-                "Message": "@ctitle",
-                "Node": "@cname",
-                "Level": "@natural(1,5)",
-                "Content": "@cparagraph",
-                "Ctime": "@date"
+                "message": "@cparagraph",
+                "mode": "@cname",
+                "level": "@natural(1,5)",
+                "time": "@date"
             }]
         }
     )

@@ -70,7 +70,7 @@ export default {
         overflow: hidden;
         border: 2px solid rgba(19, 19, 255, 0.35);
         border-radius: 0.2em;
-        background: rgba(255, 255, 255);
+        background: white;
         padding: 8px;
         transform: translateY(-2em);
         box-shadow: -2px -2px 10px rgba(131, 131, 243, 0.5),
