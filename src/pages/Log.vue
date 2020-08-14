@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import getToken from '../util/getToken'
+import getToken from '../token/getToken'
 
 export default {
     mounted () {

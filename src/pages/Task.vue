@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import getToken from '../util/getToken'
+import getToken from '../token/getToken'
 
 export default {
     components: {
@@ -139,9 +139,7 @@ export default {
             }
             const res = await fetch('api/scheduled-task', {
                 method: 'POST',
-                headers: {
-                    "X-Auth-Token": getToken()
-                },
+                headers: this.headers,
                 body: JSON.stringify(data)
             })
             try {

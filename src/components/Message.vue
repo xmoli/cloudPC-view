@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import clearToken from '../util/clearToken'
-import getToken from '../util/getToken'
+import clearToken from '../token/clearToken'
+import getToken from '../token/getToken'
 
 export default {
     name: 'Message',

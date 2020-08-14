@@ -53,7 +53,7 @@
 
 <script>
 import isEmail from '../util/isEmail'
-
+import setToken from '../token/setToken'
 export default {
     name: 'Login',
     data (){
@@ -143,11 +143,7 @@ export default {
             
         },
         tryKeepOnline () {
-            if (this.keep) {
-                const sessionId = sessionStorage.getItem("admin-server-sessionId")
-                localStorage.setItem("admin-server-sessionId", sessionId)
-                return true
-            }
+            setToken(this.keep)
         },
         validateAll () {
             if (this.check.usernameInput && this.check.passwordInput) {

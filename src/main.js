@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from './router'
 import App from './App.vue'
-import getToken from './util/getToken'
+import getToken from './token/getToken'
 
 Vue.config.productionTip = false
 
