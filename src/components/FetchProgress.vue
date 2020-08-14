@@ -18,7 +18,7 @@ div
     z-index $appbar-z-index - 1
     border-bottom 1px solid lighten($main-color,90%)
 .v-enter-active
-    transition width  0.2s ease
+    transition width  0.3s ease
 .v-enter
     width 0
 

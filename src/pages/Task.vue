@@ -1,6 +1,7 @@
 <template>
     <keep-alive>
         <div>
+        <message-box :message="message"/>
         <Appbar v-on:search="showResult">
             <div class="new-button"
                 @click.stop="openAddPop"
@@ -74,7 +75,8 @@ export default {
         Appbar: () => import('../components/Appbar'),
         Content: () => import('../components/TaskContent.vue'),
         "pop-box": () => import('../components/popbox.vue'),
-        "fetch-progress": ()=> import('../components/FetchProgress')
+        "fetch-progress": ()=> import('../components/FetchProgress'),
+        "message-box": ()=> import('../components/Messagebox')
     },
     data () {
         return {
@@ -90,7 +92,8 @@ export default {
             taskCommandC: '',
             taskCronC: '',
             clipData: {},
-            progress: false
+            progress: false,
+            message: null
         }
     },
     computed: {

@@ -8,6 +8,7 @@
                 <option value="3">时间</option>
             </select>
         </app-bar>
+        <message-box :message="message"/>
         <fetch-progress :status="progress"/>
         <side-bar/>
         <Content class="content" :items="items"></Content>
@@ -27,13 +28,15 @@ export default {
         Content: () => import('../components/LogContent.vue'),
         "app-bar": () => import('../components/Appbar.vue'),
         "side-bar": () => import('../components/sidebar/Sidebar.vue'),
-        "fetch-progress": ()=> import('../components/FetchProgress')
+        "fetch-progress": ()=> import('../components/FetchProgress'),
+        "message-box": ()=> import('../components/Messagebox')
     },
     data () {
         return {
             data: [],
             keyword: '',
-            progress: false
+            progress: false,
+            message: null
         }
     },
     computed: {

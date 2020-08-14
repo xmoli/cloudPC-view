@@ -1,7 +1,7 @@
 <template>
 <keep-alive>
 <div>
-    <tip-box :tips="tips"/>
+    <tip-box :message="message"/>
     <appbar class="file-option">
         <button class="download">下载</button>
         <button>移动</button>
@@ -23,7 +23,7 @@ export default {
         "appbar": ()=> import("../components/Appbar"),
         "sidebar": ()=> import("../components/sidebar/Sidebar"),
         "content-file": ()=> import("../components/Filecontent"),
-        "tip-box": ()=> import("../components/Tipbox"),
+        "tip-box": ()=> import("../components/Messagebox"),
         "file-option": ()=> import("../components/FileOption"),
         "fetch-progress": ()=> import('../components/FetchProgress')
     },
@@ -31,7 +31,7 @@ export default {
         return {
             data: [],
             items: [],
-            tips: [],
+            message: {},
             progress: false
         }
     },
