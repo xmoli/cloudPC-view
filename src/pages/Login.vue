@@ -112,7 +112,6 @@ export default {
                 this.token = json.data.token
                 setToken(false , this.token)
                 this.progress = false
-                this.$router.push('/')
             }
         },
         async userRegister (userInfo) {
@@ -127,8 +126,10 @@ export default {
                     pass_word: userInfo.pass_word
                 })
                 this.progress = false
+                return true
             } else {
                 this.error = res.statusText
+                return false
             }
         },
         async submit () {
@@ -144,7 +145,7 @@ export default {
                     this.$router.push('/')
                 }
                 this.tryKeepOnline()
-            } else if (!this.login) {
+            } else if (!this.login && this.validateAll) {
                 const err = await this.userRegister({
                     email: username,
                     nick: username,
