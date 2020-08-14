@@ -6,27 +6,19 @@
                     <input type="checkbox" ref="allCheckedbox"/>
                     选择
                 </span>
+                <span class="icon"/>
                 <span>名称</span>
                 <span>大小</span>
             </li>
         </ul>
         <ul class="body" ref="body">
             <li v-for="(item,index) in items" :key="index" 
-                :class="{'gray': !(index%2)}" 
-                @click="select($event, index)"
+                @click="openFile(item, $event)"
             >
-                <span class="wrapper-checkbox">
+                <span class="wrapper-checkbox" @click.stop="select($event, index)">
                     <input type="checkbox"/>
-                    <i v-show="item.type === 'folder'" class="fa fa-folder"/>
-                    <i v-show="item.type === 'photo'" class="fa fa-file-photo-o"/>
-                    <i v-show="item.type === 'text'" class="fa fa-file-text-o"/>
-                    <i v-show="item.type === 'pdf'" class="fa fa-file-pdf-o"/>
-                    <i v-show="item.type === 'excel'" class="fa fa-file-excel-o"/>
-                    <i v-show="item.type === 'word'" class="fa fa-file-word-o"/>
-                    <i v-show="item.type === 'audio'" class="fa fa-file-audio-o"/>
-                    <i v-show="item.type === 'movie'" class="fa fa-file-movie-o"/>
-                    <i v-show="item.type === 'archive'" class="fa fa-file-archive-o"/>
                 </span>
+                <filetype-icon class="icon" :type="item.type"/>
                 <span>{{item.name}}</span>
                 <span>{{item.length}}</span>
             </li>
@@ -36,6 +28,9 @@
 
 <script>
 export default {
+    components: {
+        "filetype-icon": () => import('./FileTypeIcon')
+    },
     props: ["items"],
     data() {
         return {
@@ -78,6 +73,11 @@ export default {
                 });
                 all.removeAttribute('checked')
             }
+        },
+        openFile(item, event){
+            if(item.type === 'folder') {
+                this.$emit('ls', item.name)
+            }
         }
     }
 }
@@ -86,6 +86,7 @@ export default {
 <style scoped>
 .header li, .body li{
     display: flex;
+    border-bottom: 1px solid rgb(221, 221, 221);
 }
 .header li span , .body li span{
     padding: .8em 8px;
@@ -95,8 +96,8 @@ export default {
 .header li span:first-child, .body li span:first-child {
     min-width: 3em;
 }
-.gray {
-    background:rgb(238, 242, 253);
+li span.icon {
+    min-width: 1em;
 }
 ul.body li:hover {
     cursor: pointer;

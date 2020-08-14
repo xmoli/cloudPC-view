@@ -18,7 +18,7 @@
                 @click="toggleList($event,index)"
             >
                 <div class="list-info">
-                <span :class="{level: true, info: item.level==='info', warn: item.level === 'warn' , error: item.level == 'error'}">
+                <span :class="level($event,item.level)">
                     {{item.level.toUpperCase()}}
                 </span>
                 <span class="node">
@@ -68,6 +68,10 @@ export default {
             this.status = []
             this.hasOpen = false
             this.status = Object.assign({}, this.status)
+        },
+        level (event,level) {
+            let base = "level "
+            return base + level
         }
     }
 
@@ -82,12 +86,9 @@ export default {
 ul.list-head {
     font-weight: bold;
 }
-.container>ul {
-    padding: 0 1em;
-}
-.container>ul>li {
+ul>li {
     display: flex;
-    border-bottom: 1px solid rgb(189, 189, 189);
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 ul.list-body li {
     flex-direction: column;
@@ -97,6 +98,7 @@ ul li span {
     width: 20em;
     display: inline-block;
     padding: 0.8em 0;
+    word-wrap:break-word;
 }
 span.level {
     width: 3em;
@@ -107,10 +109,10 @@ span.angle {
 .info {
     color: gray;
 }
-.warn {
+.warnning {
     color: orange;
 }
-.error {
+.fatal, .error {
     color: red;
 }
 .list-content {
@@ -128,6 +130,7 @@ p {
     text-align: left;
     margin: 1em 16px;
     margin-bottom: 2em;
+    word-wrap:break-word;
 }
 .close {
     display: none;
@@ -142,8 +145,14 @@ ul.list-head span.last:hover {
 <style scoped>
 /**mobile */
 @media only screen and (max-width: 800px){
-    ul li span {
-        width: 20vw;
+    ul li span.node {
+        width: 31vw;
+    }
+    ul li span.time {
+        width: 31vw;
+    }
+    ul li span.level {
+        width: 21vw;
     }
     ul {
         margin: 0 8px;

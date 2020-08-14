@@ -57,7 +57,7 @@ export default {
                 }
             })
             .catch(err =>{
-                this.$emit('error',err)
+                console.log(err)
             })
             clearToken()
             this.$router.push('/login')

@@ -48,12 +48,25 @@ router.get('/scheduled-task', async (ctx, next) => {
     )
 })
 router.get('/log', async (ctx, next) => {
+    function level() {
+        let l =  Math.round(Math.random()*4)
+        switch(l) {
+             case 1:
+                return "warnning"
+             case 2:
+                return "error"
+             case 3:
+                 return "fatal"
+             default:
+                return "info"
+        }
+    }
     ctx.body = Mock.mock(
         {
             "data|5-30": [{
                 "message": "@cparagraph",
                 "mode": "@cname",
-                "level": "@natural(1,5)",
+                "level": level(),
                 "time": "@date"
             }]
         }
@@ -83,13 +96,14 @@ router.delete('/v1/file', async (ctx, next)=> {
         "error": false
     }
 })
-router.post('/v1/file/find', async (ctx, next)=> {
+router.get('/v1/file/find', async (ctx, next)=> {
     ctx.body = Mock.mock(
         {
             "data|5-50": [{
                 "name": "@ctitle",
                 "path": "@ctitle",
                 "length": "@natural(1,5000)",
+                "type":"folder"
             }]
         })
 })
