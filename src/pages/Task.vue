@@ -116,16 +116,20 @@ export default {
     methods: {
         async getTaskSchedule () {
             this.progress = true
-            const res = await fetch('api/scheduled-task',{
-                method: "GET",
-                headers: this.headers
-            })
-            const json = await res.json()
+            try{
+                const res = await fetch('/api/scheduled-task',{
+                    method: "GET",
+                    headers: this.headers
+                })
+                const json = await res.json()
             if (json.error) {
-                console.log(json.error)
+                this.message = {message: json.error}
             } else {
                 this.data = json.data
                 this.progress = false
+            }
+            } catch (e){
+                this.message = {message: e}
             }
         },
         async addTask () {
@@ -137,52 +141,56 @@ export default {
                 CronExpression: this.taskCron,
                 Command: this.taskCommand
             }
+            try {
             const res = await fetch('api/scheduled-task', {
                 method: 'POST',
                 headers: this.headers,
                 body: JSON.stringify(data)
             })
-            try {
                 const json = await res.json()
                 if (json.error) {
-                    console.log(json.error)
+                    this.message = {message: json.error}
                 } else {
                     this.data.push(data)
                 }
                 this.popboxAnchor = false
-            }catch{
-                console.log('添加失败')
+            }catch(e){
+                this.message = {message: e}
             }
         },
         async destoryTask (index) {
             console.log('delete')
             let id = this.items[index].Id
-            const res = await fetch('api/scheduled-task/?id='+id,{
-                method: 'DELETE',
-                headers: this.headers,
-            })
             try {
+                const res = await fetch('api/scheduled-task/?id='+id,{
+                    method: 'DELETE',
+                    headers: this.headers,
+                })
                 const json = await res.json()
                 if (json.error) {
-                    console.log(json)
+                    this.message = {message: json.error}
                 } else {
                     this.data.splice(index,1)
                 } 
             } catch (e) {
-                console.log('删除第', id, '个任务失败')
+                this.message = {message: e}
             }
         },
         async changeTask (data) {
-            const res = await fetch('api/scheduled-task/',{
-                method: 'PUT',
-                headers: this.headers,
-                body: JSON.stringify(data)
-            })
-            const json = await res.json()
-            if (json.error) {
-                console.log(json)
-            } else {
-                this.changeAnchor = false
+            try {
+                const res = await fetch('api/scheduled-task/',{
+                    method: 'PUT',
+                    headers: this.headers,
+                    body: JSON.stringify(data)
+                })
+                const json = await res.json()
+                if (json.error) {
+                    this.message = {message: json.error}
+                } else {
+                    this.changeAnchor = false
+                }
+            }catch(e){
+                this.message = {message: e}
             }
         },
         openAddPop () {

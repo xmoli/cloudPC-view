@@ -32,31 +32,34 @@ export default {
             data: [],
             items: [],
             message: {},
-            progress: false
+            progress: false,
+            headers: null
         }
     },
-    created() {
+    mounted() {
         document.title = "ADMIN | 文件"
+        let headers = new Headers()
+        headers.append("X-Auth-Token", getToken())
+        this.headers = headers
         this.getFilelist()
     },
     methods: {
         getFilelist() {
             this.progress = true
             fetch('/api/v1/file/find',{
-                method: "POST",
-                headers: {
-                    "X-Auth-Token": getToken()
-                }
+                method: "get",
+                headers: this.headers
             })
-            .then(res=> res.json())
+            .then(res=> res.json() )
             .then(json =>{
                 if(json.error) {
-                    console.log(json.error)
+                    this.message = {message: json.error}
                 } else {
                     this.items = json.data
                     this.progress = false
                 }
             })
+            .catch(err => {this.message = {message: err}})
         }
     }
 }

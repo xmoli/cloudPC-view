@@ -52,7 +52,7 @@ export default {
     methods: {
         getLogs () {
             this.progress = true
-            fetch("api/log",{
+            fetch("/api/log",{
                 method: "GET",
                 headers: {
                     "X-Auth-Token": getToken()
