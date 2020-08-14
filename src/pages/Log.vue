@@ -1,7 +1,7 @@
 <template>
     <keep-alive>
         <div>
-        <app-bar @search="showResult">
+        <app-bar @search="showResult" @error="message={message:$event}">
             <select class="filter">
                 <option value="1">级别</option>
                 <option value="2">节点</option>

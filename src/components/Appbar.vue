@@ -8,7 +8,7 @@
             <slot/>
         </div>
         <div class="message-box">
-            <Message/>
+            <Message @error="$emit('error',$event)"/>
         </div>
     </div>
 </template>

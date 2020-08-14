@@ -25,9 +25,7 @@
                 <ul>
                     <li ><router-link tag="button" to="/user">设置</router-link></li>
                     <li>
-                        <router-link  tag="button" to="/login">
-                            <span @click="logout"> 登出 </span>
-                        </router-link>
+                        <button @click="logout"> 登出 </button>
                     </li>
                 </ul>
             </item-menu>
@@ -58,7 +56,11 @@ export default {
                     "X-Auth-Token": getToken()
                 }
             })
+            .catch(err =>{
+                this.$emit('error',err)
+            })
             clearToken()
+            this.$router.push('/login')
         },
         openUserMenu () {
             this.userMenu = true

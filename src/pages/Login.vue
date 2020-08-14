@@ -112,15 +112,18 @@ export default {
                 this.token = json.data.token
                 setToken(false , this.token)
                 this.progress = false
+                this.$router.push('/')
             }
         },
         async userRegister (userInfo) {
             this.progress = true
-            const res = await fetch("api/user/register",{
-                method: "POST",
-                body: JSON.stringify(userInfo)
-            })
-            if (res.ok) {
+            try{
+                const res = await fetch("/api/user/register",{
+                    method: "POST",
+                    body: JSON.stringify(userInfo)
+                })
+                const json = await res.json()
+            if (!json.error) {
                 const ok = await this.userLogin({
                     email: userInfo.email,
                     pass_word: userInfo.pass_word
@@ -130,6 +133,9 @@ export default {
             } else {
                 this.error = res.statusText
                 return false
+            }
+            } catch(e) {
+                console.log(e)
             }
         },
         async submit () {
@@ -141,9 +147,6 @@ export default {
                     email: username,
                     pass_word: password
                 })
-                if (ok) {
-                    this.$router.push('/')
-                }
                 this.tryKeepOnline()
             } else if (!this.login && this.validateAll) {
                 const err = await this.userRegister({

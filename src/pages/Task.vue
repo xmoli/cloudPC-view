@@ -2,7 +2,7 @@
     <keep-alive>
         <div>
         <message-box :message="message"/>
-        <Appbar v-on:search="showResult">
+        <Appbar v-on:search="showResult" @error="message={message:$event}">
             <div class="new-button"
                 @click.stop="openAddPop"
             >

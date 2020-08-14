@@ -2,7 +2,7 @@
 <keep-alive>
 <div>
     <tip-box :message="message"/>
-    <appbar class="file-option">
+    <appbar class="file-option" @error="message={message:$event}" >
         <button class="download">下载</button>
         <button>移动</button>
         <button>重命名</button>
