@@ -14,9 +14,8 @@ export default {
 div
     position fixed
     height 4em
-    background black
     z-index $appbar-z-index - 1
-    border-bottom 1px solid lighten($main-color,90%)
+    border-bottom 2px solid lighten($main-color,90%)
 .v-enter-active
     transition width  0.3s ease
 .v-enter
