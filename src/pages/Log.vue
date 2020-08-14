@@ -2,11 +2,7 @@
     <keep-alive>
         <div>
         <app-bar @search="showResult" @error="message={message:$event}">
-            <select class="filter">
-                <option value="1">级别</option>
-                <option value="2">节点</option>
-                <option value="3">时间</option>
-            </select>
+            <log-filter @change="getLogs"/>
         </app-bar>
         <message-box :message="message"/>
         <fetch-progress :status="progress"/>
@@ -29,7 +25,8 @@ export default {
         "app-bar": () => import('../components/Appbar.vue'),
         "side-bar": () => import('../components/sidebar/Sidebar.vue'),
         "fetch-progress": ()=> import('../components/FetchProgress'),
-        "message-box": ()=> import('../components/Messagebox')
+        "message-box": ()=> import('../components/Messagebox'),
+        "log-filter": ()=> import('../components/LogFilter')
     },
     data () {
         return {
@@ -50,9 +47,9 @@ export default {
         }
     },
     methods: {
-        getLogs () {
+        getLogs ({level}) {
             this.progress = true
-            fetch("/api/log",{
+            fetch(`/api/log?level=${level}`,{
                 method: "GET",
                 headers: {
                     "X-Auth-Token": getToken()

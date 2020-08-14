@@ -13,12 +13,12 @@
         </ul>
         <ul class="body" ref="body">
             <li v-for="(item,index) in items" :key="index" 
-                @click="openFile(item, $event)"
+                @click="openFile($event, item)"
             >
                 <span class="wrapper-checkbox" @click.stop="select($event, index)">
                     <input type="checkbox"/>
                 </span>
-                <filetype-icon class="icon" :type="item.type"/>
+                <filetype-icon class="icon" :filetype="item.type"/>
                 <span>{{item.name}}</span>
                 <span>{{item.length}}</span>
             </li>
@@ -74,9 +74,9 @@ export default {
                 all.removeAttribute('checked')
             }
         },
-        openFile(item, event){
+        openFile(event, item){
             if(item.type === 'folder') {
-                this.$emit('ls', item.name)
+                this.$emit('find', item.name)
             }
         }
     }

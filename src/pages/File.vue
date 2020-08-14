@@ -3,6 +3,7 @@
 <div>
     <tip-box :message="message"/>
     <appbar class="file-option" @error="message={message:$event}" >
+        <button class="upload">上传</button>
         <button class="download">下载</button>
         <button>移动</button>
         <button>重命名</button>
@@ -12,7 +13,10 @@
     </appbar>
     <fetch-progress :status="progress"/>
     <sidebar/>
-    <content-file class="file-content" :items="items"/>
+    <content-file class="file-content"
+        :items="items"
+        @find="getFilelist"
+    />
 </div>
 </keep-alive>
 </template>
@@ -44,11 +48,12 @@ export default {
         this.getFilelist()
     },
     methods: {
-        getFilelist() {
+        getFilelist(path="/") {
             this.progress = true
             fetch('/api/v1/file/find',{
-                method: "get",
-                headers: this.headers
+                method: "POST",
+                headers: this.headers,
+                body: JSON.stringify({path: path})
             })
             .then(res=> res.json() )
             .then(json =>{
@@ -60,6 +65,59 @@ export default {
                 }
             })
             .catch(err => {this.message = {message: err}})
+        },
+        download(path) {
+            this.progress = true
+            fetch(`/api/v1/file?path=${path}`,{
+                method:"get",
+                headers: this.headers
+            })
+            .then(res => res.blob())
+            .then(blob => {
+                console.log(blob)
+                this.progress = false
+            })
+            .catch(err=>{
+                this.message = {message: err}
+            })
+        },
+        remove(path){
+            this.progress = true
+            fetch('/api/v1/file',{
+                method: "POST",
+                headers: this.headers,
+                body: JSON.stringify({
+                    path: path
+                })
+            })
+            .then(res => res.json())
+            .then(json => {
+                if (json.error){
+                    this.message = {message: json.error}
+                }else{
+                    this.message = {message: `${path}已经被删除！`}
+                }
+            })
+        },
+        upload(file, path) {
+            let form_data = new FormData()
+            form_data.append('file', file)
+            form_data.append('path', path)
+            fetch('/api/v1/file',{
+                method: "POST",
+                headers: this.headers,
+                body: form_data
+            })
+            .then(res => res.json())
+            .then(json => {
+                if (json.error){
+                    this.message = {message: json.error}
+                }else {
+                    this.message = {message: `${path}上传完毕！`}
+                }
+            }).catch(err => {
+                this.message = {message: err}
+            })
         }
     }
 }
@@ -93,12 +151,9 @@ button:focus {
         2px -2px 5px rgba(131, 131, 243, 0.3),
         -2px 2px 5px rgba(131, 131, 243, 0.3);
 }
-button.download {
-    padding: .7em;
+button.download, button.upload {
     background:rgb(0, 26, 110);
     color: white;
-    border:none;
-    border-radius: .25em;
 }
 </style>
 <style scoped>

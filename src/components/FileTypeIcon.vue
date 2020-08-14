@@ -1,13 +1,16 @@
 <template>
     <span>
-        <i :class="typeIcon"/>
+        <i :class="typeIcon()"/>
     </span>
 </template>
 <script>
 export default {
-    props: ['type'],
-    computed: {
-        typeIcon (type) {
+    props: {
+        filetype: String
+    },
+    methods: {
+        typeIcon () {
+            let type =  this.filetype
             if (type=== 'folder') {
                 return "fa fa-folder"
             } else {
