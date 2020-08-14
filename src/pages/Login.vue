@@ -1,4 +1,6 @@
 <template>
+    <div>
+    <fetch-progress :status="progress"/>
     <form v-on:submit.prevent="submit">
         <label>
             <i class="fa fa-user"/>
@@ -49,6 +51,7 @@
             />
         </label>
     </form>
+    </div>
 </template>
 
 <script>
@@ -56,6 +59,9 @@ import isEmail from '../util/isEmail'
 import setToken from '../token/setToken'
 export default {
     name: 'Login',
+    components: {
+        "fetch-progress": ()=> import('../components/FetchProgress')
+    },
     data (){
         return {
             login: true,
@@ -69,7 +75,8 @@ export default {
                 passwordInputError: null,
                 usernameInputError: null,
             },
-            error: ''
+            error: '',
+            progress: false
         }
     },
     mounted () {
@@ -93,6 +100,7 @@ export default {
             this.$refs.firstInput.focus()
         },
         async userLogin (userInfo) {
+            this.progress = true
             const res = await fetch("api/user/login",{
                 method: "POST",
                 body: JSON.stringify(userInfo)
@@ -101,11 +109,14 @@ export default {
             if (json.error) {
                 this.error = res.error
             } else {
-                sessionStorage.setItem("server-admin-sessionId", json.data.token)
+                this.token = json.data.token
+                setToken(false , this.token)
+                this.progress = false
                 this.$router.push('/')
             }
         },
         async userRegister (userInfo) {
+            this.progress = true
             const res = await fetch("api/user/register",{
                 method: "POST",
                 body: JSON.stringify(userInfo)
@@ -115,6 +126,7 @@ export default {
                     email: userInfo.email,
                     pass_word: userInfo.pass_word
                 })
+                this.progress = false
             } else {
                 this.error = res.statusText
             }
@@ -143,7 +155,7 @@ export default {
             
         },
         tryKeepOnline () {
-            setToken(this.keep)
+            setToken(this.keep, this.token)
         },
         validateAll () {
             if (this.check.usernameInput && this.check.passwordInput) {
