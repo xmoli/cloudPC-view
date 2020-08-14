@@ -1,6 +1,8 @@
 <template>
-    <div :class="{mid: status, end: !status}">
-    </div>
+    <transition>
+        <div v-if="status">
+        </div>
+    </transition>
 </template>
 <script>
 export default {
@@ -12,13 +14,28 @@ export default {
 div
     position fixed
     height 4em
-    width 0
     background black
     z-index $appbar-z-index - 1
     border-bottom 1px solid lighten($main-color,90%)
-    transition width  0.3s ease-in
-div.mid
+.v-enter-active
+    transition width  0.2s ease
+.v-enter
+    width 0
+
+.v-enter-to
     width 50vw
-div.end
-    width 100vw
+.v-leave-active
+    animation percent-out 0.3s
+@keyframes percent-out {
+    0% {
+        width 50vw
+    }
+    99% {
+        width 99vw
+    }
+    100% {
+        width 0
+    }
+}
+
 </style>

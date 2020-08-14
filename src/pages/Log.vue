@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <keep-alive>
+        <div>
         <app-bar @search="showResult">
             <select class="filter">
                 <option value="1">级别</option>
@@ -10,7 +11,8 @@
         <fetch-progress :status="progress"/>
         <side-bar/>
         <Content class="content" :items="items"></Content>
-    </div>
+        </div>
+    </keep-alive>
 </template>
 
 <script>

@@ -1,4 +1,5 @@
 <template>
+<keep-alive>
 <div>
     <tip-box :tips="tips"/>
     <appbar class="file-option">
@@ -13,6 +14,7 @@
     <sidebar/>
     <content-file class="file-content" :items="items"/>
 </div>
+</keep-alive>
 </template>
 <script>
 import getToken from '../util/getToken'

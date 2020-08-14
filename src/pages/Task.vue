@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <keep-alive>
+        <div>
         <Appbar v-on:search="showResult">
             <div class="new-button"
                 @click.stop="openAddPop"
@@ -60,7 +61,8 @@
                     <input class="submit-button" type="submit" value="修改"/>
             </form>
         </pop-box>
-    </div>
+        </div>
+    </keep-alive>
 </template>
 
 <script>
