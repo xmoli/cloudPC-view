@@ -3,6 +3,7 @@ node_modules
 /dist
 *.config.js
 yarn.lock
+Dockerfile
 
 # local env files
 .env.local
