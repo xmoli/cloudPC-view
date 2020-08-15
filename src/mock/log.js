@@ -1,10 +1,10 @@
 export default {
-    "get|/api/log": {
+    "GET|/api/log": {
         "data|1-50":[{
-            "level": "@nuatural(1,5)",
-            "node": "console:@nuatural(1,5000):@nuatural(1,400)",
-            "time": "@cdate",
-            "message": "@cpargrah"
+            "level|1": ["info","debug","error"],
+            "node": "console:@url(http)",
+            "time": "@date",
+            "message": "@cparagraph"
         }],
         "error": null
     }

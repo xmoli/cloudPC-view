@@ -2,7 +2,7 @@
     <keep-alive>
         <div>
         <app-bar @search="showResult" @error="message={message:$event}">
-            <log-filter @change="getLogs"/>
+            <log-filter @change="find"/>
         </app-bar>
         <message-box :message="message"/>
         <fetch-progress :status="progress"/>
@@ -47,9 +47,9 @@ export default {
         }
     },
     methods: {
-        getLogs ({level}) {
+        getLogs () {
             this.progress = true
-            fetch(`/api/log?level=${level}`,{
+            fetch(`/api/log`,{
                 method: "GET",
                 headers: {
                     "X-Auth-Token": getToken()
@@ -67,6 +67,25 @@ export default {
         },
         showResult (keyword) {//显示搜索结果
             this.keyword = keyword
+        },
+        find(data) {
+            this.progress = true
+            fetch(`/api/log?level=${data.level}`,{
+                method: "GET",
+                headers: this.headers
+            })
+            .then(res => res.json())
+            .then(json => {
+                if(json.error) {
+                    this.message = {message : json.error}
+                }else {
+                    this.data = json.data
+                    this.progress = false
+                }
+            })
+            .catch(err=> {
+                this.message = {message: err}
+            })
         }
     }
 }

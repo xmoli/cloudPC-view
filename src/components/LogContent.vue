@@ -1,43 +1,26 @@
 <template>
     <div class="container">
-        <ul class="list-head">
+        <ul class="lhead">
             <li>
                 <span class="level">级别</span>
-                <span>服务器节点</span>
-                <span>时间</span>
-                <span 
-                    @click="toggleAllList"
-                    class="last angle"
-                >
-                    <i :class="{'fa': true, 'fa-angle-down': hasOpen, 'fa-angle-left': !hasOpen}"/>
-                </span>
+                <span class="node">服务器节点</span>
+                <span class="time">时间</span>
             </li>
         </ul>
-        <ul class="list-body">
+        <ul class="lbody">
             <li v-for="(item, index) in items" :key="index"
                 @click="toggleList($event,index)"
             >
-                <div class="list-info">
-                <span :class="level($event,item.level)">
-                    {{item.level.toUpperCase()}}
-                </span>
-                <span class="node">
-                    {{item.node}}
-                </span>
-                <span class="time">
-                    {{item.time}}
-                </span>
-                <span class="angle">
-                    <i :class="{'fa': true, 'fa-angle-left': !status[index], 'fa-angle-down': status[index]}"/>
-                </span>
-                </div>
-                <div :class="{'list-content': status[index], 'close': !status[index]}"
-                    @click.stop
-                >
-                    <p>
+                <ul class="item">
+                    <li class="row">
+                        <span :class="level(item.level)">{{item.level.toUpperCase()}}</span>
+                        <span class="node">{{item.node}}</span>
+                        <span class="time">{{item.time}}</span>
+                    </li>
+                    <li class="message">
                         {{item.message}}
-                    </p>
-                </div>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
@@ -69,7 +52,7 @@ export default {
             this.hasOpen = false
             this.status = Object.assign({}, this.status)
         },
-        level (event,level) {
+        level (level) {
             let base = "level "
             return base + level
         }
@@ -77,71 +60,6 @@ export default {
 
 }
 </script>
-
-<style scoped>
-.container {
-    background: white;
-    border-radius: 0.25em;
-}
-ul.list-head {
-    font-weight: bold;
-}
-ul>li {
-    display: flex;
-    border-bottom: 1px solid rgb(230, 230, 230);
-}
-ul.list-body li {
-    flex-direction: column;
-    align-items: flex-start;
-}
-ul li span {
-    width: 20em;
-    display: inline-block;
-    padding: 0.8em 0;
-    word-wrap:break-word;
-}
-span.level {
-    width: 3em;
-}
-span.angle {
-    width: 2em;
-}
-.info {
-    color: gray;
-}
-.warnning {
-    color: orange;
-}
-.fatal, .error {
-    color: red;
-}
-.list-content {
-    width: 100%;
-    line-height: 1.5em;
-    box-shadow: inset 1px 1px 5px gray;
-    color: grey;
-    margin-bottom: 1em;
-}
-.list-content:hover {
-    cursor: text;
-}
-p {
-    text-indent: 2em;
-    text-align: left;
-    margin: 1em 16px;
-    margin-bottom: 2em;
-    word-wrap:break-word;
-}
-.close {
-    display: none;
-}
-ul.list-body li:hover {
-    cursor: pointer;
-}
-ul.list-head span.last:hover {
-    cursor: pointer;
-}
-</style>
 <style scoped>
 /**mobile */
 @media only screen and (max-width: 800px){
@@ -164,4 +82,30 @@ ul.list-head span.last:hover {
         padding: .8em 0;
     }
 }
+</style>
+<style lang="stylus" scoped>
+ul li 
+    background white
+
+.level 
+    width 20vw
+.node
+    width 25vw
+.time
+    width 25vw
+.lhead li, .lbody .row, .lbody .item
+    display flex
+    padding .9em
+.lbody .item
+    flex-direction column
+    margin-bottom .5em
+.lbody .item .message
+    width 75vw
+    color gray
+.info
+    color gray
+.debug
+    color black
+.error
+    color red
 </style>
