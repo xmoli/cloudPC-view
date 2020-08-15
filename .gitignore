@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
-vue.config.js
 yarn.lock
 Dockerfile
+dist
 
 # local env files
 .env.local
