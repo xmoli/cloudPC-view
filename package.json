@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --sourcemap",
     "mock": "node ./mock/server.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -26,6 +26,7 @@
     "koa": "^2.12.1",
     "koa-router": "^9.0.1",
     "mockjs": "^1.1.0",
+    "mockjs-fetch": "^1.0.3",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"

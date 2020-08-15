@@ -99,21 +99,23 @@ export default {
             this.login = ! this.login
             this.$refs.firstInput.focus()
         },
-        async userLogin (userInfo) {
+        userLogin (userInfo) {
             this.progress = true
-            const res = await fetch("api/user/login",{
+            fetch("/api/user/login",{
                 method: "POST",
                 body: JSON.stringify(userInfo)
             })
-            const json = await res.json()
-            if (json.error) {
-                this.error = res.error
-            } else {
-                this.token = json.data.token
-                setToken(false , this.token)
-                this.progress = false
-                this.$router.push('/')
-            }
+            .then(res => res.json())
+            .then(json => {
+                if (json.error) {
+                    this.error = json.error
+                } else {
+                    this.token = json.data.token
+                    setToken(false , this.token)
+                    this.progress = false
+                    this.$router.push('/')
+                }
+            })
         },
         async userRegister (userInfo) {
             this.progress = true
