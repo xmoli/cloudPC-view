@@ -102,8 +102,10 @@ ul li
 .lbody .item .message
     width 75vw
     color gray
-.info, .debug
+.info
     color gray
+.debug
+    color black
 .error
     color red
 </style>
