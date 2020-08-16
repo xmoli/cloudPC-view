@@ -11,10 +11,10 @@
         </ul>
         <ul class="content">
             <li 
-                v-for="(item, index) in items" :key="item.Id"
+                v-for="(item, index) in items" :key="item.id"
             >
-                <span>{{item.Id}}</span>
-                <span>{{item.Name}}</span>
+                <span>{{item.id}}</span>
+                <span>{{item.name}}</span>
                 <span
                     class="last-span"
                     v-on:click.stop="openMenu(index)"
@@ -134,6 +134,9 @@ export default {
         overflow: hidden;
         width:fit-content;
     }
+    .item-menu ul li {
+        padding: 0;
+    }
     .item-menu ul button {
         border-radius: none;
         background: transparent;
@@ -152,9 +155,6 @@ export default {
     }
     .item-menu ul li button:focus {
         color: rgb(87, 87, 255);
-    }
-    .item-menu ul li button {
-        outline: none;
     }
 </style>
 <style scoped>

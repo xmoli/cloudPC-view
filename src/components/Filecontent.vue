@@ -7,8 +7,8 @@
                     选择
                 </span>
                 <span class="icon"/>
-                <span>名称</span>
-                <span>大小</span>
+                <span class="name">名称</span>
+                <span class="length">大小</span>
             </li>
         </ul>
         <ul class="body" ref="body">
@@ -19,8 +19,8 @@
                     <input type="checkbox"/>
                 </span>
                 <filetype-icon class="icon" :filetype="item.type"/>
-                <span>{{item.name}}</span>
-                <span>{{item.length}}</span>
+                <span class="name">{{item.name}}</span>
+                <span class="length">{{item.length}}</span>
             </li>
         </ul>
     </div>
@@ -76,7 +76,9 @@ export default {
         },
         openFile(event, item){
             if(item.type === 'folder') {
-                this.$emit('find', item.name)
+                this.$emit('find', item)
+            }else {
+                this.$emit('download', item)
             }
         }
     }
@@ -90,14 +92,19 @@ export default {
 }
 .header li span , .body li span{
     padding: .8em 8px;
-    min-width: 10em;
     text-align: start;
 }
-.header li span:first-child, .body li span:first-child {
-    min-width: 3em;
+.wrapper-checkbox {
+    width: 4em;
 }
-li span.icon {
-    min-width: 1em;
+.icon{
+    width: 1em;
+}
+.name {
+    width: 25vw;
+}
+.length {
+    width: 10vw;
 }
 ul.body li:hover {
     cursor: pointer;
