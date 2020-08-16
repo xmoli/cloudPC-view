@@ -3,8 +3,11 @@
 <div>
     <tip-box :message="message"/>
     <appbar class="file-option" @error="message={message:$event}" >
-        <button class="upload">上传</button>
         <button class="download">下载</button>
+        <label class="upload" for="upload-input" @change="upload">
+                上传
+        </label>
+        <input hidden type="file" id="upload-input"/>
         <button>移动</button>
         <button>重命名</button>
         <button>删除</button>
@@ -16,6 +19,7 @@
     <content-file class="file-content"
         :items="items"
         @find="getFilelist"
+        @download="download"
     />
 </div>
 </keep-alive>
@@ -34,18 +38,33 @@ export default {
     data () {
         return {
             data: [],
-            items: [],
             message: {},
             progress: false,
             headers: null
         }
     },
-    mounted() {
+    created() {
         document.title = "ADMIN | 文件"
         let headers = new Headers()
         headers.append("X-Auth-Token", getToken())
         this.headers = headers
         this.getFilelist()
+    },
+    computed: {
+        items() {
+            let data = this.data
+            data.sort((c,n)=> c.length - n.length)
+            let folder = []
+            let file = []
+            for(let i =0; i<data.length; i++){
+                if (data[i].type === "folder"){
+                    folder.push(data[i])
+                } else {
+                    file.push(data[i])
+                }
+            }
+            return folder.concat(file)
+        }
     },
     methods: {
         getFilelist(path="/") {
@@ -60,21 +79,24 @@ export default {
                 if(json.error) {
                     this.message = {message: json.error}
                 } else {
-                    this.items = json.data
+                    this.data = json.data
                     this.progress = false
                 }
             })
             .catch(err => {this.message = {message: err}})
         },
-        download(path) {
+        download(item) {
             this.progress = true
-            fetch(`/api/v1/file?path=${path}`,{
-                method:"get",
+            fetch(`/api/v1/file?path=${item.path}`,{
+                method:"GET",
                 headers: this.headers
             })
             .then(res => res.blob())
             .then(blob => {
-                console.log(blob)
+                let link = document.createElement('a')
+                link.download = item.name
+                link.href = URL.createObjectURL(blob)
+                link.click()
                 this.progress = false
             })
             .catch(err=>{
@@ -99,10 +121,10 @@ export default {
                 }
             })
         },
-        upload(file, path) {
-            let form_data = new FormData()
-            form_data.append('file', file)
-            form_data.append('path', path)
+        upload() {
+            const i = document.getElementById('upload-input')
+            console.log(i)
+            let form_data = []
             fetch('/api/v1/file',{
                 method: "POST",
                 headers: this.headers,
@@ -113,7 +135,7 @@ export default {
                 if (json.error){
                     this.message = {message: json.error}
                 }else {
-                    this.message = {message: `${path}上传完毕！`}
+                    this.message = {message: `${i}上传完毕！`}
                 }
             }).catch(err => {
                 this.message = {message: err}
@@ -132,7 +154,8 @@ export default {
     margin-left:15vw;
     overflow-x: hidden;
 }
-button {
+button, .upload{
+    display: block;
     letter-spacing: 2px;
     margin-right: .5em;
     border: none;
@@ -142,16 +165,17 @@ button {
     width: 5em;
     outline: none;
 }
-button:hover {
+button:hover, .upload:hover{
     cursor: pointer;
 }
-button:focus {
+button:focus, .upload:focus{
         box-shadow: -2px -2px 5px rgba(131, 131, 243, 0.3),
         2px 2px 5px rgba(131, 131, 243, 0.3),
         2px -2px 5px rgba(131, 131, 243, 0.3),
         -2px 2px 5px rgba(131, 131, 243, 0.3);
 }
-button.download, button.upload {
+button.download, .upload {
+    font-size: inherit;
     background:rgb(0, 26, 110);
     color: white;
 }

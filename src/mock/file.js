@@ -1,31 +1,14 @@
-let t = {
-    "data": null,
-    "error": null
-}
-t.data = {
-    "path": "/",
-    "length": 0
-}
-let t_file = t
-
-t.data = null
-let t_null = t
-
 export default {
-    "post|/api/v1/file": {//upload
-        "data": {
-            "path": "",
-            "length":0
-        },
-        "error": null
+    "POST|/api/v1/file/find": {
+        "data|1-15": [{
+            "name": "@csentence",
+            "type|1": ["folder","pdf","excel","text","photo","audio","video","other"],
+            "path|1-2": "/@name",
+            "length": "@integer(1,5000)"
+        }]
     },
-    "delete|/api/v1/file": {
-        t_null
-    },
-    "post|/api/v1/file/find": {
-        t_file
-    },
-    "get|/api/v1/file": {
-        t_file
+    "GET|/api/v1/file": ()=>{
+        let debug = {hello: "world"};
+        return new Blob([JSON.stringify(debug, null, 2)], {type : 'application/json'})
     }
 }
