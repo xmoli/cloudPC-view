@@ -1,5 +1,10 @@
-# [web-admin](https://github.com/xmoli/web-admin/blob/master/LICENSE)
-    编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。可以查看![demo](https://licongli.gitee.io/cpv/)
+# web-admin
+
+
+
+*** 附加说明
+编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。可以查看[demo](https://licongli.gitee.io/cpv/)
+[LICENSE](https://github.com/xmoli/web-admin/blob/master/LICENSE)
 
 ## Project setup
 ```
