@@ -1,5 +1,5 @@
 # admin
-    编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。
+    编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。可以查看[demo](https://licongli.gitee.io/cpv/)
 
 ## Project setup
 ```
