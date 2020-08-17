@@ -3,7 +3,7 @@
 服务器任务调度系统的web页面。可以管理文件，cron任务，查看日志
 
 ## 环境
-编译需要nodejs或者docker。上线需要后端服务和docker,也可以自己把编译后dist文件夹中的静态文件部署到服务器。可以查看[demo](https://licongli.gitee.io/cpv/)
+编译需要nodejs或者docker。可以自己把编译后dist文件夹中的静态文件部署到服务器。可以查看[demo](https://licongli.gitee.io/cpv/)
 [LICENSE](https://github.com/xmoli/web-admin/blob/master/LICENSE)
 
 ## Project setup
