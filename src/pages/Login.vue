@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div class="wrapper">
     <fetch-progress :status="progress"/>
     <form v-on:submit.prevent="submit">
+        <i class="fa fa-server"/>
         <label>
+            <div class="container">
             <i class="fa fa-user"/>
             <input 
                 v-model="username"
@@ -10,46 +12,49 @@
                 ref="firstInput"
                 placeholder="邮箱"
             />
-            <i class="fa fa-times-circle"
+            <i class="left fa fa-times-circle"
                 v-if="check.usernameInputError"
             />
             <i
                 class="fa fa-check-circle"
                 v-else-if="check.usernameInput"
             />
+            </div>
         </label>
         <label>
-            <i class="fa fa-lock" />
+            <div class="container" >
+            <i class="left fa fa-lock" />
             <input 
                 v-model="password"
                 v-on:change="checkPasswordInput"
                 type="password" 
                 placeholder="密码"
             />
-            <span class="input-error" v-if="check.passwordInputError">
-                <i class="fa fa-times-circle" />
-            </span>
-            <span v-else-if="check.passwordInput">
-                <i class="fa fa-check-circle"/>
-            </span>
+            <i class="fa fa-times-circle" v-if="check.passwordInputError"/>
+            <i class="fa fa-check-circle" v-else-if="check.passwordInput"/>
+            </div>
         </label>
-        <div class="info">
-            <a v-if="login" v-on:click="toggleLogin" >没有账号？注册</a>
-            <a v-else v-on:click="toggleLogin">已有有账号？登录</a>
-            <label class="keep">
-                <span>保持登录</span>
-                <input 
-                    v-model="keep"
-                    type="checkbox"
-                />
-            </label>
-        </div>
-        <label class="submit">
+        <div class="submit">
             <input v-if="login" type="submit" value="登录"/>
             <input v-else type="submit" value="注册并登录"
                 v-on:click="submit"
             />
-        </label>
+        </div>
+        <div class="info">
+            <div class="container">
+                <label>
+                    <a tabindex="0" v-if="login" v-on:click="toggleLogin" >没有账号？注册</a>
+                    <a tabindex="0" v-else v-on:click="toggleLogin">已有有账号？登录</a>
+                </label>
+                <label class="keep">
+                    <span>保持登录</span>
+                    <input 
+                        v-model="keep"
+                        type="checkbox"
+                    />
+                </label>
+            </div>
+        </div>
     </form>
     </div>
 </template>
@@ -194,109 +199,82 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="stylus" scoped>
+@import '../main.styl'
+.wrapper
+    position fixed
+    height 100vh
+    width 100vw
+    top 0
+    left 0
 
-@media screen and (min-width: 1000px){ 
-    form {
-        width: 30em;
-        height: 18.54em;
-        min-width: 15em;
-    }
-}
-@media screen and (max-width: 720px){
-    form {
-        width: 12.36em;
-        height: 20em;
-        min-width: 19em;    
-    }
-}
-@media screen and (max-height: 450px){
-    form {
-        height: 11em;
-    }
-}
-    form {   
-        position: absolute;
-        top: 50vh;
-        left: 50vw;
-        transform: translate(-50%,-50%);
-        display: flex;
-        flex-direction:column;
-        justify-content: center;
-        flex-wrap: nowrap;
-        background: white;
-        border-radius: 0.3em;
-        padding: 3em 0;
-        box-shadow: 3px 3px 20px rgba(91, 113, 141, 0.5),
-            -3px -3px 20px rgba(91, 113, 141, 0.5),
-            -3px 3px 20px rgba(91, 113, 141, 0.5),
-            3px -3px 20px rgba(91, 113, 141, 0.5);
-    }
-    label {
-        color:rgb(117, 117, 117);
-        padding: 8px;
-        margin: 16px 0;
-    }
-    .fa {
-        position: absolute;
-        margin: 0.5em;
-        margin-top: 0.7em;
-        color: rgb(22, 77, 148);
-        z-index: 2001;
-    }
-    label:hover {
-        cursor: text;
-    }
-    input {
-        z-index: 2000;
-        border: none;
-        background: rgb(209, 209, 209);
-        outline: none;
-        height: 3em;
-        width: 16em;
-        padding: 0 8px 0 2.5em;
-        border-radius: 0.25em;
-    }
-    .fa-times-circle {
-        color: red;
-    }
-    .fa-check-circle {
-        color: green;
-    }
-    .info {
-        color:rgb(117, 117, 117);
-        font-size: 0.7em;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        
-    }
-    a:hover {
-        cursor: pointer;
-    }
-    .info label{
-        margin: 0;
-        padding: 0;
-    }
-    .keep {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .keep input {
-        width: 1.25em;
-        height: 1.25em;
-    }
-    .keep input:hover {
-        cursor: text;
-    }
-    .submit input {
-        background: rgb(22, 77, 148);
-        color: white;
-        padding: 0;
-        font-weight: bold;       
-    }
-    .submit input:hover {
-        cursor: pointer;
-    }
+    display flex
+    justify-content center
+    align-items center
+
+form
+    @extend .shadow-holo-sm
+    width 364px
+    height @width
+    border-radius 4px
+    padding 40px 0 38px 0;
+    background rgba(255,255,255,.9)
+    display flex
+    flex-direction column
+
+.fa, .fa-server
+    color $main-color
+    font-size 16px
+.fa-server 
+    font-size 62px
+    margin 16px 0
+form>label
+    margin 8px 0
+    display flex
+    justify-content center
+.container i 
+    position absolute
+    margin 10px 4px
+input
+    display inline-block
+    padding 0 18px
+    height 3em
+    width 200px
+    border-width 0px
+    background lighten($main-color, 85%)
+    border-radius 4px
+    &:focus
+        outline none
+.submit input
+    background $main-color
+    color white
+    font-weight bold
+    letter-spacing 2px
+    border-radius 4px 4px 30% 30%
+    width 236px
+    &:hover
+        cursor pointer
+    &:focus
+        @extend .shadow-holo-sm
+div.info
+    display flex
+    justify-content center
+    font-size 0.8em
+    margin-top 36px
+    & .container
+        width 235px
+        display flex
+        justify-content space-between
+        align-items center
+        & a:focus
+            outline none
+            border 1px dashed $main-color
+    & .keep
+        display flex
+        align-items center
+        & input:focus
+            @extend .shadow-holo-sm
+    & input 
+        width 1em
+        height 1em
 </style>
