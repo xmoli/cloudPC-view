@@ -3,8 +3,9 @@ import router from './router'
 import App from './App.vue'
 import getToken from './token/getToken'
 
-require('./mock')
-
+if(process.env.NODE_ENV === 'development'){
+  require('./mock')
+}
 
 Vue.config.productionTip = false
 
