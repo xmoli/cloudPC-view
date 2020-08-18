@@ -6,6 +6,9 @@ import getToken from './token/getToken'
 if(process.env.NODE_ENV === 'development'){
   require('./mock')
 }
+/**demo */
+require('./mock')
+
 
 Vue.config.productionTip = false
 
