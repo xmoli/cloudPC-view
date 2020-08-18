@@ -53,3 +53,8 @@
 .router-link-active
         background #cbcbcb
 </style>
+<style lang="stylus" scoped>
+@media only screen and (max-width 1040px)
+    .sidebar
+        display none
+</style>

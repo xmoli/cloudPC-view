@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <content-base class="container">
         <ul class="header">
             <li>
                 <span @click="toggleSelectAll" class="wrapper-checkbox">
@@ -23,13 +23,14 @@
                 <span class="length">{{item.length}}</span>
             </li>
         </ul>
-    </div>
+    </content-base>
 </template>
 
 <script>
 export default {
     components: {
-        "filetype-icon": () => import('./FileTypeIcon')
+        "filetype-icon": () => import('./FileTypeIcon'),
+        "content-base": () => import('./Content')
     },
     props: ["items"],
     data() {

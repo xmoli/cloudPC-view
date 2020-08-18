@@ -1,5 +1,4 @@
 <template>
-<keep-alive>
 <div class="wrapper">
     <tip-box :message="message"/>
     <appbar class="file-option" @error="message={message:$event}" >
@@ -24,7 +23,6 @@
         @download="download"
     />
 </div>
-</keep-alive>
 </template>
 <script>
 import getToken from '../token/getToken'
@@ -148,17 +146,6 @@ export default {
 </script>
 <style lang="stylus" scoped>
 @import "../main.styl"
-.wrapper
-    display flex
-    justify-content center
-    align-items center
-.file-content
-    position absolute
-    top $appbar-height
-    width 780px
-    padding 0 8px
-    background white
-    transform translateX($sidebar-width/2)
 .file-option button
     height 3em
     width 4.8em
@@ -179,11 +166,5 @@ export default {
 button.download
     color white
     background $main-color
-
-@media only screen and (max-width 1040px)
-    .sidebar
-        display none
-    .file-content
-        transform none
 
 </style>
