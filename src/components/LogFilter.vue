@@ -10,9 +10,6 @@
                 {{item.name}}
             </option>
         </select>
-        <div class="day">
-            今日
-        </div>
     </div>
 </template>
 <script>
@@ -54,13 +51,18 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+@import "../main.styl"
 .log-filter
     margin: 0 8px
     display: flex
 
-.log-filter select, .log-filter>div
+.log-filter select
+    display block
     margin 0 8px
-    padding 8px
+    height 2.5em
+    background lighten($main-color,20%)
+    border-radius 4px
+    border none
 .log-filter>div
     border 1px solid gray
 </style>

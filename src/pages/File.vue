@@ -2,16 +2,22 @@
 <div class="wrapper">
     <tip-box :message="message"/>
     <appbar class="file-option" @error="message={message:$event}" >
-        <button class="download">下载</button>
+        <button class="download">
+            <i class="fa fa-download"/>下载
+        </button>
         <button>
         <label class="upload" for="upload-input" @change="upload">
-            上传
+            <i class="fa fa-upload"/>上传
         </label>
         </button>
         <input hidden type="file" id="upload-input"/>
-        <button>移动</button>
+        <button>
+            <i class="fa fa-exchange"/>移动
+        </button>
         <button>重命名</button>
-        <button>删除</button>
+        <button>
+            <i class="fa fa-trash"/>删除
+        </button>
         <button>属性</button>
         <file-option/>
     </appbar>
@@ -166,5 +172,6 @@ export default {
 button.download
     color white
     background $main-color
-
+button .fa
+    font-size 1.5em
 </style>

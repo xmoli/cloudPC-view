@@ -1,13 +1,13 @@
 <template>
-    <div class="container">
-        <ul class="lhead">
+    <content-base class="container">
+        <ul class="list lhead">
             <li>
                 <span class="level">级别</span>
                 <span class="node">服务器节点</span>
                 <span class="time">时间</span>
             </li>
         </ul>
-        <ul class="lbody">
+        <ul class="list lbody">
             <li v-for="(item, index) in items" :key="index"
                 @click="toggleList($event,index)"
             >
@@ -17,17 +17,21 @@
                         <span class="node">{{item.node}}</span>
                         <span class="time">{{item.time}}</span>
                     </li>
-                    <li class="message">
-                        {{item.message}}
+                    <li>
+                        <span class="level"></span>
+                        <span class="message">{{item.message}}</span>
                     </li>
                 </ul>
             </li>
         </ul>
-    </div>
+    </content-base>
 </template>
 <script>
 export default {
     props: ["items"],
+    components: {
+        "content-base": ()=>import('./Content')
+    },
     data () {
         return {
             status: [],
@@ -88,20 +92,32 @@ ul li
     background white
 
 .level 
-    width 20vw
+    width 100px
+    text-align left
 .node
-    width 25vw
+    text-align left
+    width 430px
 .time
-    width 25vw
-.lhead li, .lbody .row, .lbody .item
+    text-align left
+    width 162px
+.lhead>li , .lbody>li
     display flex
-    padding .9em
+    padding 8px
 .lbody .item
+    margin 24px 0
     flex-direction column
     margin-bottom .5em
+    & li
+        display flex
+    & .row
+        border-bottom 1.5px dashed #cbcbcb
 .lbody .item .message
-    width 75vw
+    font-size .9em
+    text-indent 2em
+    text-align start
+    width 642px
     color gray
+    padding 8px 0
 .info
     color gray
 .debug

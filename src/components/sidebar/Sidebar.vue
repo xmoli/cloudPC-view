@@ -36,8 +36,7 @@
     background #ebebeb
 .logo
     font-size 62px
-    hieght 4em
-    color $main-color
+    color $contrast-color
     & .router-link-active
         background #ebebeb
 .sidebar ul li
@@ -49,7 +48,7 @@
     & .fa
         font-size 1.2em
         margin 0 8px
-        color $main-color
+        color $contrast-color
 .router-link-active
         background #cbcbcb
 </style>

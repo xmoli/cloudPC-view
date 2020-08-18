@@ -1,17 +1,19 @@
 <template>
     <div>
-        <appbar>
-        </appbar>
+        <user-nav>
+        </user-nav>
         <sidebar />
-        <user-content/>
+        <router-view/>
     </div>
 </template>
 <script>
 export default {
     components: {
-        "appbar": () => import('../components/Appbar'),
-        "sidebar": () => import('../components/sidebar/Sidebar'),
-        "user-content": () => import('../components/UserContent')
+        "user-nav": () => import('../components/UserNav'),
+        "sidebar": () => import('../components/sidebar/Sidebar')
+    },
+    created(){
+        document.title = "ADMIN | 用户"
     }
 }
 </script>

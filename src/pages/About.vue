@@ -1,30 +1,25 @@
 <template>
     <div>
         <sidebar/>
-        <div class="content">
+        <content-base class="content">
             <ul>
-                <li>后端支持：golang</li>
-                <li>作者：https://github.com/OnlyOneFace</li>
+                <li>后端：golang</li>
+                <li>开发者：https://github.com/OnlyOneFace</li>
+                <li>前端：vue</li>
+                <li>开发者：https://github.com/xmoli</li>
             </ul>
-        </div>
+        </content-base>
     </div>
 </template>
 <script>
 export default {
     components: {
         "sidebar": () => import("../components/sidebar/Sidebar"),
+        "content-base": ()=>import("../components/Content")
     }
 }
 </script>
 <style scoped>
-.content {
-    width: 60vw;
-    min-height: 2em;
-    margin: 0 20vw;
-    margin-top: 15vh;
-    padding: 8px;
-    background: rgb(13, 59, 138);
-}
 .content ul li{
     padding: .8em;
     color: gray;

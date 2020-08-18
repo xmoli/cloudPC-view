@@ -1,69 +1,67 @@
 <template>
-    <keep-alive>
-        <div class="wrapper">
-        <message-box :message="message"/>
-        <Appbar v-on:search="showResult">
-            <div class="new-button"
-                @click.stop="openAddPop"
-            >
-                <i class="fa fa-plus"/>
-                新建
-            </div>
-            <pop-box 
-                class="pop-box"
-                v-bind:open="popboxAnchor"
-                @keypress.esc="popboxAnchor = false"
-                @close="popboxAnchor = false"
-            >
-                <form @submit.prevent="addTask">
-                        <label>
-                            名称 
-                        <input v-model="taskName"/>
-                        </label>
-                        <label>
-                            指令
-                        <input v-model="taskCommand"/>
-                        </label>
-                        <label>
-                            表达式
-                        <input v-model="taskCron"/>
-                        </label>
-                        <input class="submit-button" type="submit" value="添加"/>
-                </form>
-            </pop-box>
-        </Appbar>
-        <fetch-progress :status="progress"/>
-        <Sidebar>
-        </Sidebar>
-        <Content class="content"
-            v-bind:items="items"
-            v-on:delete-task="destoryTask"
-            v-on:change-task="openChangePop"
-            v-on:clone-task="cloneTask"
-        ></Content>
-        <pop-box class="pop-box" 
-            v-bind:open="changeAnchor"
-            @keypress.esc="changeAnchor = false"
-            @close="changeAnchor = false"
-        >
-            <form @submit.prevent="changeTask">
-                    <label>
-                        名称 
-                    <input v-model="taskNameC"/>
-                    </label>
-                    <label>
-                        指令
-                    <input v-model="taskCommandC"/>
-                    </label>
-                    <label>
-                        表达式
-                    <input v-model="taskCronC"/>
-                    </label>
-                    <input class="submit-button" type="submit" value="修改"/>
-            </form>
-        </pop-box>
-        </div>
-    </keep-alive>
+<div>
+<message-box :message="message"/>
+<Appbar v-on:search="showResult">
+    <div class="new-button"
+        @click.stop="openAddPop"
+    >
+        <i class="fa fa-plus"/>
+        新建
+    </div>
+    <pop-box 
+        class="pop-box"
+        v-bind:open="popboxAnchor"
+        @keypress.esc="popboxAnchor = false"
+        @close="popboxAnchor = false"
+    >
+        <form @submit.prevent="addTask">
+                <label>
+                    名称 
+                <input v-model="taskName"/>
+                </label>
+                <label>
+                    指令
+                <input v-model="taskCommand"/>
+                </label>
+                <label>
+                    表达式
+                <input v-model="taskCron"/>
+                </label>
+                <input class="submit-button" type="submit" value="添加"/>
+        </form>
+    </pop-box>
+</Appbar>
+<fetch-progress :status="progress"/>
+<Sidebar>
+</Sidebar>
+<Content
+    v-bind:items="items"
+    v-on:delete-task="destoryTask"
+    v-on:change-task="openChangePop"
+    v-on:clone-task="cloneTask"
+></Content>
+<pop-box class="pop-box" 
+    v-bind:open="changeAnchor"
+    @keypress.esc="changeAnchor = false"
+    @close="changeAnchor = false"
+>
+    <form @submit.prevent="changeTask">
+            <label>
+                名称 
+            <input v-model="taskNameC"/>
+            </label>
+            <label>
+                指令
+            <input v-model="taskCommandC"/>
+            </label>
+            <label>
+                表达式
+            <input v-model="taskCronC"/>
+            </label>
+            <input class="submit-button" type="submit" value="修改"/>
+    </form>
+</pop-box>
+</div>
 </template>
 
 <script>
@@ -237,15 +235,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-    display: flex;
-    justify-content: center;
-}
-.content {
-    position: absolute;
-    min-width: 60vw;
-    margin-top: 4em;
-}
 .pop-box form {
     display: flex;
     flex-direction: column;
@@ -283,28 +272,19 @@ export default {
 }
 .new-button {
     display: flex;
-    overflow: hidden;
-    padding: 8px;
+    height: 2.5em;
+    width: 4.1em;
     justify-content: center;
     align-items: center;
-    border-radius: 0.25em;
+    border-radius: 4px;
     color: white;
     background: #0096FA;
 }
 .new-button i {
-    margin-right:5px;
+    margin-right:1px;
+    font-size:1.5em;
 }
 .new-button:hover {
     cursor: pointer;  
-}
-</style>
-<style scoped>
-/* moblie */
-@media only screen and (max-width: 800px) {
-    .content {
-        margin: 0;
-        margin-top: 3.5em;
-        width: 100%;
-    }
 }
 </style>

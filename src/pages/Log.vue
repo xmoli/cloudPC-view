@@ -92,13 +92,6 @@ export default {
 </script>
 
 <style scoped>
-.content {
-    position: absolute;
-    min-width: 60vw;
-    margin-left: 16vw;
-    margin-top: 15vh;
-    margin-bottom: 6em;
-}
 select.filter {
     margin-left: -2em;
     height: 2.5em;

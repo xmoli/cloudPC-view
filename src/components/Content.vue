@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-    <div class="content">
+    <div class="content-base">
         <slot/>
     </div>
     </div>
@@ -13,15 +13,16 @@
     align-items center
     width 100vw
 
-.content
+.content-base
     position absolute
     top $appbar-height
     width 780px
     padding 0 8px
     background white
-    transform translateX($sidebar-width/2)
+    border-radius 4px
+    transform translate($sidebar-width/2, 8px)
 
 @media only screen and (max-width 1040px)
-    .content
+    .content-base
         transform none
 </style>

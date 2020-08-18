@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <content-base class="container">
         <ul class="title">
             <li class="first">
                 <span>ID</span>
@@ -12,12 +12,12 @@
         <ul class="content">
             <li 
                 v-for="(item, index) in items" :key="item.id"
+                v-on:click.stop="openMenu(index)"
             >
                 <span>{{item.id}}</span>
                 <span>{{item.name}}</span>
                 <span
                     class="last-span"
-                    v-on:click.stop="openMenu(index)"
                 >
                 <i class="fa fa-ellipsis-h" />
                 <item-menu 
@@ -45,12 +45,13 @@
                 </span>
             </li>
         </ul>
-    </div>
+    </content-base>
 </template>
 <script>
 export default {
     components: {
-        "item-menu": () => import('../components/Menu.vue')
+        "item-menu": () => import('./Menu'),
+        "content-base": ()=> import('./Content')
     },
     props: ["items"],
     data (){
@@ -152,9 +153,6 @@ export default {
     }
     .item-menu ul li button:hover, .item-menu ul li button:focus {
         background: rgba(0,0,0,.3);
-    }
-    .item-menu ul li button:focus {
-        color: rgb(87, 87, 255);
     }
 </style>
 <style scoped>
