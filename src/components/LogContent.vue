@@ -110,7 +110,7 @@ ul li
     & li
         display flex
     & .row
-        border-bottom 1.5px dashed #cbcbcb
+        border-bottom 1px solid #cbcbcb
 .lbody .item .message
     font-size .9em
     text-indent 2em
