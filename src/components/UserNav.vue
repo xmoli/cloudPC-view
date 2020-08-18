@@ -1,8 +1,8 @@
 <template>
     <div class="user-nav">
         <ul>
-            <li>设置</li>
-            <li>消息</li>
+            <li><i class="fa fa-cogs"/>设置</li>
+            <li><i class="fa fa-inbox"/>消息</li>
         </ul>
     </div>
 </template>
@@ -18,16 +18,18 @@ ul
     width 100%
     margin-left $sidebar-width
     padding-left 16px
-    font-size 1.5em
     border-bottom 2px solid lighten($main-color, 80%)
     & li
-        width 3.2em
-        height 2em
+        padding 8px
         line-height 2em
         letter-spacing 2px
         color gray
         transform translateY(2px)
+        & i 
+            font-size 1.5em
+        & .fa
+                color inherit
         &:hover
             border-bottom 2px solid lighten($main-color,40%)
-            color black
+            color $main-color
 </style>

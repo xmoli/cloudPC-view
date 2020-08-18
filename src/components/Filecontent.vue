@@ -114,15 +114,20 @@ ul li
 .length, .name
     height 2em
     border-bottom 1px solid #cecece
+    &:hover
+        cursor pointer
 .icon
     font-size 2em
     color $main-color
     width 40px
+    &:hover
+        cursor pointer
 .name
     width 360px
 .file
     color #555
     font-size .95em
     & .icon
+        font-size 1.5em
         color lighten($main-color,50%)
 </style>
