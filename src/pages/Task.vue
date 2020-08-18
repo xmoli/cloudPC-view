@@ -1,6 +1,6 @@
 <template>
     <keep-alive>
-        <div>
+        <div class="wrapper">
         <message-box :message="message"/>
         <Appbar v-on:search="showResult">
             <div class="new-button"
@@ -237,11 +237,14 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
 .content {
     position: absolute;
     min-width: 60vw;
-    margin-left:16vw;
-    margin-top: 15vh;
+    margin-top: 4em;
 }
 .pop-box form {
     display: flex;
@@ -286,7 +289,7 @@ export default {
     align-items: center;
     border-radius: 0.25em;
     color: white;
-    background: rgb(0, 26, 110);
+    background: #0096FA;
 }
 .new-button i {
     margin-right:5px;

@@ -1,6 +1,6 @@
 <template>
     <div class="appbar">
-        <div class="sidebar-blank-box"/>
+        <div class="switch-sidebar fa fa-bars" @click="$emit('toggle-sidebar')"></div>
         <div class="search-box">
             <Searchbar @search="search"/>
         </div>
@@ -28,41 +28,6 @@ export default {
 }
 </script>
 <style scoped>
-    .appbar {
-        position: fixed;
-        width: 100vw;
-        height: 4em;
-        min-height: 2.5em;
-        z-index: 1100;
-
-        background: white;
-        margin: 0;
-        
-        display: flex;
-        align-items: center;
-    }
-    .search-box {
-        overflow: hidden;
-    }
-    .page-tool-box {
-        display: flex;
-        justify-content: center;
-    }
-</style>
-<style scoped>
-@media only screen and (min-width: 800px){
-    .sidebar-blank-box {
-        width: 12vw;
-    }
-
-    .message-box {
-        min-width: 3em;
-        display: flex;
-        justify-content: flex-end;
-    }
-}
-</style>
-<style scoped>
 @media only screen and (max-width: 800px) {
     .message-box{
         display: none;
@@ -73,4 +38,34 @@ export default {
         background: rgb(42, 45, 70);
     }
 }
+</style>
+<style lang="stylus" scoped>
+@import "../main.styl"
+.appbar
+    position fixed
+    top 0
+    left 0
+    background rgb(245, 245, 245)
+    z-index $appbar-z-index
+    height $appbar-height
+    width 100vw
+    padding-left $sidebar-width
+
+    display flex
+    align-items center
+    border-bottom 1px solid #cbcbcb
+.page-tool-box
+    display flex
+    align-items center
+.switch-sidebar
+    display none
+    margin 8px
+    font-size 1.8em
+    color #bbb
+
+@media only screen and (max-width 1040px)
+    .appbar
+        padding-left 0
+    .switch-sidebar
+        display block
 </style>

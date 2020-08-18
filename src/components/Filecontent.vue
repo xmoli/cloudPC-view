@@ -4,7 +4,6 @@
             <li>
                 <span @click="toggleSelectAll" class="wrapper-checkbox">
                     <input type="checkbox" ref="allCheckedbox"/>
-                    选择
                 </span>
                 <span class="icon"/>
                 <span class="name">名称</span>
@@ -14,6 +13,7 @@
         <ul class="body" ref="body">
             <li v-for="(item,index) in items" :key="index" 
                 @click="openFile($event, item)"
+                :class="{'file':item.type !='folder'}"
             >
                 <span class="wrapper-checkbox" @click.stop="select($event, index)">
                     <input type="checkbox"/>
@@ -84,50 +84,44 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.header li, .body li{
-    display: flex;
-    border-bottom: 1px solid rgb(221, 221, 221);
-}
-.header li span , .body li span{
-    padding: .8em 8px;
-    text-align: start;
-}
-.wrapper-checkbox {
-    width: 4em;
-}
-.icon{
-    width: 1em;
-}
-.name {
-    width: 25vw;
-}
-.length {
-    width: 10vw;
-}
-ul.body li:hover {
-    cursor: pointer;
-}
-.wrapper-checkbox {
-    display: flex;
-    align-items: center;
-}
-.wrapper-checkbox::before {/*添加一个罩子以免直接点击checkbox引发bug*/
-    content: "";
-    position: absolute;
-    width: 1.5em;
-    height: 1.5em;
-}
-.wrapper-checkbox i {
-    margin-left: 8px;
-    color: rgb(0, 26, 110);
-}
-</style>
 <style scoped>
 @media only screen and (max-width: 800px) {
     ul {
         margin: 0 8px;
     }
 }
+</style>
+<style lang="stylus" scoped>
+@import "../main.styl"
+ul li
+    display flex
+    height 4em
+    align-items center
+    & span 
+        display flex
+        algin-items center
+.wrapper-checkbox input
+    width 16px
+    height @width
+.wrapper-checkbox::before /*添加一个罩子以免直接点击checkbox引发bug*/
+    content: "";
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+.wrapper-checkbox
+    width 40px
+.length, .name
+    height 2em
+    border-bottom 1px solid #cecece
+.icon
+    font-size 2em
+    color $main-color
+    width 40px
+.name
+    width 360px
+.file
+    color #555
+    font-size .95em
+    & .icon
+        color lighten($main-color,50%)
 </style>

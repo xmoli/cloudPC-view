@@ -15,7 +15,7 @@
             </item-menu>
         </div>
         <div>
-            <i class="fa fa-user-o" v-on:click="openUserMenu"/>
+            <span  v-on:click="openUserMenu"><i class="fa fa-user-o"/> username</span>
             <item-menu 
                 class="item-menu"
                 ref="userMenu"

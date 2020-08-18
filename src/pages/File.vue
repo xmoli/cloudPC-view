@@ -1,12 +1,14 @@
 <template>
 <keep-alive>
-<div>
+<div class="wrapper">
     <tip-box :message="message"/>
     <appbar class="file-option" @error="message={message:$event}" >
         <button class="download">下载</button>
+        <button>
         <label class="upload" for="upload-input" @change="upload">
-                上传
+            上传
         </label>
+        </button>
         <input hidden type="file" id="upload-input"/>
         <button>移动</button>
         <button>重命名</button>
@@ -15,7 +17,7 @@
         <file-option/>
     </appbar>
     <fetch-progress :status="progress"/>
-    <sidebar/>
+    <sidebar class="sidebar"/>
     <content-file class="file-content"
         :items="items"
         @find="getFilelist"
@@ -144,54 +146,44 @@ export default {
     }
 }
 </script>
-<style scoped>
-.file-content {
-    background: white;
-    border-radius: .25em;
-    position: absolute;
-    width: 60vw;
-    margin-top: 12vh;
-    margin-left:15vw;
-    overflow-x: hidden;
-}
-button, .upload{
-    display: block;
-    letter-spacing: 2px;
-    margin-right: .5em;
-    border: none;
-    background: rgb(207, 207, 207);
-    border-radius: .3em;
-    padding: 8px;
-    width: 5em;
-    outline: none;
-}
-button:hover, .upload:hover{
-    cursor: pointer;
-}
-button:focus, .upload:focus{
-        box-shadow: -2px -2px 5px rgba(131, 131, 243, 0.3),
-        2px 2px 5px rgba(131, 131, 243, 0.3),
-        2px -2px 5px rgba(131, 131, 243, 0.3),
-        -2px 2px 5px rgba(131, 131, 243, 0.3);
-}
-button.download, .upload {
-    font-size: inherit;
-    background:rgb(0, 26, 110);
-    color: white;
-}
-</style>
-<style scoped>
-@media only screen and (max-width: 800px){
-    .file-option button {
-        display: none;
-    }
-    .file-content {
-        background: white;
-        position: absolute;
-        margin: 0;
-        margin-top: 3.5em;
-        width: 100%;
-        overflow: hidden;
-    }
-}
+<style lang="stylus" scoped>
+@import "../main.styl"
+.wrapper
+    display flex
+    justify-content center
+    align-items center
+.file-content
+    position absolute
+    top $appbar-height
+    width 780px
+    padding 0 8px
+    background white
+    transform translateX($sidebar-width/2)
+.file-option button
+    height 3em
+    width 4.8em
+    margin 0 8px
+    background transparent
+    border-radius 4px
+    border 1px solid #cbcbcb
+    &:hover
+        cursor pointer
+    & label:hover
+        cursor pointer
+.file-option .upload
+    display flex
+    align-items center
+    justify-content center
+    width 100%
+    height 100%
+button.download
+    color white
+    background $main-color
+
+@media only screen and (max-width 1040px)
+    .sidebar
+        display none
+    .file-content
+        transform none
+
 </style>

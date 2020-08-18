@@ -49,7 +49,6 @@ export default {
     }
     .fa-search:hover{
         cursor: pointer;
-        color: rgb(4, 67, 148);
     }
 </style>
 <style scoped>
@@ -61,4 +60,9 @@ export default {
         background: white;
     }
 }
+</style>
+<style lang="stylus" scoped>
+@media only screen and (max-width 1040px)
+    input 
+        border-radius 2.5em
 </style>
