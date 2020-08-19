@@ -3,7 +3,6 @@
         <user-nav>
         </user-nav>
         <sidebar />
-        <router-view/>
     </div>
 </template>
 <script>

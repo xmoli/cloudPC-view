@@ -12,6 +12,9 @@
             <router-link tabindex="1" tag="li" to="/task" >
                 <i class="fa fa-tasks" /> 任务
             </router-link>
+            <router-link tabindex="1" tag="li" to="/test">
+                <i class="fa fa-link"/> 测试
+            </router-link>
             <router-link tabindex="1" tag="li" to="/log">
                 <i class="fa fa-file-o" />日志
             </router-link>

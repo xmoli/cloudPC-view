@@ -45,7 +45,7 @@ export default {
     position fixed
     top 0
     left 0
-    background rgb(245, 245, 245)
+    backdrop-filter saturate(180%) blur(20px)
     z-index $appbar-z-index
     height $appbar-height
     width 100vw

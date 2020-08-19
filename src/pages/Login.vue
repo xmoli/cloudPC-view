@@ -236,7 +236,6 @@ form>label
     position absolute
     margin 10px 4px
 input
-    display inline-block
     padding 0 18px
     height 3em
     width 200px
