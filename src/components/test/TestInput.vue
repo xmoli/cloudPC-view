@@ -12,7 +12,7 @@
 <script>
 export default {
     components: {
-        "admin-select": () => import('../InputSelect')
+        "admin-select": () => import('./InputSelect')
     },
     data() {
         return {
@@ -24,18 +24,21 @@ export default {
 }
 </script>
 <style scoped lang="stylus">
-@import "../..//main.styl"
+@import "../../main.styl"
 form
-    margin-top 8px
     display flex
     align-items center
+.select
+    border none !important
 input
     padding 8px
     outline none
     border 1px solid gray
     border-left none
 .input 
-    width 460px
+    width 360px
+    background #ebebeb
+    border none !important
 .methods
     border-radius 4px 0 0 4px
     margin-left 8px
@@ -46,6 +49,8 @@ input
     width 5em
     background $main-color
     color white
+    &:focus
+        shadow-holo($main-color)
     &:hover
         cursor pointer
 button
@@ -55,5 +60,8 @@ button
     background #cbcbcb
     padding 8px
     margin-left 8px
+    outline none
+    &:focus
+        shadow-holo(#cbcbcb)
 
 </style>

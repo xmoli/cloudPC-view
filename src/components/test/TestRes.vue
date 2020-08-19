@@ -1,12 +1,22 @@
 <template>
 <div>
-    <ul>
-        <li>响应体</li>
-        <li>响应头</li>
-    </ul>
+    <tab :tabs="tabs"/>
     <div class="body"/>
 </div>
 </template>
+<script>
+export default {
+    components: {
+        'tab': ()=>import('../Tab')
+    },
+    data(){
+        return {
+            tabs: ['响应体','响应头'],
+            
+        }
+    }
+}
+</script>
 <style scoped lang="stylus">
 ul
     display flex

@@ -15,8 +15,8 @@
             <td><i class="fa fa-times"/></td>
         </tr>
         <tr>
-            <td><input type="checkbox"/></td>
-            <td><input name="key" @change="addItem"/></td>
+            <td/>
+            <td><input name="key"/></td>
             <td><input name="value"/></td>
             <td><input name="descript"/></td>
             <td/>
@@ -27,7 +27,7 @@
 export default {
     data(){
         return {
-            items:['a','b']
+            items:[]
         }
     },
     methods:{
@@ -41,16 +41,22 @@ export default {
 @import "../../main.styl"
 table.key-value
     border-collapse collapse
-    & td:first-child, & td:last-child
-        padding 8px
+    & td:first-child
+        min-width 1.5em
     & td
+        padding 8
         border 1px solid #bbb
-        padding 0
-        & input
-            background none
+        outline-color $main-color
+        resize none
+        input
+            outline none
             border none
             padding 8px
-            outline-color $main-color
 .key-value .header td
     padding 8px 0
+.wrapper
+    overflow hidden
+    height 1em
+    padding 0
+
 </style>
