@@ -52,6 +52,7 @@ export default {
 
     display flex
     align-items center
+    justify-content start 
     border-bottom 1px solid #cbcbcb
 .page-tool-box
     display flex
@@ -67,4 +68,7 @@ export default {
         padding-left 0
     .switch-sidebar
         display block
+@media only screen and (max-width 790px)
+    .page-tool-box
+        display none
 </style>
