@@ -13,9 +13,9 @@ export default {
 @import "../main.styl"
 div
     position fixed
-    height 4em
+    height $appbar-height
     z-index $appbar-z-index - 1
-    border-bottom 2px solid lighten($main-color,90%)
+    background alpha($main-color,.5)
 .v-enter-active
     transition width  0.3s ease
 .v-enter
