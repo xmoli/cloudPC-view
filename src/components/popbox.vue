@@ -53,7 +53,7 @@ export default {
 <style scoped>
     .menu-wrapper {
         display: none;
-        position: absolute;
+        position: fixed;
         z-index: 2000;
         justify-content: center;
         align-items: center;
