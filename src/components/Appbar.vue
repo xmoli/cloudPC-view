@@ -48,11 +48,10 @@ export default {
     z-index $appbar-z-index
     height $appbar-height
     width 100vw
-    padding-left $sidebar-width
 
     display flex
     align-items center
-    justify-content start 
+    justify-content center 
     border-bottom 1px solid #cbcbcb
 .page-tool-box
     display flex
