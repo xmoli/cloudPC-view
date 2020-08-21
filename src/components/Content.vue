@@ -18,11 +18,12 @@
     top $appbar-height
     width 780px
     padding 0 8px
-    background white
+    background #ebebeb
     border-radius 4px
     transform translate($sidebar-width/2, 8px)
 
 @media only screen and (max-width 1040px)
     .content-base
         transform none
+        width 100%
 </style>

@@ -35,7 +35,6 @@ export default {
     .appbar{
         justify-content: space-around;
         height: 3.5em;
-        background: rgb(42, 45, 70);
     }
 }
 </style>

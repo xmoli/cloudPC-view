@@ -1,7 +1,9 @@
 <template>
     <form @submit.prevent>
-        <admin-select class="select" :options="agreement"/>
-        <admin-select class="select methods" :options="methods"/>
+        <admin-select class="select" :options="agreement"
+            @dchange="changeAgreement"
+        />
+        <admin-select v-if="methodsSwitch" class="select methods" :options="methods"/>
         <input class="input"/>
         <input class="submit" type="submit"/>
         <button>
@@ -17,8 +19,19 @@ export default {
     data() {
         return {
             agreement: ['HTTP','TCP'],
+            methodsSwitch: false,
             methods: ['GET','POST','PUT','DELETE'],
             save: ['SAVE','SAVE AS']
+        }
+    },
+    methods:{
+        changeAgreement(val){
+            console.log(val)
+            if (val=== this.agreement[1]){
+                this.methodsSwitch = false
+            } else {
+                this.methods = true
+            }
         }
     }
 }
@@ -28,20 +41,19 @@ export default {
 form
     display flex
     align-items center
-.select
-    border none !important
 input
     padding 8px
     outline none
-    border 1px solid gray
+    border 1px solid #cbcbcb
     border-left none
+.select
+    margin-right 8px
 .input 
     width 360px
     background #ebebeb
-    border none !important
 .methods
     border-radius 4px 0 0 4px
-    margin-left 8px
+    margin-right 0
 .submit
     border none
     margin-left 8px
