@@ -88,9 +88,6 @@ export default {
 }
 </style>
 <style lang="stylus" scoped>
-ul li 
-    background white
-
 .level 
     width 100px
     text-align left
@@ -110,13 +107,13 @@ ul li
     & li
         display flex
     & .row
-        border-bottom 1px solid #cbcbcb
+        border-top 1px solid #cbcbcb
+        padding 8px 0
 .lbody .item .message
     font-size .9em
     text-indent 2em
     text-align start
     width 642px
-    color gray
     padding 8px 0
 .info
     color gray
