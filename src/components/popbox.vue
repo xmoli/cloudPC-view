@@ -39,21 +39,24 @@ export default {
         closePopbox () {
             this.$refs.popbox.style.display = "none"
             this.$emit('close')
+            document.body.removeAttribute('style')
         },
         openPopbox () {
             let popbox = this.$refs.popbox
             let menu = this.$refs.menu
             popbox.style.display = "flex"
             menu.getElementsByTagName('input')[0].focus()
+            document.body.style.overflowY = "hidden"
         }
     }
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+@import "../main.styl"
     .menu-wrapper {
         display: none;
-        position: absolute;
+        position: fixed;
         z-index: 2000;
         justify-content: center;
         align-items: center;
@@ -62,7 +65,7 @@ export default {
         height: 100vh;
         top: 0;
         left: 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.2);
     }
     .menu {
         display: flex;
@@ -73,11 +76,8 @@ export default {
         background: white;
         padding: 8px;
         transform: translateY(-2em);
-        box-shadow: -2px -2px 10px rgba(131, 131, 243, 0.5),
-            2px 2px 10px rgba(131, 131, 243, 0.5),
-            2px -2px 10px rgba(131, 131, 243, 0.5),
-            -2px 2px 10px rgba(131, 131, 243, 0.5);
         letter-spacing: 2px;
+        @extend .shadow-holo-max
     }
     .content {
         padding: 8px;

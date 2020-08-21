@@ -39,7 +39,7 @@
     background #ebebeb
 .logo
     font-size 62px
-    color $contrast-color
+    color alpha($contrast-color, .2)
     & .router-link-active
         background #ebebeb
 .sidebar ul li

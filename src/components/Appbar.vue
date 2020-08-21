@@ -35,7 +35,6 @@ export default {
     .appbar{
         justify-content: space-around;
         height: 3.5em;
-        background: rgb(42, 45, 70);
     }
 }
 </style>
@@ -49,10 +48,10 @@ export default {
     z-index $appbar-z-index
     height $appbar-height
     width 100vw
-    padding-left $sidebar-width
 
     display flex
     align-items center
+    justify-content center 
     border-bottom 1px solid #cbcbcb
 .page-tool-box
     display flex
@@ -68,4 +67,7 @@ export default {
         padding-left 0
     .switch-sidebar
         display block
+@media only screen and (max-width 790px)
+    .page-tool-box
+        display none
 </style>

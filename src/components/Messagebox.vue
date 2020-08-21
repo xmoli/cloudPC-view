@@ -55,28 +55,26 @@ export default {
     top: 1em;
     right: 1em;
 }
-.tip-box {
-    border-radius: .3em;
-    padding: .8em;
-    margin-bottom: 8px;
-    background: rgb(12, 12, 114);
-    color: white;
-    font-size: 0.8em;
-    letter-spacing: 1px;
-
-    box-shadow: 2px 2px 3px gray;
-
-    transition: all .3s ease-out;
-}
 .tip-box .fa-close {
     margin-left: 1em;
-    color: white;
+    color: black;
 }
 .tip-box .fa-close:hover {
     cursor: pointer;
 }
 </style>
 <style lang="stylus" scoped>
+@import "../main.styl"
+.tip-box {
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: #cbcbcb;
+    color: #333;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 3px #cbcbcb;
+    border-left 3px solid $main-color
+}
 .fade-enter-active, .fade-leave-active
     transition all  .5s
 .fade-enter
