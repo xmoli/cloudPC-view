@@ -146,7 +146,7 @@ export default {
             }
         },
         async submit () {
-            let username = this.username.trim(),
+            let username = this.username,
                 password = this.password
 
             if (this.login && this.validateAll()) {
