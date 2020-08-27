@@ -7,8 +7,8 @@
             <div class="container">
             <i class="fa fa-user"/>
             <input 
-                v-model="username"
-                v-on:change="checkUsernameInput"
+                v-model.trim="username"
+                v-on:input="checkUsernameInput"
                 ref="firstInput"
                 placeholder="邮箱"
             />
@@ -25,8 +25,8 @@
             <div class="container" >
             <i class="left fa fa-lock" />
             <input 
-                v-model="password"
-                v-on:change="checkPasswordInput"
+                v-model.trim="password"
+                v-on:input="checkPasswordInput"
                 type="password" 
                 placeholder="密码"
             />

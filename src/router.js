@@ -20,9 +20,6 @@ const routes = [
         path: '/task', component: () => import('./pages/Task.vue'),
         name: 'Task'
     },
-    { path: '/test', component: ()=>import('./pages/Test.vue'),
-        name: 'Test'
-    },
     {
         path: '/log', component: () => import('./pages/Log'),
         name: 'Log'
