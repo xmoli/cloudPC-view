@@ -6,27 +6,34 @@
             </router-link>
         </div>
         <ul>
-            <router-link tabindex="1" tag="li" to="/file" >
-                <i class="fa fa-folder-o"/>文件
-            </router-link>
-            <router-link tabindex="1" tag="li" to="/task" >
-                <i class="fa fa-tasks" /> 任务
-            </router-link>
-            <router-link tabindex="1" tag="li" to="/test">
-                <i class="fa fa-link"/> 测试
-            </router-link>
-            <router-link tabindex="1" tag="li" to="/log">
-                <i class="fa fa-file-o" />日志
-            </router-link>
-            <router-link tabindex="1" tag="li" to="/user">
-                <i class="fa fa-user-o" />用户
-            </router-link>
-            <router-link tabindex="1" tag="li" to="/about">
-                <i class="fa fa-info"/>关于
+            <router-link tabindex="0" tag="li" 
+                v-for="item in items" :key="item.name"
+                :to="item.path"
+            >
+                <i class="fa" :class="item.icon"/>{{item.cname}}
             </router-link>
         </ul>
     </div>
 </template>
+<script>
+import {routes} from '../../router'
+
+export default {
+    data: function(){
+        return {
+            items: []
+        }
+    },
+    created: function(){
+        this.items = routes.filter(i => {
+            if ((i.name === "Home") || (i.name==="Page404") || (i.name==="Login")) {
+                return false
+            }
+            return true
+        })
+    }
+}
+</script>
 <style lang="stylus" scoped>
 @import '../../main.styl'
 .sidebar
