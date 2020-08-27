@@ -3,7 +3,7 @@
         <ul class="header">
             <li>
                 <span @click="toggleSelectAll" class="wrapper-checkbox">
-                    <input type="checkbox" ref="allCheckedbox"/>
+                    <input type="checkbox" v-model="allChecked"/>
                 </span>
                 <span class="icon"/>
                 <span class="name">名称</span>
@@ -12,14 +12,16 @@
         </ul>
         <ul class="body" ref="body">
             <li v-for="(item,index) in items" :key="index" 
-                @click="openFile($event, item)"
                 :class="{'file':item.type !='folder'}"
             >
-                <span class="wrapper-checkbox" @click.stop="select($event, index)">
-                    <input type="checkbox"/>
+                <span class="wrapper-checkbox">
+                    <input type="checkbox" 
+                        :value="index" v-model="selected"
+                        @click.stop
+                    />
                 </span>
                 <filetype-icon class="icon" :filetype="item.type"/>
-                <span class="name">{{item.name}}</span>
+                <span class="name" @click="openFile($event, item)" >{{item.name}}</span>
                 <span class="length">{{item.length}}</span>
             </li>
         </ul>
@@ -35,44 +37,20 @@ export default {
     props: ["items"],
     data() {
         return {
-            selects: []//列表多选框的抽象
+            selected: [],
+            allChecked: false,
         }
     },
     methods: {
-        select(event, index) {
-            let checkbox = this.$refs.body.children[index].getElementsByTagName('input')[0]
-            if (checkbox.getAttribute('checked') === null) {
-                checkbox.setAttribute('checked','checked')
-                this.selects[index] = true
-            }else{
-                checkbox.removeAttribute('checked')
-                this.selects[index] = false
-            }
-        },
         toggleSelectAll() {
-            let all = this.$refs.allCheckedbox
-            let hasSelected = false
-            for (let i = 0; i < this.selects.length; i++ ){
-                if (this.selects[i]) {
-                    hasSelected = true
-                    break;
-                }
-            }
-            let list = this.$refs.body.children
-            if (hasSelected) {
-                this.selects = []
-                list.forEach(ele => {
-                    let checkbox = ele.getElementsByTagName('input')[0]
-                    checkbox.setAttribute('checked', 'checked')
-                });
-                all.setAttribute('checked','checked')
+            if (this.allChecked == false) {
+                this.selected = this.items.map((item,index) => {
+                    return index
+                })
+                this.allChecked = true
             } else {
-                this.selects = new Array(this.items.length).fill(true)
-                list.forEach(ele => {
-                    let checkbox = ele.getElementsByTagName('input')[0]
-                    checkbox.removeAttribute('checked')
-                });
-                all.removeAttribute('checked')
+                this.selected.splice(0,this.selected.length)
+                this.allChecked = false
             }
         },
         openFile(event, item){
@@ -104,11 +82,6 @@ ul li
 .wrapper-checkbox input
     width 16px
     height @width
-.wrapper-checkbox::before /*添加一个罩子以免直接点击checkbox引发bug*/
-    content: "";
-    position: absolute;
-    width: 1.5em;
-    height: 1.5em;
 .wrapper-checkbox
     width 40px
 .length, .name
@@ -120,8 +93,6 @@ ul li
     font-size 2em
     color $main-color
     width 40px
-    &:hover
-        cursor pointer
 .name
     width 360px
 .file
